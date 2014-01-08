@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/resources/template/principal.xhtml">
+        <ui:define name="titulo">
+            <h:outputText value="#{bundle.ListProjetoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="esquerda">
+            <ui:include src="/resources/template/partes/menu_projeto.xhtml" />
+        </ui:define>
+        <ui:define name="conteudo">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProjetoEmpty}" rendered="#{empty projetoController.projetosList}"/>
+
+                <p:dataTable value="#{projetoController.projetosList}" var="item" styleClass="table table-hover">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProjetoTitle_id}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProjetoTitle_nome}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nome}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProjetoTitle_data_Inicio}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dataInicio}" converter="#{conversorData}">
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProjetoTitle_situacao}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.situacao}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ações"/>
+                        </f:facet>
+                        <h:commandLink  value="#{bundle.ListProjetoViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink value="#{bundle.ListProjetoEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink value="#{bundle.ListProjetoDestroyLink}"/>
+                    </h:column>
+                    </h:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <h:commandLink value="#{bundle.ListProjetoCreateLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/web/index" value="#{bundle.ViewProjetoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

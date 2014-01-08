@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/resources/template/principal.xhtml">
+        <ui:define name="titulo">
+            <h:outputText value="#{bundle.CreateTarefaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="conteudo">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{tarefaController.selected.nome}" title="#{bundle.CreateTarefaTitle_nome}" required="true" requiredMessage="#{bundle.CreateTarefaRequiredMessage_nome}"/>
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{tarefaController.selected.descricao}" title="#{bundle.CreateTarefaTitle_descricao}" required="true" requiredMessage="#{bundle.CreateTarefaRequiredMessage_descricao}"/>
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_modulo}" for="modulo" />
+                    <h:selectOneMenu id="modulo" value="#{tarefaController.selected.modulo}" title="#{bundle.CreateTarefaTitle_modulo}" required="true" requiredMessage="#{bundle.CreateTarefaRequiredMessage_modulo}">
+                        <f:selectItems value="#{moduloController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tarefaController.create}" value="#{bundle.CreateTarefaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tarefaController.prepareList}" value="#{bundle.CreateTarefaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/web/index" value="#{bundle.CreateTarefaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

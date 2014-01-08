@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition template="/resources/template/principal.xhtml">
+        <ui:define name="titulo">
+            <h:outputText value="#{bundle.ViewProjetoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="topo">
+            <ui:include src="/resources/template/partes/menu_projeto.xhtml" />
+        </ui:define>
+        <ui:define name="conteudo">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProjetoLabel_id}"/>
+                    <h:outputText value="#{projetoController.selected.id}" title="#{bundle.ViewProjetoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_nome}"/>
+                    <h:outputText value="#{projetoController.selected.nome}" title="#{bundle.ViewProjetoTitle_nome}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_descricao}"/>
+                    <h:outputText value="#{projetoController.selected.descricao}" title="#{bundle.ViewProjetoTitle_descricao}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_data_Inicio}"/>
+                    <h:outputText value="#{projetoController.selected.dataInicio}" converter="#{conversorData}" title="#{bundle.ViewProjetoTitle_data_Inicio}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_situacao}"/>
+                    <h:outputText value="#{projetoController.selected.situacao}" title="#{bundle.ViewProjetoTitle_situacao}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{projetoController.destroyAndView}" value="#{bundle.ViewProjetoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProjetoEditLink}"/>
+                <br />
+                <h:commandLink action="#{projetoController.prepareCreate}" value="#{bundle.ViewProjetoCreateLink}" />
+                <br />
+                <h:commandLink action="#{projetoController.prepareList}" value="#{bundle.ViewProjetoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/web/index" value="#{bundle.ViewProjetoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

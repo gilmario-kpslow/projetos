@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition template="/resources/template/principal.xhtml">
+        <ui:define name="tutulo">
+            <h:outputText value="#{bundle.EditProjetoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="topo">
+            <ui:include src="/resources/template/partes/menu_projeto.xhtml" />
+        </ui:define>
+        <ui:define name="conteudo">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProjetoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{projetoController.selected.id}" title="#{bundle.EditProjetoTitle_id}" readonly="true"/>
+                    <h:outputLabel value="#{bundle.EditProjetoLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{projetoController.selected.nome}" title="#{bundle.EditProjetoTitle_nome}" />
+                    <h:outputLabel value="#{bundle.EditProjetoLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{projetoController.selected.descricao}" title="#{bundle.EditProjetoTitle_descricao}" />
+                    <h:outputLabel value="#{bundle.EditProjetoLabel_data_Inicio}" for="data_Inicio" />
+                    <h:inputText id="data_Inicio" value="#{projetoController.selected.dataInicio}" converter="#{conversorData}" title="#{bundle.EditProjetoTitle_data_Inicio}" />
+                    <h:outputLabel value="#{bundle.EditProjetoLabel_situacao}" for="situacao" />
+                    <h:inputText id="situacao" value="#{projetoController.selected.situacao}"  title="#{bundle.EditProjetoTitle_situacao}" readonly="true"/>
+                </h:panelGrid>
+                <h:commandLink action="#{projetoController.update}" value="#{bundle.EditProjetoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProjetoViewLink}"/>
+                <br />
+                <h:commandLink action="#{projetoController.prepareList}" value="#{bundle.EditProjetoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/web/index" value="#{bundle.ViewProjetoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

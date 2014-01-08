@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditOcorrenciaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditOcorrenciaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ocorrenciaController.selected.id}" title="#{bundle.EditOcorrenciaTitle_id}" required="true" requiredMessage="#{bundle.EditOcorrenciaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditOcorrenciaLabel_tarefa}" for="tarefa" />
+                    <h:selectOneMenu id="tarefa" value="#{ocorrenciaController.selected.tarefa}" title="#{bundle.EditOcorrenciaTitle_tarefa}" required="true" requiredMessage="#{bundle.EditOcorrenciaRequiredMessage_tarefa}">
+                        <f:selectItems value="#{tarefaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditOcorrenciaLabel_texto}" for="texto" />
+                    <h:inputText id="texto" value="#{ocorrenciaController.selected.texto}" title="#{bundle.EditOcorrenciaTitle_texto}" required="true" requiredMessage="#{bundle.EditOcorrenciaRequiredMessage_texto}"/>
+                    <h:outputLabel value="#{bundle.EditOcorrenciaLabel_dataOcorrencia}" for="dataOcorrencia" />
+                    <h:inputText id="dataOcorrencia" value="#{ocorrenciaController.selected.dataOcorrencia}" title="#{bundle.EditOcorrenciaTitle_dataOcorrencia}" required="true" requiredMessage="#{bundle.EditOcorrenciaRequiredMessage_dataOcorrencia}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{ocorrenciaController.update}" value="#{bundle.EditOcorrenciaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditOcorrenciaViewLink}"/>
+                <br />
+                <h:commandLink action="#{ocorrenciaController.prepareList}" value="#{bundle.EditOcorrenciaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditOcorrenciaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
