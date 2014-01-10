@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author gilmario
  */
-//@WebServlet(urlPatterns = {"/logout"})
+@WebServlet(urlPatterns = {"/logout"})
 public class LogoutService extends HttpServlet {
 
     @Inject

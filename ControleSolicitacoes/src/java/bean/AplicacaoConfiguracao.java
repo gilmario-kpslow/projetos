@@ -25,7 +25,6 @@ public class AplicacaoConfiguracao implements Serializable {
     private String porta;
     private String nomeSistema;
     private final String extensao;
-    private boolean criado;
 
     @PostConstruct
     private void init() {
@@ -53,10 +52,9 @@ public class AplicacaoConfiguracao implements Serializable {
     }
 
     private void criarResponsavelPadrao() {
-
         Responsavel responsavel;
         try {
-            responsavel = responsavelFacade.find(1);
+            responsavel = responsavelFacade.encontra(1);
         } catch (Exception e) {
             responsavel = null;
         }
@@ -65,7 +63,7 @@ public class AplicacaoConfiguracao implements Serializable {
             responsavel.setId(1);
             responsavel.setNome("Mestre");
             responsavel.setSenha("Controle");
-            responsavelFacade.create(responsavel);
+            responsavelFacade.criar(responsavel);
         }
 
     }

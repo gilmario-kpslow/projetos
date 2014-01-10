@@ -25,7 +25,7 @@ public class ProjetoController implements Serializable {
     }
 
     public void mostrarProjetos() {
-        projetosList = getDAO().findAll();
+        projetosList = getDAO().pegarTodos();
     }
 
     private ProjetoDAO getDAO() {
@@ -34,7 +34,7 @@ public class ProjetoController implements Serializable {
 
     public void criar() {
         try {
-            getDAO().create(projeto);
+            getDAO().criar(projeto);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProjetoCreated"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -43,7 +43,7 @@ public class ProjetoController implements Serializable {
 
     public void update() {
         try {
-            getDAO().edit(projeto);
+            getDAO().editar(projeto);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProjetoUpdated"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));

@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author gilmario
  */
-//@WebFilter(urlPatterns = {"/web/*"})
+@WebFilter(urlPatterns = {"/web/*"})
 public class FiltroLogin implements Filter {
 
     @Inject

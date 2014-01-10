@@ -24,29 +24,29 @@ public abstract class AbstractDAO<T> implements Serializable {
 
     protected abstract EntityManager getEntityManager();
 
-    public void create(T entity) {
+    public void criar(T entity) {
         getEntityManager().persist(entity);
     }
 
-    public void edit(T entity) {
+    public void editar(T entity) {
         getEntityManager().merge(entity);
     }
 
-    public void remove(T entity) {
+    public void remover(T entity) {
         getEntityManager().remove(getEntityManager().merge(entity));
     }
 
-    public T find(Object id) {
+    public T encontra(Object id) {
         return getEntityManager().find(entityClass, id);
     }
 
-    public List<T> findAll() {
+    public List<T> pegarTodos() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
     }
 
-    public List<T> findRange(int[] range) {
+    public List<T> encontraIntervalo(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
@@ -55,7 +55,7 @@ public abstract class AbstractDAO<T> implements Serializable {
         return q.getResultList();
     }
 
-    public int count() {
+    public int contar() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));

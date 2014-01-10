@@ -21,7 +21,7 @@ import modelo.Responsavel;
  *
  * @author gilmario
  */
-//@WebServlet(urlPatterns = {"/login"})
+@WebServlet(urlPatterns = {"/login"})
 public class LoginService extends HttpServlet {
 
     @Inject
@@ -43,7 +43,7 @@ public class LoginService extends HttpServlet {
                 resp.sendRedirect(req.getContextPath() + "/index.xhtml");
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             req.setAttribute("erro", "Erro na consulta");
             resp.sendRedirect(req.getContextPath() + "/index.xhtml");
         }
