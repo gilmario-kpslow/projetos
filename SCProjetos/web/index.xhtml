@@ -1,12 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
-</html>
-
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/template/principal.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:r="http://richfaces.org/rich"
+                xmlns:a="http://richfaces.org/a4j"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="topo">
+        Sistema de Controle de Projetos - Login
+    </ui:define>
+    <ui:define name="conteudo">
+        <div style="text-align: center;">
+            <fieldset>
+                <legend>
+                    Acesso
+                </legend>
+                <form action="login" method="post">
+                    <r:panel header="LOGIN" style="width: 400px;">
+                        <input name="nome" placeholder="Coloque seu nome aqui" style="width: 200px;"></input><br/>
+                        <input name="senha" placeholder="Insira a senha aqui" style="width: 200px;" type="password"></input><br/>
+                        <input type="submit" value="Enviar" style="margin-left: 100px;width: 100px;"></input>
+                    </r:panel>
+                </form>
+            </fieldset>
+        </div>
+    </ui:define>
+</ui:composition>
