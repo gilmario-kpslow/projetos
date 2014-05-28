@@ -15,6 +15,8 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -26,19 +28,22 @@ public class Capa implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull
-    @Column(length = 255, nullable = false)
+    @NotEmpty
+    @Column(nullable = false)
+    @Length(max = 255)
     private String cabecalho;
-    @NotNull
-    @Column(length = 255, nullable = false)
+    @NotEmpty
+    @Length(max = 255)
+    @Column(nullable = false)
     private String titulo;
-    @NotNull
-    @Column(length = 255, nullable = false)
+    @NotEmpty
+    @Length(max = 255)
+    @Column(nullable = false)
     private String SubTitulo;
     @Id
     @NotNull
     @JoinColumns({
-        @JoinColumn(name = "manual", referencedColumnName = "id", nullable = false),
+        @JoinColumn(name = "manual", referencedColumnName = "manual", nullable = false),
         @JoinColumn(name = "numero_pagina", referencedColumnName = "numero", nullable = false)})
     @ManyToOne
     private Pagina pagina;

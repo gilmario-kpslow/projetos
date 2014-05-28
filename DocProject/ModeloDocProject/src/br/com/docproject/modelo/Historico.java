@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -39,14 +41,20 @@ public class Historico implements Serializable {
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataVersao;
+    @NotEmpty
+    @Length(max = 20)
+    @Column(nullable = false, length = 20)
     private String versao;
-    @NotNull
-    @Column(nullable = false)
+    @Length(max = 10000)
+    @Column(nullable = false, length = 10000)
     private String descricao;
+    @NotNull
+    @JoinColumn(name = "responsavel_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne
     private Responsavel responsavel;
     @NotNull
     @JoinColumns({
-        @JoinColumn(name = "manual", referencedColumnName = "id", nullable = false),
+        @JoinColumn(name = "manual", referencedColumnName = "manual", nullable = false),
         @JoinColumn(name = "numero_pagina", referencedColumnName = "numero", nullable = false)})
     @ManyToOne
     private Pagina pagina;

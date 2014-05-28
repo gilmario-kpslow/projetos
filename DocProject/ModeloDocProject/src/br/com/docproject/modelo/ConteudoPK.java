@@ -7,12 +7,6 @@ package br.com.docproject.modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -60,10 +54,7 @@ public class ConteudoPK implements Serializable {
         if (!Objects.equals(this.numero, other.numero)) {
             return false;
         }
-        if (!Objects.equals(this.pagina, other.pagina)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.pagina, other.pagina);
     }
 
 }

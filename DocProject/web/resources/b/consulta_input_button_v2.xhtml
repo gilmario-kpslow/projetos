@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <composite:interface>
+        <composite:attribute name="valor" required="true"/>
+        <composite:attribute name="valor_consulta" />
+        <composite:attribute name="acao_campo_codigo" method-signature="java.lang.Void action()"/>
+        <composite:attribute name="mostra_campo_codigo" default="false"/>
+        <composite:attribute name="label" required="true" default="Label"/>
+        <composite:attribute name="nome_dialog" required="false"/>
+        <composite:attribute name="size" default="10"/>
+        <composite:attribute name="size_codigo" default="5"/>
+        <composite:attribute name="desabilitaBotao" default="false"/>
+        <composite:attribute name="required" default="false"/>
+        <composite:attribute name="update" default="grid"/>
+    </composite:interface>
+    <composite:implementation>
+        <h:outputScript library="js" name="sonumero.js"/>
+        <h:panelGrid id="grid">
+            <p:outputLabel value="#{cc.attrs.label}" for="input_componente"/>
+            <h:panelGrid columns="3">
+                <p:inputText value="#{cc.attrs.valor_consulta}" onkeypress="return soNumero(event, this);" size="#{cc.attrs.size_codigo}" rendered="#{cc.attrs.mostra_campo_codigo}">
+                    <p:ajax listener="#{cc.attrs.acao_campo_codigo}" event="blur" update="#{cc.attrs.update}"/>
+                </p:inputText>
+                <p:inputText value="#{cc.attrs.valor}" id="input_componente" required="#{cc.attrs.required}" size="#{cc.attrs.size}" onkeypress="return false;"/>
+                <p:commandButton icon="ui-icon-search" disabled="#{cc.attrs.desabilitaBotao}" id="btnPesq" onclick="#{cc.attrs.nome_dialog}.show();" immediate="true"/>
+            </h:panelGrid>
+        </h:panelGrid>
+    </composite:implementation>
+</ui:composition>
+
+

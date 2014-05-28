@@ -43,7 +43,8 @@ public class Pagina implements Serializable {
     @JoinColumn(name = "manual", referencedColumnName = "id", nullable = false)
     @ManyToOne
     private Manual manual;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
+    @NotNull
     @Enumerated(EnumType.STRING)
     private TipoPagina tipoPagina;
 

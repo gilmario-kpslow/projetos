@@ -19,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -30,23 +32,24 @@ import javax.validation.constraints.NotNull;
 public class Conteudo implements Serializable {
 
     @Id
-    @NotNull
-    @Column(length = 255, nullable = false)
+    @NotEmpty
+    @Length(max = 255)
+    @Column(nullable = false)
     private String numero;
-    @NotNull
-    @Column(length = 255, nullable = false)
+    @NotEmpty
+    @Length(max = 255)
+    @Column(nullable = false)
     private String titulo;
-    @NotNull
     @Column(length = 100000, nullable = false)
     private String texto;
     @Id
     @NotNull
     @JoinColumns({
-        @JoinColumn(name = "manual", referencedColumnName = "id", nullable = false),
+        @JoinColumn(name = "manual", referencedColumnName = "manual", nullable = false),
         @JoinColumn(name = "numero_pagina", referencedColumnName = "numero", nullable = false)})
     @ManyToOne
     private Pagina pagina;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "conteudo")
     private List<Topico> listaTopico;
 
     public Conteudo() {

@@ -13,7 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -29,18 +29,17 @@ public class Manual implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
+    @Length(max = 50)
     @Column(length = 50, nullable = false)
     private String nome;
     @NotBlank
     @Column(length = 100, nullable = false)
+    @Length(max = 100)
     private String nomeSistema;
-    @NotNull
     @Column(length = 255)
     private String observacao;
-    @NotNull
     @Column(length = 100)
     private String rodape;
-    @NotNull
     @Column(length = 20)
     private String versao;
 

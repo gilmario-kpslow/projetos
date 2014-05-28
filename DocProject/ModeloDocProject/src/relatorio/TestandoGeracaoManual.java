@@ -111,7 +111,7 @@ public class TestandoGeracaoManual {
         List<Topico> listaTopicos = new ArrayList<>();
         listaTopicos.add(t);
         listaTopicos.add(t2);
-        c1.setListaTopico(listaTopicos);
+//        c1.setListaTopico(listaTopicos);
 
         Conteudo c2 = new Conteudo();
         c2.setTexto("");
@@ -124,7 +124,7 @@ public class TestandoGeracaoManual {
         t3.setTexto("");
         List<Topico> listaTopicos1 = new ArrayList<>();
         listaTopicos1.add(t3);
-        c2.setListaTopico(listaTopicos1);
+//        c2.setListaTopico(listaTopicos1);
 
         Pagina p4 = new Pagina();
         p4.setManual(m);
