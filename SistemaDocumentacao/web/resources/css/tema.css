@@ -1,0 +1,88 @@
+/*
+    Created on : 24/08/2014, 07:45:50
+    Author     : gilmario
+*/
+body{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+
+button{
+    border-radius: 0px;
+    min-width: 100px;
+    border-radius: 1px 1px 10px 10px;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+button:hover{
+    color: #CCC;
+}
+
+input{
+    border: 1px white solid;
+    border-radius: 0px;
+    border-radius: 0px 5px 0px 5px;
+}
+
+input:hover{
+
+}
+
+input:focus{
+
+}
+
+label{
+    font-weight: bold;
+}
+
+fieldset{
+    border-radius: 1px 1px 10px 10px;
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+
+legend{
+    margin-bottom: 0px;
+    padding: 20px;
+    background-color: #EEE;
+    border-radius: 0px 0px 40px 40px;
+}
+
+.menu{
+    background-color: #EEE;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
+.menuitem{
+    background: #DDD;
+    margin: 5px;
+    border-radius: 0px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all;
+    width: 100px;
+}
+.menuitem:hover{
+    color: #AAA;
+    margin: 5px;
+    border-radius: 0px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.barra-tarefas{
+    padding: 0px;
+    background-color: #DDD;
+}
+
+.content{
+    background-color: #DDD;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+

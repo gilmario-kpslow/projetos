@@ -6,6 +6,7 @@
 package dao;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,9 +18,13 @@ import javax.persistence.PersistenceContext;
  */
 public abstract class DAO<T, P> implements Serializable {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "DocProjectPU")
     private EntityManager em;
-    private Class<T> entityClass;
+    private final Class<T> entityClass;
+
+    public DAO(Class enClass) {
+        this.entityClass = enClass;
+    }
 
     public void salvar(T t) {
         em.persist(t);
@@ -31,6 +36,10 @@ public abstract class DAO<T, P> implements Serializable {
 
     public T carregar(P p) {
         return em.find(entityClass, p);
+    }
+
+    public List<T> consultar() {
+        return em.createQuery("SELECT p FROM Projeto p ORDER BY p.nome").getResultList();
     }
 
 }

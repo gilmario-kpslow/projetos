@@ -11,24 +11,19 @@ and open the template in the editor.
 *{
     margin: 0px;
     padding: 0px;
-    background-color: darkgray;
 }
 
 #geral{
-    border: red 1px solid;
-    min-height: 600px;
+
 }
 #cabecalho{
     border: blue 1px solid;
     min-height: 100px;
 }
 #rodape{
-    border: green 1px solid;
     min-height: 40px;
 }
 #corpo{
-    border: blueviolet 2px solid;
-    background-color: black;
-    min-height: 500px;
+    min-height: 400px;
 }
 
