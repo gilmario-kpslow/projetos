@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/preferencias" >
+        <EditTextPreference
+            android:dialogTitle="@string/host_servidor"
+            android:key="host_servidor"
+            android:defaultValue="10.100.0.1"
+            android:summary="@string/servidor_sumario"
+            android:title="@string/servidor_titulo"/>
+        
+        <EditTextPreference
+            android:dialogTitle="@string/porta_servidor"
+            android:key="host_servidor"
+            android:defaultValue="8080"
+            android:summary="@string/servidor_porta_sumario"
+            android:title="@string/servidor_porta_titulo"/>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

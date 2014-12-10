@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Projetos Android</string>
+    <string name="imagem">Logo</string>
+    <string name="hint_senha">Senha</string>
+    <string name="senha">Senha</string>
+    <string name="login">Nome de Usuário</string>
+    <string name="hint_nome">Nome de usuário</string>
+    <string name="entrar">Entrar</string>
+    <string name="config">Cnfigurações</string>
+    <string name="cadastra">Cadastrar</string>
+    <string name="preferencias">Configurações do Servidor</string>
+    <string name="host_servidor">HostName do Servidor</string>
+    <string name="servidor_sumario">HostName do Servidor do Web Service</string>
+    <string name="servidor_titulo">HostName titulo do Servidor</string>
+    <string name="porta_servidor">Porta Servidor</string>
+    <string name="servidor_porta_sumario">Porta do Servidor do Web Service</string>
+    <string name="servidor_porta_titulo">Porta do Servidor</string>
+</resources>
