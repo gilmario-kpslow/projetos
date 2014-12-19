@@ -5,46 +5,31 @@
  */
 package br.com.projetos.android.service;
 
-import android.util.Log;
-import br.com.projeto.modelo.Responsavel;
-import br.com.projetos.util.Mensagem;
-import br.com.projetos.util.generic.TipoMensagem;
-import java.io.IOException;
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
-import org.xmlpull.v1.XmlPullParserException;
+import br.com.projetos.android.modelos.InformacaoResponsavel;
+import br.com.projetos.android.modelos.Responsavel;
+import br.com.projetos.android.util.anotacoes.XmlConverter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author gilmario
  */
-public class ResponsavelService extends Service<Responsavel> {
+public class ResponsavelService extends Service {
 
-    private static final String SERVICO = "Responsavel";
-
-    public ResponsavelService() {
-
+    public ResponsavelService(String servidor) {
+        super(servidor + "/projetos/responsavel?wsdl");
     }
 
-    public Mensagem registrar(Responsavel responsavel) {
-        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-        SoapObject request = new SoapObject("projetos", "registrarResponsavel");
-        envelope.bodyOut = request;
-        request.addPropertyIfValue("t", responsavel);
-        HttpTransportSE transport = new HttpTransportSE("http://localhost:8080/projetos/reponsavel?wsdl");
-        String resp = "";
-        try {
-            transport.call("projetos/" + "" + "registrarResponsavel", envelope);
-            SoapPrimitive resultSOAP = (SoapPrimitive) ((SoapObject) envelope.bodyIn).getProperty(0);
-            resp = resultSOAP.toString();
-        } catch (IOException ex) {
-            Log.i("TESTATNDO", ex.toString());
-        } catch (XmlPullParserException ex) {
-            Log.i("TESTATNDO", ex.toString());
-        }
-        return new Mensagem(TipoMensagem.ERRO, resp);
+    public InformacaoResponsavel registrarResponsavel(Responsavel reponsavel) throws Exception {
+        return (InformacaoResponsavel) executaRequisicao("registrarResponsavel", "projetos", InformacaoResponsavel.class, new XmlConverter().parseToXml(reponsavel));
     }
+
+    public InformacaoResponsavel loginResponsavel(String login, String senha) throws Exception {
+        Map<String, String> parametros = new HashMap<String, String>();
+        parametros.put("login", login);
+        parametros.put("senha", senha);
+        return (InformacaoResponsavel) executaRequisicao("loginResponsavel", "projetos", InformacaoResponsavel.class, new XmlConverter().parseToXml(parametros));
+    }
+
 }

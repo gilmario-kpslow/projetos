@@ -1,0 +1,24 @@
+{
+weFrame1: {
+Type: 'weFrame',
+        L: 245,
+        T: 45,
+        W: 215,
+        H: 175,
+        Controls: {
+        weTitle1: {
+        Type: 'weTitle',
+                L: 125,
+                T: 110,
+                Data: { Text: 'weTitle1' }
+        }
+        }
+},
+        weEditField1: {
+        Type: 'weEditField',
+                L: 115,
+                T: 55,
+                W: 80,
+                Data: { Text: 'weEditField1' }
+        }
+}

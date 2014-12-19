@@ -8,7 +8,6 @@ import android.view.View;
 public class ProjetosMainClienteActivity extends Activity {
 
     /**
-     * Called when the activity is first created.
      *
      * @param savedInstanceState
      */
@@ -18,11 +17,18 @@ public class ProjetosMainClienteActivity extends Activity {
         setContentView(R.layout.main);
     }
 
-    public void registrarResponsavel(View view) {
+    public void responsavel(View view) {
         startActivity(new Intent(this, ResponsavelActivity.class));
+    }
+
+    public void login(View view) {
+        Intent i = new Intent(this, ResponsavelActivity.class);
+        i.putExtra(ResponsavelActivity.FORM_LOGIN, true);
+        startActivity(i);
     }
 
     public void preferencias(View view) {
         startActivity(new Intent(this, ConfiguracoesActivity.class));
     }
+
 }

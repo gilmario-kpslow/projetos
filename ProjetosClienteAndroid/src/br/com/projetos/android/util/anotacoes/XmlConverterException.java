@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.projetos.android.util;
+package br.com.projetos.android.util.anotacoes;
 
 /**
  *
- * @author gilmario Converter SourceObject em SerializableObject
+ * @author gilmario
  */
-public class ObjectFactoryConverter {
+public class XmlConverterException extends Exception {
 
-    public Object converter() {
-
-        return null;
-
+    XmlConverterException(String mensagem) {
+        super(mensagem);
     }
 
 }

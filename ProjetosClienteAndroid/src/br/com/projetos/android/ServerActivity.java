@@ -9,6 +9,8 @@ import android.app.Activity;
 import static android.content.Context.MODE_PRIVATE;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import java.util.Map;
 
 /**
  *
@@ -17,22 +19,16 @@ import android.os.Bundle;
 public class ServerActivity extends Activity {
 
     private String SERVIDOR;
-    private String PORTA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SERVIDOR = preferences.getString("servidor", "");
         super.onCreate(savedInstanceState);
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        SERVIDOR = preferences.getString("servidor", "localhost");
-        PORTA = preferences.getString("porta", "8080");
     }
 
-    public String getSERVIDOR() {
+    public String getServidor() {
         return SERVIDOR;
-    }
-
-    public String getPORTA() {
-        return PORTA;
     }
 
 }

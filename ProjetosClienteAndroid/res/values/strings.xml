@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Projetos Android</string>
-    <string name="imagem">Logo</string>
-    <string name="hint_senha">Senha</string>
-    <string name="senha">Senha</string>
-    <string name="login">Nome de Usuário</string>
-    <string name="hint_nome">Nome de usuário</string>
-    <string name="entrar">Entrar</string>
-    <string name="config">Cnfigurações</string>
     <string name="cadastra">Cadastrar</string>
-    <string name="preferencias">Configurações do Servidor</string>
+    <string name="config">Configurações</string>
+    <string name="entrar">Entrar</string>
+    <string name="imagem">Logo</string>
+    <string name="hint_nome">Nome de usuário</string>
+    <string name="hint_nome_completo">Nome completo</string>
+    <string name="hint_senha">Senha</string>
     <string name="host_servidor">HostName do Servidor</string>
-    <string name="servidor_sumario">HostName do Servidor do Web Service</string>
-    <string name="servidor_titulo">HostName titulo do Servidor</string>
-    <string name="porta_servidor">Porta Servidor</string>
-    <string name="servidor_porta_sumario">Porta do Servidor do Web Service</string>
-    <string name="servidor_porta_titulo">Porta do Servidor</string>
+    <string name="login">Nome de Usuário</string>
+    <string name="nome_completo">Nome completo</string>
+    <string name="preferencias">Configurações do Servidor</string>
+    <string name="projeto_cadastro_titulo">Cadastro de Projetos</string>
+    <string name="projeto_listar">Listar Projetos</string>
+    <string name="projeto_novo">Novo Projeto</string>
+    <string name="projeto_titulo">Projetos</string>
+    <string name="projeto_nome">Projetos</string>
+    <string name="projeto_nome_hint">Projetos</string>
+    <string name="projeto_btn_salvar">Projetos</string>
+    <string name="senha">Senha</string>
+    <string name="servidor_sumario">HostName do Servidor de Web Service</string>
+    <string name="servidor_titulo">Nome do Servidor</string>
+    <string name="teste">Testar Servidor</string>
+    <string name="teste_button">Testar</string>
 </resources>

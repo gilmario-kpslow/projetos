@@ -5,24 +5,50 @@
  */
 package br.com.projetos.android.service;
 
-import static android.content.Context.MODE_PRIVATE;
-import android.content.SharedPreferences;
+import br.com.projetos.android.util.ObjectConverter;
+import br.com.projetos.android.wsdl.SoapXmlGerador;
+import br.com.projetos.android.wsdl.WebService;
 
 /**
  *
  * @author gilmario
- * @param <T>
  */
-public abstract class Service<T> {
+public abstract class Service {
 
+    private SoapXmlGerador gerador;
+    private WebService webService;
+    private ObjectConverter converter;
     private String servidor;
-    private String porta;
 
-    public Service() {
-
+    public Service(String servidor) {
+        this.servidor = servidor;
+        gerador = new SoapXmlGerador();
+        webService = new WebService();
+        converter = new ObjectConverter();
     }
 
-    public void testar() {
-
+    public String getServidor() {
+        return servidor;
     }
+
+    public Object executaRequisicao(String operacao, String nameSpace, Class tipoRetorno) throws Exception {
+        return converter.processaResposta(webService.executaRequisicao(getServidor(), gerador.geraXmlSoap(operacao, nameSpace)), tipoRetorno, "return");
+    }
+
+    public Object executaRequisicao(String operacao, String nameSpace, Class tipoRetorno, String conteudo) throws Exception {
+        return converter.processaResposta(webService.executaRequisicao(getServidor(), gerador.geraXmlSoap(operacao, nameSpace, conteudo)), tipoRetorno, "return");
+    }
+
+    public SoapXmlGerador getGerador() {
+        return gerador;
+    }
+
+    public WebService getWebService() {
+        return webService;
+    }
+
+    public ObjectConverter getConverter() {
+        return converter;
+    }
+
 }

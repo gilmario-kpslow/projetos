@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.docproject.modelo;
+package br.com.projeto.modelo.documento;
 
+import br.com.projeto.modelo.Responsavel;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;

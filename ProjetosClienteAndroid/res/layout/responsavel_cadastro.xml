@@ -23,6 +23,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/nome_completo"
+    />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editNome"
+        android:inputType="text"
+        android:hint="@string/hint_nome_completo"
+    >
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/senha"
     />
 
@@ -37,14 +52,9 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/entrar"
-        android:onClick="salvar"
+        android:text="@string/cadastra"
+        android:onClick="cadastrar"
     />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cadastra" />
 
 
 </LinearLayout>

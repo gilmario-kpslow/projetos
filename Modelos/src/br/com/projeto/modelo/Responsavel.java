@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.docproject.modelo;
+package br.com.projeto.modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,13 +13,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author gilmario
  */
 @Entity
-@Table(name = "responsavel")
+@Table(name = "responsavel", schema = "projeto")
+@XmlRootElement
 public class Responsavel implements Serializable {
 
     @Id
@@ -31,6 +33,8 @@ public class Responsavel implements Serializable {
     private String senha;
     @Column(nullable = false)
     private String nomeCompleto;
+    @Column(nullable = false)
+    private Boolean ativo;
 
     public Long getId() {
         return id;
@@ -62,6 +66,14 @@ public class Responsavel implements Serializable {
 
     public void setNomeCompleto(String nomeCompleto) {
         this.nomeCompleto = nomeCompleto;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override

@@ -5,7 +5,7 @@
  */
 package br.com.projetos.android;
 
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
@@ -64,7 +64,7 @@ public class ConfiguracoesActivity extends PreferenceActivity {
     }
 
     public void testaWebService() {
-
+        startActivity(new Intent(this, TesteWebServiceActivity.class));
     }
 
 }

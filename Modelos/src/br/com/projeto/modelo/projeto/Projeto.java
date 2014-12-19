@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.docproject.modelo;
+package br.com.projeto.modelo.projeto;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,21 +13,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.validator.constraints.Length;
 
 /**
  *
  * @author gilmario
  */
 @Entity
-@Table(name = "projeto")
+@Table(name = "projeto", schema = "projeto")
+@XmlRootElement
 public class Projeto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Length(min = 5, max = 100)
+    @Column(nullable = false, length = 100)
     private String nome;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
+    @Length(max = 1000)
     private String descricao;
 
     public Long getId() {

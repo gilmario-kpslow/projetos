@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.docproject.modelo;
+package br.com.projeto.modelo.documento;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -13,7 +13,7 @@ import android.widget.Toast;
 /**
  * @author gilmario
  */
-public class Mensagem {
+public class DialogMensagem {
 
     public void mensagemSimples(Context context, String mensagem) {
         Toast.makeText(context, mensagem, Toast.LENGTH_SHORT).show();
@@ -22,7 +22,7 @@ public class Mensagem {
     public void mensagemDialogConfirmacao(Context context, String mensagem, DialogInterface.OnClickListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(mensagem);
-        builder.setTitle("Confrimação");
+        builder.setTitle("Confirmação");
         builder.setPositiveButton("Sim", listener);
         builder.setNegativeButton("Não", listener);
         builder.create().show();
@@ -32,6 +32,19 @@ public class Mensagem {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(mensagem);
         builder.setTitle("Informação");
+        builder.setPositiveButton("OK", listener);
+        builder.create().show();
+    }
+
+    public void mensagemDialogOK(Context context, String mensagem, String titulo, String tipo) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(mensagem).setTitle(titulo).setPositiveButton("OK", null).create().show();
+    }
+
+    public void mensagemDialogOK(Context context, String titulo, String mensagem, DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(mensagem);
+        builder.setTitle(titulo);
         builder.setPositiveButton("OK", listener);
         builder.create().show();
     }
