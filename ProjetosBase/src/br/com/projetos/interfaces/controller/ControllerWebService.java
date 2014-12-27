@@ -20,8 +20,10 @@ public interface ControllerWebService<T, Id extends Serializable> {
 
     public Informacao remover(Id id) throws Exception;
 
-    public T carregar(Id id) throws Exception;
+    public Informacao carregar(Id id) throws Exception;
 
     public Informacao valida(T t) throws Exception;
+
+    public Informacao listar() throws Exception;
 
 }

@@ -5,36 +5,33 @@
               android:layout_height="fill_parent">
 
     <TextView
+        android:id="@+id/data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/projeto_cadastro_titulo"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/projeto_nome"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:hint="@string/projeto_nome_hint"
-    >
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/projeto_btn_salvar"
-
-    />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/projeto_listar"
-
-    />
+        android:layout_gravity="right"
+        android:textColor="@android:color/white"/>
 
 
+    <LinearLayout
+        android:id="@+id/projeto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black" />
+        <TextView
+            android:id="@+id/nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black" />
+        <TextView
+            android:id="@+id/descricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
 
 </LinearLayout>

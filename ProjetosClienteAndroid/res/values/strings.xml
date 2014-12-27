@@ -16,12 +16,17 @@
     <string name="projeto_listar">Listar Projetos</string>
     <string name="projeto_novo">Novo Projeto</string>
     <string name="projeto_titulo">Projetos</string>
-    <string name="projeto_nome">Projetos</string>
-    <string name="projeto_nome_hint">Projetos</string>
-    <string name="projeto_btn_salvar">Projetos</string>
+    <string name="projeto_nome">Nome do projeto</string>
+    <string name="projeto_nome_hint">Nome do projeto</string>
+    <string name="projeto_descricao">Descrição do projeto</string>
+    <string name="projeto_descricao_hint">Descrição do projeto</string>
+    <string name="projeto_btn_salvar">Salvar</string>
+    <string name="projeto_btn_consultar">Consultar</string>
+    <string name="projeto_consulta_titulo">Consultar Projetos</string>
     <string name="senha">Senha</string>
     <string name="servidor_sumario">HostName do Servidor de Web Service</string>
     <string name="servidor_titulo">Nome do Servidor</string>
     <string name="teste">Testar Servidor</string>
     <string name="teste_button">Testar</string>
+    <string name="remover">Remover</string>
 </resources>

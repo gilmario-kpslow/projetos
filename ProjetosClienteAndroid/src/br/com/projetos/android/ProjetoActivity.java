@@ -1,14 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.projetos.android;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-import br.com.projetos.android.modelos.Responsavel;
+import android.widget.EditText;
+import br.com.projetos.android.modelos.InformacaoProjeto;
+import br.com.projetos.android.modelos.Projeto;
+import br.com.projetos.android.modelos.TipoMensagem;
+import br.com.projetos.android.service.ProjetoService;
+import br.com.projetos.android.util.DialogMensagem;
 
 /**
  *
@@ -16,24 +17,44 @@ import br.com.projetos.android.modelos.Responsavel;
  */
 public class ProjetoActivity extends ServerActivity {
 
-    public static final String RESPONSAVEL = "reponsavel";
-    private Responsavel reponsavel;
+    private ProjetoService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.reponsavel = (Responsavel) getIntent().getSerializableExtra(RESPONSAVEL);
-        this.setContentView(R.layout.projeto_main);
-        TextView text = (TextView) findViewById(R.id.usuario_nome);
-        text.setText(reponsavel.getNomeCompleto());
-    }
-
-    public void novo(View view) {
+        service = new ProjetoService(getServidor());
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.projeto_novo);
     }
 
-    public void consultar(View view) {
-        setContentView(R.layout.projeto_lista);
+    public void criarProjeto(View view) {
+        criar();
+    }
+
+    private void criar() {
+        new AsyncTask<Void, Void, InformacaoProjeto>() {
+
+            @Override
+            protected InformacaoProjeto doInBackground(Void... on) {
+                try {
+                    Projeto p = new Projeto();
+                    p.setNome(((EditText) findViewById(R.id.edtNome)).getText().toString());
+                    p.setDescricao(((EditText) findViewById(R.id.edtDescricao)).getText().toString());
+                    return service.criarProjeto(p);
+                } catch (Exception e) {
+                    Log.e("ERROX", "Erro ao salvar", e);
+                    return new InformacaoProjeto(TipoMensagem.ERRO, "ERRO", e.toString());
+                }
+            }
+
+            @Override
+            protected void onPostExecute(InformacaoProjeto informacao) {
+                new DialogMensagem().mensagemDialogOK(ProjetoActivity.this, informacao.getConteudo(), informacao.getTitulo(), "sucesso");
+                if (TipoMensagem.SUCESSO.equals(informacao.getTipo())) {
+                    finish();
+                }
+            }
+        }.execute();
     }
 
 }

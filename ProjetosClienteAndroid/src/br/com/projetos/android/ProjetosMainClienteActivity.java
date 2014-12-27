@@ -3,6 +3,8 @@ package br.com.projetos.android;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 
 public class ProjetosMainClienteActivity extends Activity {
@@ -29,6 +31,13 @@ public class ProjetosMainClienteActivity extends Activity {
 
     public void preferencias(View view) {
         startActivity(new Intent(this, ConfiguracoesActivity.class));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
 }

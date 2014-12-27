@@ -13,6 +13,7 @@ import br.com.projeto.util.InformacaoResponsavel;
 import br.com.projeto.util.ResourcesUtil;
 import br.com.projeto.util.TipoMensagem;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -27,14 +28,14 @@ public class ResponsavelController extends Controller<Responsavel, Long> impleme
     private ResponsavelDAO dao;
 
     @Override
-    public Responsavel carregar(Long id) {
+    public Informacao carregar(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public InformacaoResponsavel login(String login, String senha) {
         InformacaoResponsavel resposta = new InformacaoResponsavel();
         try {
-            resposta.setComplemento(dao.login(login, senha));
+            resposta.setResponsavel(dao.login(login, senha));
             resposta.setTipo(TipoMensagem.SUCESSO);
             resposta.setTitulo(new ResourcesUtil("strings").getMensagem("responsavel.login_titulo"));
             resposta.setConteudo(new ResourcesUtil("strings").getMensagem("responsavel.login"));
@@ -68,6 +69,11 @@ public class ResponsavelController extends Controller<Responsavel, Long> impleme
     @Override
     public Informacao remover(Long id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Informacao listar() throws Exception {
+        return null;
     }
 
 }

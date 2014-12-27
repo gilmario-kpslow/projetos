@@ -23,7 +23,7 @@ public class ProjetoDAO extends DAO<Projeto, Long> implements Serializable {
 
     @Override
     public List<Projeto> listar() throws Exception {
-        return super.listar();
+        return super.listar(0);
     }
 
 }

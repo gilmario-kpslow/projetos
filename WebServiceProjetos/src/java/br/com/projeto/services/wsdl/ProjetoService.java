@@ -8,6 +8,7 @@ package br.com.projeto.services.wsdl;
 import br.com.projeto.controller.ProjetoController;
 import br.com.projeto.modelo.projeto.Projeto;
 import br.com.projeto.util.Informacao;
+import br.com.projeto.util.InformacaoConsultaProjeto;
 import br.com.projeto.util.TipoMensagem;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +34,16 @@ public class ProjetoService {
         } catch (Exception ex) {
             Logger.getLogger(ProjetoService.class.getName()).log(Level.SEVERE, null, ex);
             return new Informacao(TipoMensagem.ERRO, "Erro", ex.toString());
+        }
+    }
+
+    @WebMethod(operationName = "listarProjeto")
+    public InformacaoConsultaProjeto listar(@WebParam(name = "inicio") Integer inicio) {
+        try {
+            return controller.listar();
+        } catch (Exception ex) {
+            Logger.getLogger(ProjetoService.class.getName()).log(Level.SEVERE, null, ex);
+            return new InformacaoConsultaProjeto(TipoMensagem.ERRO, "Erro", ex.toString());
         }
     }
 

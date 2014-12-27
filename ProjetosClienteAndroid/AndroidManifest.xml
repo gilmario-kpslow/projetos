@@ -8,7 +8,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <application android:allowBackup="false" android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+    <application android:allowBackup="false" android:label="@string/app_name" android:icon="@drawable/ic_launcher"
+                 android:theme="@android:style/Theme.Holo.Light" >
         <activity android:name="ProjetosMainClienteActivity"
                   android:label="@string/app_name">
             <intent-filter>
@@ -19,6 +20,15 @@
         <activity android:name="ResponsavelActivity"></activity>
         <activity android:name="ConfiguracoesActivity"></activity>
         <activity android:name="TesteWebServiceActivity"></activity>
-        <activity android:name="ProjetoActivity"></activity>
+        <activity android:name="AdminProjetoActivity"></activity>
+        <activity android:name="ProjetoListActivity"></activity>
+        <activity android:name="ProjetoActivity">
+            <!--
+                    android:parentActivityName="AdminProjetoActivity"
+                    <meta-data android:name="android.support.PARENT_ACTIVITY"
+                    android:value="br.com.projeto.android.ProjetoActivity"
+            />-->
+
+        </activity>
     </application>
 </manifest>

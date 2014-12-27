@@ -107,8 +107,8 @@ public class ResponsavelActivity extends ServerActivity {
     }
 
     private void iniciaAplicacaoPrincipal(Responsavel responsavel) {
-        Intent i = new Intent(this, ProjetoActivity.class);
-        i.putExtra(ProjetoActivity.RESPONSAVEL, responsavel);
+        Intent i = new Intent(this, AdminProjetoActivity.class);
+        i.putExtra(AdminProjetoActivity.RESPONSAVEL, responsavel);
         startActivity(i);
     }
 

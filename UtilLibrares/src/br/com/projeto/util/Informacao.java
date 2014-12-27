@@ -3,14 +3,12 @@ package br.com.projeto.util;
 /**
  *
  * @author gilmario
- * @param <T>
  */
-public class Informacao<T> {
+public class Informacao {
 
     private TipoMensagem tipo;
     private String titulo;
     private String conteudo;
-    private T complemento;
 
     public Informacao() {
     }
@@ -54,14 +52,6 @@ public class Informacao<T> {
 
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
-    }
-
-    public T getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(T complemento) {
-        this.complemento = complemento;
     }
 
 }

@@ -15,21 +15,34 @@
         android:text="@string/projeto_nome"/>
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:hint="@string/projeto_nome_hint"
+        android:id="@+id/edtNome"
     >
         <requestFocus />
     </EditText>
-
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/projeto_descricao"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/projeto_descricao_hint"
+        android:id="@+id/edtDescricao"
+    />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:text="@string/projeto_btn_salvar"
+        android:onClick="criarProjeto"
 
     />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/projeto_listar"
 

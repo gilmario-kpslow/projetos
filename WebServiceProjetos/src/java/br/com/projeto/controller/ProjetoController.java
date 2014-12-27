@@ -9,9 +9,12 @@ import br.com.projeto.dao.DAO;
 import br.com.projeto.dao.ProjetoDAO;
 import br.com.projeto.modelo.projeto.Projeto;
 import br.com.projeto.util.Informacao;
+import br.com.projeto.util.InformacaoConsultaProjeto;
+import br.com.projeto.util.InformacaoProjeto;
 import br.com.projeto.util.ResourcesUtil;
 import br.com.projeto.util.TipoMensagem;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -39,7 +42,7 @@ public class ProjetoController extends Controller<Projeto, Long> implements Seri
     }
 
     @Override
-    public Projeto carregar(Long id) throws Exception {
+    public Informacao carregar(Long id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -54,6 +57,23 @@ public class ProjetoController extends Controller<Projeto, Long> implements Seri
             resposta.setTipo(TipoMensagem.SUCESSO);
         }
         return resposta;
+    }
+
+    @Override
+    public InformacaoConsultaProjeto listar() throws Exception {
+        List<Projeto> lista = getDao().listar();
+        InformacaoConsultaProjeto informacao = new InformacaoConsultaProjeto();
+        if (lista.isEmpty()) {
+            informacao.setConteudo(new ResourcesUtil("strings").getMensagem("consulta.vazia"));
+            informacao.setTitulo(new ResourcesUtil("strings").getMensagem("consulta.vazia_titulo"));
+            informacao.setTipo(TipoMensagem.INFORMACAO);
+        } else {
+            informacao.setProjetos(lista);
+            informacao.setTipo(TipoMensagem.SUCESSO);
+        }
+
+        return informacao;
+
     }
 
 }

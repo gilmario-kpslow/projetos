@@ -23,7 +23,7 @@ public class ResponsavelDAO extends DAO<Responsavel, Long> implements Serializab
 
     @Override
     public List<Responsavel> listar() throws Exception {
-        return super.listar();
+        return super.listar(0);
     }
 
     public Responsavel login(String login, String senha) {

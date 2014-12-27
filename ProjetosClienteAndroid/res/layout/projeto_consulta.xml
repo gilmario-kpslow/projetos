@@ -4,38 +4,28 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
 
-    <ImageView
-        android:contentDescription="@string/imagem"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher"
-    />
+        android:text="@string/projeto_consulta_titulo"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/projeto_titulo">
+        android:text="@string/projeto_nome"/>
 
-    </TextView>
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/usuario_nome"
+        android:hint="@string/projeto_nome_hint"
+        android:id="@+id/edtDescricaoConsulta"
     />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/projeto_novo"
-        android:onClick="novo"
-
-    />
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/projeto_listar"
-        android:onClick="consultar"
+        android:text="@string/projeto_btn_consultar"
+        android:onClick="listar"
     />
 
 </LinearLayout>

@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
  */
 public class ResourcesUtil {
 
-    private ResourceBundle budle;
+    private final ResourceBundle budle;
 
     public ResourcesUtil(String arqu) {
         budle = ResourceBundle.getBundle(arqu);

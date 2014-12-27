@@ -5,7 +5,7 @@
  */
 package br.com.projeto.util;
 
-import br.com.projeto.modelo.Responsavel;
+import br.com.projeto.modelo.projeto.Projeto;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -13,16 +13,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author gilmario
  */
 @XmlRootElement
-public class InformacaoResponsavel extends Informacao {
+public class InformacaoProjeto extends Informacao {
 
-    private Responsavel responsavel;
+    private Projeto projeto;
 
-    public Responsavel getResponsavel() {
-        return responsavel;
+    public Projeto getProjeto() {
+        return projeto;
     }
 
-    public void setResponsavel(Responsavel responsavel) {
-        this.responsavel = responsavel;
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
     }
 
 }
