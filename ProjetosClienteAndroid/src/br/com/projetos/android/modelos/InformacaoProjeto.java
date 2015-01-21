@@ -12,9 +12,9 @@ import br.com.projetos.android.util.anotacoes.XmlObject;
  * @author gilmario
  */
 @XmlObject(tagName = "mensagem", tagTipo = XmlObject.TipoDadoXML.COMPLEXO)
-public class InformacaoProjeto extends Informacao<Projeto> {
+public class InformacaoProjeto extends Informacao {
 
-    @XmlObject(tagName = "complemento", tagTipo = XmlObject.TipoDadoXML.COMPLEXO)
+    @XmlObject(tagName = "projeto", tagTipo = XmlObject.TipoDadoXML.COMPLEXO)
     private Projeto complemento;
 
     public InformacaoProjeto() {

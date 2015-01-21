@@ -9,6 +9,7 @@ import br.com.projeto.dao.DAO;
 import br.com.projeto.dao.ResponsavelDAO;
 import br.com.projeto.modelo.Responsavel;
 import br.com.projeto.util.Informacao;
+import br.com.projeto.util.InformacaoConsultaResponsavel;
 import br.com.projeto.util.InformacaoResponsavel;
 import br.com.projeto.util.ResourcesUtil;
 import br.com.projeto.util.TipoMensagem;
@@ -72,8 +73,18 @@ public class ResponsavelController extends Controller<Responsavel, Long> impleme
     }
 
     @Override
-    public Informacao listar() throws Exception {
-        return null;
+    public InformacaoConsultaResponsavel listar() throws Exception {
+        List<Responsavel> lista = getDao().listar();
+        InformacaoConsultaResponsavel informacao = new InformacaoConsultaResponsavel();
+        if (lista.isEmpty()) {
+            informacao.setConteudo(new ResourcesUtil("strings").getMensagem("consulta.vazia"));
+            informacao.setTitulo(new ResourcesUtil("strings").getMensagem("consulta.vazia_titulo"));
+            informacao.setTipo(TipoMensagem.INFORMACAO);
+        } else {
+            informacao.setResponsaveis(lista);
+            informacao.setTipo(TipoMensagem.SUCESSO);
+        }
+        return informacao;
     }
 
 }

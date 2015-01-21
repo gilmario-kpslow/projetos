@@ -10,10 +10,9 @@ import br.com.projetos.android.util.anotacoes.XmlObject;
 /**
  *
  * @author gilmario
- * @param <T>
  */
 @XmlObject(tagName = "mensagem", tagTipo = XmlObject.TipoDadoXML.COMPLEXO)
-public class Informacao<T> {
+public class Informacao {
 
     @XmlObject(tagName = "tipo", tagTipo = XmlObject.TipoDadoXML.ENUMERADO)
     private TipoMensagem tipo;

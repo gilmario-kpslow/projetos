@@ -8,6 +8,9 @@ package br.com.projeto.services.wsdl;
 import br.com.projeto.controller.ResponsavelController;
 import br.com.projeto.modelo.Responsavel;
 import br.com.projeto.util.Informacao;
+import br.com.projeto.util.InformacaoConsultaProjeto;
+import br.com.projeto.util.InformacaoConsultaResponsavel;
+import br.com.projeto.util.InformacaoResponsavel;
 import br.com.projeto.util.TipoMensagem;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,8 +39,18 @@ public class ResponsavelService {
         }
     }
 
+    @WebMethod(operationName = "listarResponsavel")
+    public InformacaoConsultaResponsavel listar(@WebParam(name = "inicio") Integer inicio) {
+        try {
+            return controller.listar();
+        } catch (Exception ex) {
+            Logger.getLogger(ProjetoService.class.getName()).log(Level.SEVERE, null, ex);
+            return new InformacaoConsultaResponsavel(TipoMensagem.ERRO, "Erro", ex.toString());
+        }
+    }
+
     @WebMethod(operationName = "loginResponsavel")
-    public Informacao login(@WebParam(name = "login") String login, @WebParam(name = "senha") String senha) {
+    public InformacaoResponsavel login(@WebParam(name = "login") String login, @WebParam(name = "senha") String senha) {
         return controller.login(login, senha);
     }
 

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/WEB-INF/template/template.xhtml"
+                xmlns:boot="http://xmlns.jcp.org/jsf/composite/boot">
+
+    <ui:define name="conteudo">
+        <h:form>
+            <boot:botao action="#{responsavelMB.listar()}" value="Teste"/>
+            <h:commandButton action="#{responsavelMB.listar()}" value="Listar Responsaveis" styleClass="btn btn-danger"/>
+            <h:dataTable value="#{responsavelMB.responsaveis}" var="r">
+                <h:column >
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="#{r.nomeCompleto}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header">
+                        <h:outputText value="Status"/>
+                    </f:facet>
+                    <h:outputText value="#{r.ativo}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header">
+                        <h:outputText value="Login"/>
+                    </f:facet>
+                    <h:outputText value="#{r.login}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header">
+                        <h:outputText value="Senha"/>
+                    </f:facet>
+                    <h:outputText value="#{r.senha}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

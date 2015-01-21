@@ -23,7 +23,7 @@ import org.xml.sax.SAXException;
  */
 public class ObjectConverter {
 
-    public Object processaResposta(StringBuilder xml, Class classe, String tag) throws ParserConfigurationException, SAXException, IOException, InstantiationException, IllegalAccessException, IllegalArgumentException, NoSuchMethodException, InvocationTargetException, ParseException {
+    public Object processaResposta(StringBuilder xml, Class classe, String tag) throws ParserConfigurationException, SAXException, IOException, InstantiationException, IllegalAccessException, IllegalArgumentException, NoSuchMethodException, InvocationTargetException, ParseException, NoSuchFieldException, ClassNotFoundException, Exception {
         Map<ConverterAux, Object> metodoValor = extrairMetodosComValor(xml, classe, tag);
         Object o = classe.newInstance();
         for (Map.Entry<ConverterAux, Object> entrySet : metodoValor.entrySet()) {
@@ -34,7 +34,7 @@ public class ObjectConverter {
         return o;
     }
 
-    private Map<ConverterAux, Object> extrairMetodosComValor(StringBuilder xml, Class classe, String tag) throws ParseException, ParserConfigurationException, SAXException, IOException, InstantiationException, IllegalAccessException, IllegalArgumentException, NoSuchMethodException, InvocationTargetException {
+    private Map<ConverterAux, Object> extrairMetodosComValor(StringBuilder xml, Class classe, String tag) throws ParseException, ParserConfigurationException, SAXException, IOException, InstantiationException, IllegalAccessException, IllegalArgumentException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException, ClassNotFoundException, Exception {
         Map<ConverterAux, Object> map = new HashMap<ConverterAux, Object>();
         String initTag = "<" + tag;
         String endTag = "</" + tag + ">";
@@ -70,7 +70,7 @@ public class ObjectConverter {
                         setar = Double.valueOf(valor.replaceAll(tagA + ">", "").replaceAll(tagB, ""));
                         break;
                     case LISTA:
-                        setar = processarLista(valor);
+                        setar = processarLista(retorno.substring(i, retorno.lastIndexOf(tagB) + tagB.length()), ObjectUtil.tipoLista(classe, descritor.tagName()), descritor.tagName());
                         break;
                     case ENUMERADO:
                         setar = Enum.valueOf((Class) campo.getType(), valor.replaceAll(tagA + ">", "").replaceAll(tagB, ""));
@@ -88,8 +88,18 @@ public class ObjectConverter {
         return map;
     }
 
-    private List processarLista(String valor) {
-        return new ArrayList<Object>();
+    private ArrayList<Object> processarLista(String xml, Class tipo, String tag) throws Exception {
+        ArrayList<Object> lista = new ArrayList<Object>();
+        String tagA = "<" + tag + ">";
+        String tagB = "</" + tag + ">";
+        int inicio = xml.indexOf(tagA);
+        int fim = xml.indexOf(tagB);
+        for (; inicio != -1;) {
+            lista.add(processaResposta(new StringBuilder(xml.substring(inicio, fim + tagB.length())), tipo, tag));
+            inicio = xml.indexOf(tagA, inicio + 1);
+            fim = xml.indexOf(tagB, fim + 1);
+        }
+        return lista;
     }
 
     private class ConverterAux {

@@ -31,13 +31,16 @@ public class XmlConverter {
             if (elemento.tagTipo().equals(XmlObject.TipoDadoXML.COMPLEXO)) {
                 xmlFinal.append(parseToXml(ObjectUtil.getValorCampo(campo.getName(), objeto)));
             } else {
-                xmlFinal.append("<");
-                xmlFinal.append(elemento.tagName());
-                xmlFinal.append(">");
-                xmlFinal.append(ObjectUtil.getValorCampo(campo.getName(), objeto));
-                xmlFinal.append("</");
-                xmlFinal.append(elemento.tagName());
-                xmlFinal.append(">");
+                Object valor = ObjectUtil.getValorCampo(campo.getName(), objeto);
+                if (valor != null) {
+                    xmlFinal.append("<");
+                    xmlFinal.append(elemento.tagName());
+                    xmlFinal.append(">");
+                    xmlFinal.append(ObjectUtil.getValorCampo(campo.getName(), objeto));
+                    xmlFinal.append("</");
+                    xmlFinal.append(elemento.tagName());
+                    xmlFinal.append(">");
+                }
             }
         }
         xmlFinal.append("</");

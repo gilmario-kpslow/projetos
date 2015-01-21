@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import br.com.projetos.android.modelos.InformacaoLista;
+import br.com.projetos.android.modelos.InformacaoConsultaProjeto;
 import br.com.projetos.android.modelos.Projeto;
 import br.com.projetos.android.modelos.Responsavel;
 import br.com.projetos.android.modelos.TipoMensagem;
@@ -54,22 +54,22 @@ public class AdminProjetoActivity extends ServerActivity {
     }
 
     public void listar(View view) {
-        new AsyncTask<Void, Void, InformacaoLista>() {
+        new AsyncTask<Void, Void, InformacaoConsultaProjeto>() {
 
             @Override
-            protected InformacaoLista doInBackground(Void... on) {
+            protected InformacaoConsultaProjeto doInBackground(Void... on) {
                 try {
                     return service.listarProjeto();
                 } catch (Exception e) {
                     Log.e("ERROX", "Erro ao salvar", e);
-                    return new InformacaoLista(TipoMensagem.ERRO, "ERRO", e.toString());
+                    return new InformacaoConsultaProjeto(TipoMensagem.ERRO, "ERRO", e.toString());
                 }
             }
 
             @Override
-            protected void onPostExecute(InformacaoLista informacao) {
+            protected void onPostExecute(InformacaoConsultaProjeto informacao) {
                 if (TipoMensagem.SUCESSO.equals(informacao.getTipo())) {
-                    mostraLista(informacao.getComplemento());
+                    mostraLista(informacao.getProjeto());
                 } else {
                     new DialogMensagem().mensagemDialogOK(AdminProjetoActivity.this, informacao.getConteudo(), informacao.getTitulo(), "sucesso");
                 }

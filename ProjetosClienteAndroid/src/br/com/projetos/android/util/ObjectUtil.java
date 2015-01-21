@@ -9,6 +9,8 @@ import br.com.projetos.android.util.anotacoes.XmlObject;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,15 +21,10 @@ import java.util.List;
  */
 public class ObjectUtil {
 
-    public static String getValorCampo(String campo, Object objeto) throws IllegalAccessException, IllegalArgumentException, NoSuchMethodException, InvocationTargetException {
+    public static Object getValorCampo(String campo, Object objeto) throws IllegalAccessException, IllegalArgumentException, NoSuchMethodException, InvocationTargetException {
         String nomeMethodo = "get" + campo.substring(0, 1).toUpperCase() + campo.substring(1);
         Method method = objeto.getClass().getMethod(nomeMethodo);
-        Object valor = method.invoke(objeto);
-        if (valor == null) {
-            return "";
-        } else {
-            return valor.toString();
-        }
+        return method.invoke(objeto);
     }
 
     public static void setValorCampo(String campo, Object valor, Object objeto) throws IllegalAccessException, IllegalArgumentException, NoSuchMethodException, InvocationTargetException {
@@ -47,5 +44,11 @@ public class ObjectUtil {
             }
         }
         return campos;
+    }
+
+    public static Class tipoLista(Class entidade, String nomeVar) throws NoSuchFieldException, ClassNotFoundException {
+        Field f = entidade.getDeclaredField(nomeVar);
+        Type t = ((ParameterizedType) f.getGenericType()).getActualTypeArguments()[0];
+        return Class.forName(t.toString().replace("class ", ""));
     }
 }

@@ -14,7 +14,7 @@ import br.com.projetos.android.util.anotacoes.XmlObject;
 @XmlObject(tagName = "mensagem", tagTipo = XmlObject.TipoDadoXML.COMPLEXO)
 public class InformacaoResponsavel extends Informacao {
 
-    @XmlObject(tagName = "complemento", tagTipo = XmlObject.TipoDadoXML.COMPLEXO)
+    @XmlObject(tagName = "responsavel", tagTipo = XmlObject.TipoDadoXML.COMPLEXO)
     private Responsavel complemento;
 
     public InformacaoResponsavel() {

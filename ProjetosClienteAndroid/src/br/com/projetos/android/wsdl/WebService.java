@@ -30,7 +30,6 @@ public class WebService {
         HttpURLConnection conexao = (HttpURLConnection) new URL(endereco).openConnection();
         conexao.setRequestMethod("POST");
         conexao.setRequestProperty("Content-Type", "text/xml; charset=utf-8");
-        conexao.addRequestProperty("SOAPAction", "http://tempuri.org/EnviarDados\"");
         conexao.setDoOutput(true);
         conexao.setChunkedStreamingMode(0);
         BufferedWriter w = new BufferedWriter(new OutputStreamWriter(new BufferedOutputStream(conexao.getOutputStream())));

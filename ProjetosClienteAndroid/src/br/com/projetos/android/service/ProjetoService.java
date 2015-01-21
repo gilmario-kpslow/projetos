@@ -5,7 +5,7 @@
  */
 package br.com.projetos.android.service;
 
-import br.com.projetos.android.modelos.InformacaoLista;
+import br.com.projetos.android.modelos.InformacaoConsultaProjeto;
 import br.com.projetos.android.modelos.InformacaoProjeto;
 import br.com.projetos.android.modelos.Projeto;
 import br.com.projetos.android.util.anotacoes.XmlConverter;
@@ -24,7 +24,7 @@ public class ProjetoService extends Service {
         return (InformacaoProjeto) executaRequisicao("criarProjeto", "projetos", InformacaoProjeto.class, new XmlConverter().parseToXml(projeto));
     }
 
-    public InformacaoLista listarProjeto() throws Exception {
-        return (InformacaoLista) executaRequisicao("listarProjeto", "projetos", InformacaoLista.class);
+    public InformacaoConsultaProjeto listarProjeto() throws Exception {
+        return (InformacaoConsultaProjeto) executaRequisicao("listarProjeto", "projetos", InformacaoConsultaProjeto.class);
     }
 }
