@@ -9,6 +9,8 @@ import br.com.projetos.android.modelos.InformacaoConsultaProjeto;
 import br.com.projetos.android.modelos.InformacaoProjeto;
 import br.com.projetos.android.modelos.Projeto;
 import br.com.projetos.android.util.anotacoes.XmlConverter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -17,7 +19,7 @@ import br.com.projetos.android.util.anotacoes.XmlConverter;
 public class ProjetoService extends Service {
 
     public ProjetoService(String servidor) {
-        super(servidor + "/projetos/projeto?wsdl");
+        super(servidor + "projeto?wsdl");
     }
 
     public InformacaoProjeto criarProjeto(Projeto projeto) throws Exception {
@@ -25,6 +27,8 @@ public class ProjetoService extends Service {
     }
 
     public InformacaoConsultaProjeto listarProjeto() throws Exception {
-        return (InformacaoConsultaProjeto) executaRequisicao("listarProjeto", "projetos", InformacaoConsultaProjeto.class);
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("inicio", Integer.toString(0));
+        return (InformacaoConsultaProjeto) executaRequisicao("listarProjeto", "projetos", InformacaoConsultaProjeto.class, new XmlConverter().parseToXml(map));
     }
 }

@@ -13,34 +13,13 @@
         android:src="@drawable/ic_launcher"
     />
 
-    <GridLayout android:alignmentMode="alignMargins"
-                android:paddingTop="20dp"
-                android:columnCount="1"
-                android:layout_gravity="bottom"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-    >
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/entrar"
-            android:onClick="login"
-        />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cadastra"
-            android:onClick="responsavel"
-        />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/config"
-            android:onClick="preferencias"
-        />
-    </GridLayout>
-
+    <Button
+        android:paddingTop="20dp"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/entrar"
+        android:onClick="login"
+    />
 </LinearLayout>
 

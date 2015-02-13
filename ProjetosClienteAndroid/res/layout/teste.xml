@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:text="@string/teste_button"
         android:onClick="testar2"
-        android:padding="20dp"
     />
 
 </LinearLayout>

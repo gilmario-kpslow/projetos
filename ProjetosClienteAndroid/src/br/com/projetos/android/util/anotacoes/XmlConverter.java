@@ -28,11 +28,11 @@ public class XmlConverter {
         Field[] campos = objeto.getClass().getDeclaredFields();
         for (Field campo : campos) {
             XmlObject elemento = campo.getAnnotation(XmlObject.class);
-            if (elemento.tagTipo().equals(XmlObject.TipoDadoXML.COMPLEXO)) {
-                xmlFinal.append(parseToXml(ObjectUtil.getValorCampo(campo.getName(), objeto)));
-            } else {
-                Object valor = ObjectUtil.getValorCampo(campo.getName(), objeto);
-                if (valor != null) {
+            Object valor = ObjectUtil.getValorCampo(campo.getName(), objeto);
+            if (valor != null) {
+                if (elemento.tagTipo().equals(XmlObject.TipoDadoXML.COMPLEXO)) {
+                    xmlFinal.append(parseToXml(valor));
+                } else {
                     xmlFinal.append("<");
                     xmlFinal.append(elemento.tagName());
                     xmlFinal.append(">");

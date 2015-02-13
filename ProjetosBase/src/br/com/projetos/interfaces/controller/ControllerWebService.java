@@ -24,6 +24,6 @@ public interface ControllerWebService<T, Id extends Serializable> {
 
     public Informacao valida(T t) throws Exception;
 
-    public Informacao listar() throws Exception;
+    public Informacao listar(Integer inicio) throws Exception;
 
 }

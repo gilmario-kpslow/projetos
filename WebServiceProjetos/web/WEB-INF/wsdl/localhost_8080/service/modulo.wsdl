@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="projetos" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="modulo" targetNamespace="projetos">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="projetos" elementFormDefault="unqualified" targetNamespace="projetos" version="1.0">
+
+  <xs:element name="criarModulo" type="tns:criarModulo"/>
+
+  <xs:element name="criarModuloResponse" type="tns:criarModuloResponse"/>
+
+  <xs:element name="listarModulo" type="tns:listarModulo"/>
+
+  <xs:element name="listarModuloResponse" type="tns:listarModuloResponse"/>
+
+  <xs:element name="projeto" type="tns:projeto"/>
+
+  <xs:complexType name="listarModulo">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="tns:projeto"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="projeto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descricao" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="listarModuloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:informacaoConsultaModulo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="informacaoConsultaModulo">
+    <xs:complexContent>
+      <xs:extension base="tns:informacao">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="modulos" nillable="true" type="tns:modulo"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="informacao">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="conteudo" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipo" type="tns:tipoMensagem"/>
+      <xs:element minOccurs="0" name="titulo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="modulo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descricao" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+      <xs:element minOccurs="0" ref="tns:projeto"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="criarModulo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="modulo" type="tns:modulo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="criarModuloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:informacao"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="tipoMensagem">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SUCESSO"/>
+      <xs:enumeration value="INFORMACAO"/>
+      <xs:enumeration value="ALERTA"/>
+      <xs:enumeration value="ERRO"/>
+      <xs:enumeration value="FATAL"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="criarModulo">
+    <wsdl:part element="tns:criarModulo" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listarModulo">
+    <wsdl:part element="tns:listarModulo" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="criarModuloResponse">
+    <wsdl:part element="tns:criarModuloResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listarModuloResponse">
+    <wsdl:part element="tns:listarModuloResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ModuloService">
+    <wsdl:operation name="listarModulo">
+      <wsdl:input message="tns:listarModulo" name="listarModulo">
+    </wsdl:input>
+      <wsdl:output message="tns:listarModuloResponse" name="listarModuloResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="criarModulo">
+      <wsdl:input message="tns:criarModulo" name="criarModulo">
+    </wsdl:input>
+      <wsdl:output message="tns:criarModuloResponse" name="criarModuloResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="moduloSoapBinding" type="tns:ModuloService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="listarModulo">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listarModulo">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listarModuloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="criarModulo">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="criarModulo">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="criarModuloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="modulo">
+    <wsdl:port binding="tns:moduloSoapBinding" name="ModuloServicePort">
+      <soap:address location="http://localhost:8080/service/modulo"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

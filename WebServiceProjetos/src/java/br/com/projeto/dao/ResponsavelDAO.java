@@ -7,7 +7,6 @@ package br.com.projeto.dao;
 
 import br.com.projeto.modelo.Responsavel;
 import java.io.Serializable;
-import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -19,11 +18,6 @@ public class ResponsavelDAO extends DAO<Responsavel, Long> implements Serializab
 
     public ResponsavelDAO() {
         super(Responsavel.class);
-    }
-
-    @Override
-    public List<Responsavel> listar() throws Exception {
-        return super.listar(0);
     }
 
     public Responsavel login(String login, String senha) {

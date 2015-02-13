@@ -15,10 +15,10 @@ import br.com.projetos.android.wsdl.WebService;
  */
 public abstract class Service {
 
-    private SoapXmlGerador gerador;
-    private WebService webService;
-    private ObjectConverter converter;
-    private String servidor;
+    private final SoapXmlGerador gerador;
+    private final WebService webService;
+    private final ObjectConverter converter;
+    private final String servidor;
 
     public Service(String servidor) {
         this.servidor = servidor;

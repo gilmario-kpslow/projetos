@@ -73,8 +73,8 @@ public class ResponsavelController extends Controller<Responsavel, Long> impleme
     }
 
     @Override
-    public InformacaoConsultaResponsavel listar() throws Exception {
-        List<Responsavel> lista = getDao().listar();
+    public InformacaoConsultaResponsavel listar(Integer inicio) throws Exception {
+        List<Responsavel> lista = getDao().listar(inicio);
         InformacaoConsultaResponsavel informacao = new InformacaoConsultaResponsavel();
         if (lista.isEmpty()) {
             informacao.setConteudo(new ResourcesUtil("strings").getMensagem("consulta.vazia"));

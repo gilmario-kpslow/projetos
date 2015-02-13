@@ -10,7 +10,6 @@ import br.com.projeto.dao.ProjetoDAO;
 import br.com.projeto.modelo.projeto.Projeto;
 import br.com.projeto.util.Informacao;
 import br.com.projeto.util.InformacaoConsultaProjeto;
-import br.com.projeto.util.InformacaoProjeto;
 import br.com.projeto.util.ResourcesUtil;
 import br.com.projeto.util.TipoMensagem;
 import java.io.Serializable;
@@ -60,8 +59,8 @@ public class ProjetoController extends Controller<Projeto, Long> implements Seri
     }
 
     @Override
-    public InformacaoConsultaProjeto listar() throws Exception {
-        List<Projeto> lista = getDao().listar();
+    public InformacaoConsultaProjeto listar(Integer inicio) throws Exception {
+        List<Projeto> lista = getDao().listar(inicio);
         InformacaoConsultaProjeto informacao = new InformacaoConsultaProjeto();
         if (lista.isEmpty()) {
             informacao.setConteudo(new ResourcesUtil("strings").getMensagem("consulta.vazia"));
@@ -71,9 +70,7 @@ public class ProjetoController extends Controller<Projeto, Long> implements Seri
             informacao.setProjetos(lista);
             informacao.setTipo(TipoMensagem.SUCESSO);
         }
-
         return informacao;
-
     }
 
 }

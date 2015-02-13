@@ -7,7 +7,6 @@ package br.com.projeto.dao;
 
 import br.com.projeto.modelo.projeto.Projeto;
 import java.io.Serializable;
-import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -19,11 +18,6 @@ public class ProjetoDAO extends DAO<Projeto, Long> implements Serializable {
 
     public ProjetoDAO() {
         super(Projeto.class);
-    }
-
-    @Override
-    public List<Projeto> listar() throws Exception {
-        return super.listar(0);
     }
 
 }

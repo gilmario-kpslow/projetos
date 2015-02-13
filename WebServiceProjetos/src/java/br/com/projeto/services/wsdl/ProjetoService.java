@@ -40,7 +40,7 @@ public class ProjetoService {
     @WebMethod(operationName = "listarProjeto")
     public InformacaoConsultaProjeto listar(@WebParam(name = "inicio") Integer inicio) {
         try {
-            return controller.listar();
+            return controller.listar(inicio);
         } catch (Exception ex) {
             Logger.getLogger(ProjetoService.class.getName()).log(Level.SEVERE, null, ex);
             return new InformacaoConsultaProjeto(TipoMensagem.ERRO, "Erro", ex.toString());

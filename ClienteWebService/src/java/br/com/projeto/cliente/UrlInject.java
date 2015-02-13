@@ -19,9 +19,36 @@ import javax.ejb.Stateless;
 @Stateless
 public class UrlInject implements Serializable {
 
-    public URL getUrlwebService() {
+    public URL getUrlWebServiceResponsavel() {
         try {
-            return new URL("http://localhost:8080/projetos/responsavel?wsdl");
+            return new URL("http://localhost:8080/service/responsavel?wsdl");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(UrlInject.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public URL getUrlWebServiceModulo() {
+        try {
+            return new URL("http://localhost:8080/service/modulo?wsdl");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(UrlInject.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public URL getUrlWebServiceProjeto() {
+        try {
+            return new URL("http://localhost:8080/service/projeto?wsdl");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(UrlInject.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public URL getUrlWebServiceAtividade() {
+        try {
+            return new URL("http://localhost:8080/service/atividade?wsdl");
         } catch (MalformedURLException ex) {
             Logger.getLogger(UrlInject.class.getName()).log(Level.SEVERE, null, ex);
         }

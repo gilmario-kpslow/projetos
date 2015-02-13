@@ -24,6 +24,6 @@ public interface DAOInterface<T, Id extends Serializable> {
 
     public T referencia(Id pk) throws Exception;
 
-    public List<T> listar() throws Exception;
+    public List<T> listar(Integer inicio) throws Exception;
 
 }

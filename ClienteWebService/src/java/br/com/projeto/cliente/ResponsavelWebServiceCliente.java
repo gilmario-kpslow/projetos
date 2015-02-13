@@ -7,7 +7,6 @@ package br.com.projeto.cliente;
 
 import br.com.projeto.cliente.interfaces.ResponsavelService;
 import java.net.URL;
-import javax.ejb.EJB;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.WebEndpoint;

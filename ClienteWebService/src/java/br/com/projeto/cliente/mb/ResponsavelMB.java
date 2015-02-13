@@ -5,16 +5,12 @@
  */
 package br.com.projeto.cliente.mb;
 
-import br.com.projeto.cliente.ResponsavelWebServiceCliente;
-import br.com.projeto.cliente.UrlInject;
 import br.com.projeto.cliente.controller.ResponsavelController;
 import br.com.projeto.cliente.modelo.Responsavel;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
 /**

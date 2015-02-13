@@ -18,7 +18,7 @@ import java.util.Map;
 public class ResponsavelService extends Service {
 
     public ResponsavelService(String servidor) {
-        super(servidor + "/projetos/responsavel?wsdl");
+        super(servidor + "responsavel?wsdl");
     }
 
     public InformacaoResponsavel registrarResponsavel(Responsavel reponsavel) throws Exception {

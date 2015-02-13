@@ -7,17 +7,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/projeto_consulta_titulo"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/projeto_nome"/>
+        android:id="@+id/usuario_nome"
+    />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/projeto_nome_hint"
+        android:hint="@string/projeto_consulta_hint"
         android:id="@+id/edtDescricaoConsulta"
     />
 
@@ -27,5 +23,12 @@
         android:text="@string/projeto_btn_consultar"
         android:onClick="listar"
     />
+
+    <fragment android:name="br.com.projetos.android.lista.ProjetoListFragment"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:tag="lista"
+    >
+    </fragment>
 
 </LinearLayout>

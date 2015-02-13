@@ -6,6 +6,7 @@
 package br.com.projetos.android.modelos;
 
 import br.com.projetos.android.util.anotacoes.XmlObject;
+import java.io.Serializable;
 
 /**
  *

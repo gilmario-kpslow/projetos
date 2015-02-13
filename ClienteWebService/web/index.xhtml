@@ -8,36 +8,10 @@
                 xmlns:boot="http://xmlns.jcp.org/jsf/composite/boot">
 
     <ui:define name="conteudo">
-        <h:form>
-            <boot:botao action="#{responsavelMB.listar()}" value="Teste"/>
-            <h:commandButton action="#{responsavelMB.listar()}" value="Listar Responsaveis" styleClass="btn btn-danger"/>
-            <h:dataTable value="#{responsavelMB.responsaveis}" var="r">
-                <h:column >
-                    <f:facet name="header">
-                        <h:outputText value="Nome"/>
-                    </f:facet>
-                    <h:outputText value="#{r.nomeCompleto}"/>
-                </h:column>
-                <h:column >
-                    <f:facet name="header">
-                        <h:outputText value="Status"/>
-                    </f:facet>
-                    <h:outputText value="#{r.ativo}"/>
-                </h:column>
-                <h:column >
-                    <f:facet name="header">
-                        <h:outputText value="Login"/>
-                    </f:facet>
-                    <h:outputText value="#{r.login}"/>
-                </h:column>
-                <h:column >
-                    <f:facet name="header">
-                        <h:outputText value="Senha"/>
-                    </f:facet>
-                    <h:outputText value="#{r.senha}"/>
-                </h:column>
-            </h:dataTable>
-        </h:form>
+        <h:link outcome="listaprojetos" value="Lista de Projetos"/><br/>
+        <h:link outcome="responsavel" value="Lista de Usuario"/><br/>
+        <h:link outcome="modulo" value="Lista de Modulo"/><br/>
+        <h:link outcome="atividade" value="Lista de Atividade"/><br/>
     </ui:define>
 </ui:composition>
 

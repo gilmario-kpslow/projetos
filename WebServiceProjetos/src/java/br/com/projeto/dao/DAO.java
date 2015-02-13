@@ -60,11 +60,7 @@ public abstract class DAO<T, PK extends Serializable> implements DAOInterface<T,
         return entidadeClass;
     }
 
-    public List<T> listar(Pagina p) throws Exception {
-        String sql = "SELECT t FROM " + getEntidadeClass().getName() + " t";
-        return getManager().createQuery(sql).setFirstResult(p.getInicio()).setMaxResults(p.getQuantidade()).getResultList();
-    }
-
+    @Override
     public List<T> listar(Integer inicio) throws Exception {
         String sql = "SELECT t FROM " + getEntidadeClass().getName() + " t";
         return getManager().createQuery(sql).setFirstResult(inicio).setMaxResults(100).getResultList();

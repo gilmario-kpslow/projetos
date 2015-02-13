@@ -14,7 +14,7 @@ import br.com.projetos.android.modelos.InformacaoResponsavel;
 public class TesteService extends Service {
 
     public TesteService(String servidor) {
-        super(servidor + "/projetos/teste?wsdl");
+        super(servidor + "teste?wsdl");
     }
 
     public InformacaoResponsavel testar() throws Exception {

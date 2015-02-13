@@ -10,26 +10,41 @@
 
     <application android:allowBackup="false" android:label="@string/app_name" android:icon="@drawable/ic_launcher"
                  android:theme="@android:style/Theme.Holo.Light" >
-        <activity android:name="ProjetosMainClienteActivity"
+        <activity android:name="MainActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ResponsavelActivity"></activity>
-        <activity android:name="ConfiguracoesActivity"></activity>
-        <activity android:name="TesteWebServiceActivity"></activity>
-        <activity android:name="AdminProjetoActivity"></activity>
-        <activity android:name="ProjetoListActivity"></activity>
-
-        <activity android:name="ProjetoActivity">
-            <!--
-                    android:parentActivityName="AdminProjetoActivity"
-                    <meta-data android:name="android.support.PARENT_ACTIVITY"
-                    android:value="br.com.projeto.android.ProjetoActivity"
-            />-->
-
+        <activity android:name="ResponsavelActivity"
+                  android:parentActivityName="MainActivity">
+        </activity>
+        <activity android:name="ConfiguracoesActivity">
+        </activity>
+        <activity android:name="TesteWebServiceActivity"
+                  android:parentActivityName="MainActivity">
+        </activity>
+        <activity android:name="br.com.projetos.android.activity.projeto.ProjetoConsultaActivity"
+                  android:label="@string/projeto_consulta_titulo">
+        </activity>
+        <activity android:name="br.com.projetos.android.activity.projeto.ModuloConsultaActivity"
+                  android:label="@string/modulo_consulta_titulo">
+        </activity>
+        <activity android:name="br.com.projetos.android.activity.projeto.ProjetoActivity"
+                  android:parentActivityName="br.com.projetos.android.activity.projeto.ProjetoConsultaActivity">
+        </activity>
+        <activity android:name="br.com.projetos.android.activity.projeto.ModuloActivity"
+                  android:parentActivityName="br.com.projetos.android.activity.projeto.AdminProjetoActivity">
+        </activity>
+        <activity android:name="br.com.projetos.android.activity.projeto.AdminProjetoActivity"
+                  android:parentActivityName="br.com.projetos.android.activity.projeto.ProjetoConsultaActivity">
+        </activity>
+        <activity android:name="br.com.projetos.android.activity.projeto.AdminModuloActivity"
+                  android:parentActivityName="br.com.projetos.android.activity.projeto.AdminProjetoActivity">
+        </activity>
+        <activity android:name="br.com.projetos.android.activity.projeto.AtividadeActivity"
+                  android:parentActivityName="br.com.projetos.android.activity.projeto.AdminModuloActivity">
         </activity>
     </application>
 </manifest>

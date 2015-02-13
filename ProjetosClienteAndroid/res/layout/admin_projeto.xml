@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <TextView
+        android:text="@string/titulo_adm_projeto"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/titulo"
+    />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="horizontal"
+                  android:padding="5dp"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/label_id_projeto"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/label"
+        />
+        <TextView
+            android:id="@+id/projeto_modulo_id"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+        />
+        <TextView
+            android:text="@string/label_nome_projeto"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            style="@style/label"
+        />
+        <TextView
+            android:id="@+id/projeto_modulo_nome"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+        />
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="vertical"
+                  android:padding="5dp"
+                  android:onClick="iniciaListaModulos"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content">
+
+        <TextView android:text="@string/admin_projetos_modulos"
+                  android:layout_width="fill_parent"
+                  style="@style/categoria_row"
+                  android:padding="5dp"
+                  android:id="@+id/admin_projetos_modulos"
+                  android:layout_height="wrap_content">
+
+        </TextView>
+
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="vertical"
+                  android:padding="5dp"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content">
+
+        <TextView android:text="@string/admin_projetos_atividades"
+                  android:layout_width="fill_parent"
+                  style="@style/categoria_row"
+                  android:padding="5dp"
+                  android:id="@+id/admin_projetos_atividades"
+                  android:layout_height="wrap_content">
+
+        </TextView>
+
+    </LinearLayout>
+</LinearLayout>

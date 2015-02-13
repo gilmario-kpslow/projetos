@@ -17,7 +17,7 @@ import java.util.List;
 public class InformacaoConsultaProjeto extends Informacao {
 
     @XmlObject(tagTipo = XmlObject.TipoDadoXML.LISTA, tagName = "projetos")
-    private ArrayList<Projeto> projeto;
+    private ArrayList<Projeto> projetos;
 
     public InformacaoConsultaProjeto() {
     }
@@ -34,12 +34,12 @@ public class InformacaoConsultaProjeto extends Informacao {
         super(tipo, titulo, conteudo);
     }
 
-    public ArrayList<Projeto> getProjeto() {
-        return projeto;
+    public ArrayList<Projeto> getProjetos() {
+        return projetos;
     }
 
-    public void setProjeto(ArrayList<Projeto> projeto) {
-        this.projeto = projeto;
+    public void setProjetos(ArrayList<Projeto> projetos) {
+        this.projetos = projetos;
     }
 
 }

@@ -6,7 +6,7 @@
         <EditTextPreference
             android:dialogTitle="@string/host_servidor"
             android:key="servidor"
-            android:defaultValue="http://10.100.0.100:8080"
+            android:defaultValue="http://10.100.0.57:8080/service/"
             android:summary="@string/servidor_sumario"
             android:title="@string/servidor_titulo"/>
     </PreferenceCategory>

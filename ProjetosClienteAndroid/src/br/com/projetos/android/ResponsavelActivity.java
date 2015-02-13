@@ -23,26 +23,17 @@ import br.com.projetos.android.util.DialogMensagem;
  */
 public class ResponsavelActivity extends ServerActivity {
 
-    public static final String FORM_LOGIN = "login";
     private ResponsavelService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         service = new ResponsavelService(getServidor());
-        if (getIntent().getBooleanExtra(FORM_LOGIN, false)) {
-            setContentView(R.layout.login);
-        } else {
-            setContentView(R.layout.responsavel_cadastro);
-        }
+        setContentView(R.layout.responsavel_cadastro);
     }
 
     public void cadastrar(View view) {
         cadastrar();
-    }
-
-    public void login(View view) {
-        login();
     }
 
     private void cadastrar() {
@@ -76,40 +67,6 @@ public class ResponsavelActivity extends ServerActivity {
             Log.e("ERROX", "Erro ao salvar", e);
             return new InformacaoResponsavel(TipoMensagem.ERRO, "ERRO", e.toString());
         }
-    }
-
-    private void login() {
-        new AsyncTask<Void, Void, InformacaoResponsavel>() {
-
-            @Override
-            protected InformacaoResponsavel doInBackground(Void... on) {
-                try {
-                    String login = ((EditText) findViewById(R.id.editLoginNome)).getText().toString();
-                    String senha = ((EditText) findViewById(R.id.editLoginSenha)).getText().toString();
-                    InformacaoResponsavel informacao = service.loginResponsavel(login, senha);
-                    return informacao;
-                } catch (Exception e) {
-                    Log.e("ERROX", "Erro ao fazer login", e);
-                    return new InformacaoResponsavel(TipoMensagem.ERRO, "ERRO", e.toString());
-                }
-            }
-
-            @Override
-            protected void onPostExecute(InformacaoResponsavel informacao) {
-                if (informacao.getTipo().equals(TipoMensagem.SUCESSO)) {
-                    iniciaAplicacaoPrincipal(informacao.getComplemento());
-                } else {
-                    new DialogMensagem().mensagemDialogOK(ResponsavelActivity.this, informacao.getConteudo(), informacao.getTitulo(), "atenção");
-                }
-            }
-
-        }.execute();
-    }
-
-    private void iniciaAplicacaoPrincipal(Responsavel responsavel) {
-        Intent i = new Intent(this, AdminProjetoActivity.class);
-        i.putExtra(AdminProjetoActivity.RESPONSAVEL, responsavel);
-        startActivity(i);
     }
 
 }

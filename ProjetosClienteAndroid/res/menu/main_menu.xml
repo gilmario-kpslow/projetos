@@ -1,13 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/item_action1"
-          android:title="teste"
-          android:icon="@drawable/ic_action_search"
+    <item android:id="@+id/menu_novo"
+          android:title="@string/novo"
+          android:icon="@drawable/ic_action_new"
           android:showAsAction="ifRoom"
     />
-    <item android:id="@+id/item_action2"
-          android:title="Teste 2"
-          android:icon="@drawable/ic_action_search"
-          android:showAsAction="never"
+    <item android:id="@+id/menu_config"
+          android:title="@string/config"
+          android:icon="@drawable/ic_action_settings"
+          android:showAsAction="ifRoom"
     />
 </menu>

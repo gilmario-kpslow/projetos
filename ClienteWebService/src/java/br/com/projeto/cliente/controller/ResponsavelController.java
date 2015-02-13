@@ -28,7 +28,7 @@ public class ResponsavelController {
 
     @PostConstruct
     private void init() {
-        responsavelWebServiceCliente = new ResponsavelWebServiceCliente(urlInject.getUrlwebService());
+        responsavelWebServiceCliente = new ResponsavelWebServiceCliente(urlInject.getUrlWebServiceResponsavel());
         responsavelService = responsavelWebServiceCliente.getResponsavelServicePort();
     }
 
