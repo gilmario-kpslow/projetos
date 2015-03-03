@@ -5,6 +5,7 @@
  */
 package br.com.projetos.android.util;
 
+import android.util.Log;
 import br.com.projetos.android.util.anotacoes.XmlObject;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -12,7 +13,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
@@ -32,6 +32,7 @@ public class ObjectConverter {
             ObjectUtil.setValorCampo(converter.getCampo().getName(), valor, o);
         }
         return o;
+
     }
 
     private Map<ConverterAux, Object> extrairMetodosComValor(StringBuilder xml, Class classe, String tag) throws ParseException, ParserConfigurationException, SAXException, IOException, InstantiationException, IllegalAccessException, IllegalArgumentException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException, ClassNotFoundException, Exception {
@@ -47,7 +48,11 @@ public class ObjectConverter {
                 String tagB = "</" + descritor.tagName() + ">";
                 int i = retorno.indexOf(tagA);
                 int f = retorno.indexOf(tagB) + tagB.length();
+                Log.i("XXXX", "XML ANTES: " + retorno);
                 String valor = retorno.substring(i, f);
+                Log.i("XXXX", "VALOR: " + valor);
+                retorno = retorno.substring(0, i) + retorno.substring(f);
+                Log.i("XXXX", "XML DEPOIS: " + retorno);
                 Object setar;
                 switch (descritor.tagTipo()) {
                     // Reprocessar entidade
@@ -70,7 +75,7 @@ public class ObjectConverter {
                         setar = Double.valueOf(valor.replaceAll(tagA + ">", "").replaceAll(tagB, ""));
                         break;
                     case LISTA:
-                        setar = processarLista(retorno.substring(i, retorno.lastIndexOf(tagB) + tagB.length()), ObjectUtil.tipoLista(classe, descritor.tagName()), descritor.tagName());
+                        setar = processarLista(xml.substring(xml.indexOf(tagA), xml.lastIndexOf(tagB) + tagB.length()), ObjectUtil.tipoLista(classe, descritor.tagName()), descritor.tagName());
                         break;
                     case ENUMERADO:
                         setar = Enum.valueOf((Class) campo.getType(), valor.replaceAll(tagA + ">", "").replaceAll(tagB, ""));

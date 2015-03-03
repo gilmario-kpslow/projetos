@@ -48,4 +48,11 @@ public class DialogMensagem {
         builder.setPositiveButton("OK", listener);
         builder.create().show();
     }
+
+    public void optionDialog(Context c, DialogInterface.OnClickListener listener, String[] itens, String titulo) {
+        new AlertDialog.Builder(c)
+                .setTitle(titulo)
+                .setItems(itens, listener)
+                .create().show();
+    }
 }

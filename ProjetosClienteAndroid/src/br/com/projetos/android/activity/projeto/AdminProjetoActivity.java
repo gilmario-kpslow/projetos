@@ -114,19 +114,15 @@ public class AdminProjetoActivity extends ServerActivity {
     }
 
     @Override
-    public
-            boolean onMenuItemSelected(int featureId, MenuItem item) {
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
         if (item.getItemId() == R.id.menu_novo_projeto) {
-            startActivity(new Intent(this, ModuloActivity.class
-            ));
+            startActivity(new Intent(this, ModuloActivity.class));
         }
         return super.onMenuItemSelected(featureId, item);
     }
 
-    public
-            void iniciaListaModulos(View view) {
-        startActivity(new Intent(this, ModuloConsultaActivity.class
-        ));
+    public void iniciaListaModulos(View view) {
+        startActivity(new Intent(this, ModuloConsultaActivity.class));
     }
 
 }

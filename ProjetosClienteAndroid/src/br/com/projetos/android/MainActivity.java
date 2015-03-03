@@ -93,6 +93,8 @@ public class MainActivity extends ServerActivity {
             responsavel();
         } else if (item.getItemId() == R.id.menu_config) {
             preferencias();
+        } else if (item.getItemId() == R.id.menu_sair) {
+            finish();
         }
         return super.onMenuItemSelected(featureId, item);
     }

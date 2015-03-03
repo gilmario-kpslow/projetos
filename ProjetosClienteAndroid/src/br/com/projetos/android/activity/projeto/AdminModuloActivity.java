@@ -5,6 +5,7 @@
  */
 package br.com.projetos.android.activity.projeto;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import br.com.projetos.android.modelos.TipoMensagem;
 import br.com.projetos.android.service.AtividadeService;
 import br.com.projetos.android.util.DialogMensagem;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Mostrar o andamento do projeto e dar opções diversas como incluir modulos
@@ -134,8 +136,36 @@ public class AdminModuloActivity extends ServerActivity implements AdapterView.O
         return super.onMenuItemSelected(featureId, item);
     }
 
-    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void onItemClick(AdapterView<?> adapter, View view, int op, long pos) {
+        Map<String, Object> map = (Map<String, Object>) adapter.getAdapter().getItem(op);
+        final Atividade a = new Atividade();
+        a.setId((Long) map.get("id"));
+        a.setNome((String) map.get("nome"));
+        new DialogMensagem().optionDialog(this, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int opcao) {
+                switch (opcao) {
+                    case 0:
+                        // Abrir a view tarefa
+                        selecionarAtividade(a);
+                        break;
+                    case 1:
+                        // Editar tarefa
+                        break;
+                    case 2:
+                        // Ecluir tarefa
+                        break;
+                }
+            }
+
+        }, getResources().getStringArray(R.array.opcoes_dialog), "Selecionar uma opção?");
+    }
+
+    private void selecionarAtividade(Atividade a) {
+        Intent i = new Intent(this, AdminAtividadeActivity.class);
+        setVariavel(AdminAtividadeActivity.ATIVIDADE_SELECIONADO_ID, a.getId());
+        setVariavel(AdminAtividadeActivity.ATIVIDADE_SELECIONADO_NOME, a.getNome());
+        startActivity(i);
     }
 
 }

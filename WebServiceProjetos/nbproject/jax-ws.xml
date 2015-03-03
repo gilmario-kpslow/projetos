@@ -16,6 +16,9 @@
     <service name="AtividadeService">
       <implementation-class>br.com.projeto.services.wsdl.AtividadeService</implementation-class>
     </service>
+    <service name="FuncionalidadeService">
+      <implementation-class>br.com.projeto.services.wsdl.FuncionalidadeService</implementation-class>
+    </service>
   </services>
   <clients>
   </clients>
