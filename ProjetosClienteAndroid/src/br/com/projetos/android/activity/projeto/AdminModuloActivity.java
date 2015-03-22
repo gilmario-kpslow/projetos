@@ -56,30 +56,6 @@ public class AdminModuloActivity extends ServerActivity implements AdapterView.O
     private void setView() {
         ((TextView) findViewById(R.id.modulo_atividade_nome)).setText(modulo.getNome());
         ((TextView) findViewById(R.id.modulo_atividade_id)).setText(modulo.getId().toString());
-
-        /**
-         * try { new AsyncTask<Void, Void, InformacaoConsultaAtividade>() {
-         *
-         * protected InformacaoConsultaAtividade doInBackground(Void... on) {
-         * try { return atividadeService.listarAtividade(modulo); } catch
-         * (Exception e) { Log.e("ERRO", "Erro ao Listar", e); return new
-         * InformacaoConsultaAtividade(TipoMensagem.ERRO, "ERRO", e.toString());
-         * } }
-         *
-         * @Override protected void onPostExecute(InformacaoConsultaAtividade
-         * informacao) { if (TipoMensagem.SUCESSO.equals(informacao.getTipo()))
-         * { ((TextView)
-         * findViewById(R.id.admin_modulo_atividades)).setText(getResources().getString(R.string.admin_modulo_atividades)
-         * + " - " + informacao.getAtividades().size()); } else { new
-         * DialogMensagem().mensagemDialogOK(AdminModuloActivity.this,
-         * informacao.getConteudo(), informacao.getTitulo(), "sucesso");
-         * ((TextView)
-         * findViewById(R.id.admin_modulo_atividades)).setText(getResources().getString(R.string.admin_modulo_atividades)
-         * + " - 0"); } } }.execute();
-         *
-         * } catch (Exception e) { new DialogMensagem().mensagemSimples(this,
-         * e.getMessage()); }
-         */
     }
 
     public void listarAtividades(View view) {
@@ -151,9 +127,11 @@ public class AdminModuloActivity extends ServerActivity implements AdapterView.O
                         break;
                     case 1:
                         // Editar tarefa
+                        //editarAtividade(a);
                         break;
                     case 2:
                         // Ecluir tarefa
+                        //excluirAtividade(a);
                         break;
                 }
             }

@@ -40,7 +40,7 @@ public class RegraNegocio implements Serializable {
     @Length(max = 1000)
     private String descricao;
     @JoinColumn(referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Funcionalidade funcionalidade;
 
     public Long getId() {

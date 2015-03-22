@@ -25,6 +25,14 @@ public class ModuloService extends Service {
         return (InformacaoModulo) executaRequisicao("criarModulo", "projetos", InformacaoModulo.class, new XmlConverter().parseToXml(modulo));
     }
 
+    public InformacaoModulo editaModulo(Modulo modulo) throws Exception {
+        return (InformacaoModulo) executaRequisicao("editaModulo", "projetos", InformacaoModulo.class, new XmlConverter().parseToXml(modulo));
+    }
+
+    public InformacaoModulo removeModulo(Modulo modulo) throws Exception {
+        return (InformacaoModulo) executaRequisicao("removeModulo", "projetos", InformacaoModulo.class, new XmlConverter().parseToXml(modulo));
+    }
+
     public InformacaoConsultaModulo listarModulo(Projeto projeto) throws Exception {
         return (InformacaoConsultaModulo) executaRequisicao("listarModulo", "projetos", InformacaoConsultaModulo.class, new XmlConverter().parseToXml(projeto));
     }

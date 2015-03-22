@@ -37,6 +37,26 @@ public class ProjetoService {
         }
     }
 
+    @WebMethod(operationName = "editaProjeto")
+    public Informacao editar(@WebParam(name = "projeto") Projeto projeto) {
+        try {
+            return controller.editar(projeto);
+        } catch (Exception ex) {
+            Logger.getLogger(ProjetoService.class.getName()).log(Level.SEVERE, null, ex);
+            return new Informacao(TipoMensagem.ERRO, "Erro", ex.toString());
+        }
+    }
+
+    @WebMethod(operationName = "removeProjeto")
+    public Informacao remove(@WebParam(name = "projeto") Projeto projeto) {
+        try {
+            return controller.remover(projeto.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(ProjetoService.class.getName()).log(Level.SEVERE, null, ex);
+            return new Informacao(TipoMensagem.ERRO, "Erro", ex.toString());
+        }
+    }
+
     @WebMethod(operationName = "listarProjeto")
     public InformacaoConsultaProjeto listar(@WebParam(name = "inicio") Integer inicio) {
         try {

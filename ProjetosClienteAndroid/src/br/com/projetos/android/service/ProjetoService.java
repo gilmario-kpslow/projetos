@@ -26,6 +26,14 @@ public class ProjetoService extends Service {
         return (InformacaoProjeto) executaRequisicao("criarProjeto", "projetos", InformacaoProjeto.class, new XmlConverter().parseToXml(projeto));
     }
 
+    public InformacaoProjeto editarProjeto(Projeto projeto) throws Exception {
+        return (InformacaoProjeto) executaRequisicao("editaProjeto", "projetos", InformacaoProjeto.class, new XmlConverter().parseToXml(projeto));
+    }
+
+    public InformacaoProjeto removeProjeto(Projeto projeto) throws Exception {
+        return (InformacaoProjeto) executaRequisicao("removeProjeto", "projetos", InformacaoProjeto.class, new XmlConverter().parseToXml(projeto));
+    }
+
     public InformacaoConsultaProjeto listarProjeto() throws Exception {
         Map<String, String> map = new HashMap<String, String>();
         map.put("inicio", Integer.toString(0));

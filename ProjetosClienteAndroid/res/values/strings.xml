@@ -37,7 +37,9 @@
     <string name="label_nome_atividade">Modulo: </string>
     <string name="label_id_modulo">Id: </string>
     <string name="login">Nome de Usuário</string>
+    <string name="main_novo">Novo usuário</string>
     <string name="menu_sair">Sair</string>
+    <string name="mensagem_excluir_registro">Deseja excluir esse registro?</string>
     <string name="modulo_cadastro_titulo">Cadastro de Módulos</string>
     <string name="modulo_consulta_titulo">Consulta de Módulos</string>
     <string name="modulo_consulta_hint">Consulta de Módulos</string>
@@ -52,7 +54,7 @@
     <string name="nome_completo">Nome completo</string>
     <string name="nome_lista_funcionalidade">Lista de funcionalidades</string>
     <string name="novo">Novo</string>
-    <string name="main_novo">Novo usuário</string>
+    <string name="opcoes_dialog_titulo">Opções</string>
     <string name="preferencias">Configurações do Servidor</string>
     <string name="projeto_cadastro_titulo">Cadastro de Projetos</string>
     <string name="projeto_listar">Listar Projetos</string>

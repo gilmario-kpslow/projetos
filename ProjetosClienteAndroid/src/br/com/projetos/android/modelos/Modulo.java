@@ -6,13 +6,14 @@
 package br.com.projetos.android.modelos;
 
 import br.com.projetos.android.util.anotacoes.XmlObject;
+import java.io.Serializable;
 
 /**
  *
  * @author gilmario
  */
 @XmlObject(tagName = "modulo", tagTipo = XmlObject.TipoDadoXML.COMPLEXO)
-public class Modulo {
+public class Modulo implements Serializable {
 
     @XmlObject(tagName = "id", tagTipo = XmlObject.TipoDadoXML.LONG)
     private Long id;

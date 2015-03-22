@@ -17,7 +17,7 @@ import javax.jws.WebService;
  *
  * @author gilmario
  */
-@WebService(targetNamespace = "projetos", name = "ResponsavelService")
+@WebService(targetNamespace = "projetos", name = "ResponsavelService", wsdlLocation = "http://webservice-gilserver.rhcloud.com/service/responsavel?wsdl")
 public interface ResponsavelService {
 
     @WebMethod

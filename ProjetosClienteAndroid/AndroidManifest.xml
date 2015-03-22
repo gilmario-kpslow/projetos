@@ -47,7 +47,7 @@
                   android:parentActivityName="br.com.projetos.android.activity.projeto.AdminProjetoActivity">
         </activity>
         <activity android:name="br.com.projetos.android.activity.projeto.AdminAtividadeActivity"
-                  android:parentActivityName="br.com.projetos.android.activity.projeto.AdminProjetoActivity">
+                  android:parentActivityName="br.com.projetos.android.activity.projeto.AdminModuloActivity">
         </activity>
         <activity android:name="br.com.projetos.android.activity.projeto.AtividadeActivity"
                   android:parentActivityName="br.com.projetos.android.activity.projeto.AdminModuloActivity">

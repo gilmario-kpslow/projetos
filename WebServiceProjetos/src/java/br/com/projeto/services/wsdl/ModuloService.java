@@ -38,12 +38,32 @@ public class ModuloService {
         }
     }
 
+    @WebMethod(operationName = "editaModulo")
+    public Informacao editar(@WebParam(name = "modulo") Modulo modulo) {
+        try {
+            return controller.editar(modulo);
+        } catch (Exception ex) {
+            Logger.getLogger(ModuloService.class.getName()).log(Level.SEVERE, null, ex);
+            return new Informacao(TipoMensagem.ERRO, "Erro", ex.toString());
+        }
+    }
+
+    @WebMethod(operationName = "removeModulo")
+    public Informacao remove(@WebParam(name = "modulo") Modulo modulo) {
+        try {
+            return controller.remover(modulo.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(ModuloService.class.getName()).log(Level.SEVERE, null, ex);
+            return new Informacao(TipoMensagem.ERRO, "Erro", ex.toString());
+        }
+    }
+
     @WebMethod(operationName = "listarModulo")
     public InformacaoConsultaModulo listar(@WebParam(name = "projeto") Projeto projeto) {
         try {
             return controller.listar(projeto);
         } catch (Exception ex) {
-            Logger.getLogger(ProjetoService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModuloService.class.getName()).log(Level.SEVERE, null, ex);
             return new InformacaoConsultaModulo(TipoMensagem.ERRO, "Erro", ex.toString());
         }
     }

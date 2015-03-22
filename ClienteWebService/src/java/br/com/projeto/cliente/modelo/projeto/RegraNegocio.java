@@ -3,42 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.projeto.modelo.projeto;
+package br.com.projeto.cliente.modelo.projeto;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import org.hibernate.validator.constraints.Length;
 
 /**
  *
  * @author gilmario
  */
-@Entity
-@Table(name = "modulo", schema = "projeto")
-public class Modulo implements Serializable {
+public class RegraNegocio implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Length(min = 5, max = 100)
-    @Column(nullable = false, length = 100)
     private String nome;
-    @Column(nullable = false, length = 1000)
-    @Length(max = 1000)
+    private String codigo;
     private String descricao;
-    @JoinColumn(referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Projeto projeto;
+    private Funcionalidade funcionalidade;
 
     public Long getId() {
         return id;
@@ -64,12 +44,20 @@ public class Modulo implements Serializable {
         this.descricao = descricao;
     }
 
-    public Projeto getProjeto() {
-        return projeto;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setProjeto(Projeto projeto) {
-        this.projeto = projeto;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public Funcionalidade getFuncionalidade() {
+        return funcionalidade;
+    }
+
+    public void setFuncionalidade(Funcionalidade funcionalidade) {
+        this.funcionalidade = funcionalidade;
     }
 
     @Override
@@ -87,7 +75,7 @@ public class Modulo implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Modulo other = (Modulo) obj;
+        final RegraNegocio other = (RegraNegocio) obj;
         return Objects.equals(this.id, other.id);
     }
 

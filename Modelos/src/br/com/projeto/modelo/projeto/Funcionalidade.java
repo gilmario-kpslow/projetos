@@ -37,7 +37,7 @@ public class Funcionalidade implements Serializable {
     @Length(max = 1000)
     private String descricao;
     @JoinColumn(referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Atividade atividade;
 
     public Long getId() {

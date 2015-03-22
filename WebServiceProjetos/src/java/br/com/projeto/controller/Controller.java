@@ -34,8 +34,36 @@ public abstract class Controller<T, Id extends Serializable> implements Controll
         return resposta;
     }
 
+    @Override
+    public Informacao remover(Id id) throws Exception {
+        Informacao resposta = new Informacao();
+        remove(id);
+        resposta.setConteudo(new ResourcesUtil("strings").getMensagem("mensagem.remover"));
+        resposta.setTitulo(new ResourcesUtil("strings").getMensagem("mensagem.remover_titulo"));
+        return resposta;
+    }
+
+    @Override
+    public Informacao editar(T t) throws Exception {
+        Informacao resposta = valida(t);
+        if (resposta.getTipo().equals(TipoMensagem.SUCESSO)) {
+            edita(t);
+            resposta.setConteudo(new ResourcesUtil("strings").getMensagem("mensagem.editar"));
+            resposta.setTitulo(new ResourcesUtil("strings").getMensagem("mensagem.editar_titulo"));
+        }
+        return resposta;
+    }
+
     protected void registra(T t) throws Exception {
         getDao().salvar(t);
+    }
+
+    protected void edita(T t) throws Exception {
+        getDao().atualizar(t);
+    }
+
+    protected void remove(Id id) throws Exception {
+        getDao().excluir(id);
     }
 
 }

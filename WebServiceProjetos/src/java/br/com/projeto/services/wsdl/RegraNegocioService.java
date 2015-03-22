@@ -5,7 +5,6 @@
  */
 package br.com.projeto.services.wsdl;
 
-import br.com.projeto.controller.FuncionalidadeController;
 import br.com.projeto.controller.RegraNegocioController;
 import br.com.projeto.modelo.projeto.Atividade;
 import br.com.projeto.modelo.projeto.Funcionalidade;
@@ -13,7 +12,6 @@ import br.com.projeto.modelo.projeto.Modulo;
 import br.com.projeto.modelo.projeto.Projeto;
 import br.com.projeto.modelo.projeto.RegraNegocio;
 import br.com.projeto.util.Informacao;
-import br.com.projeto.util.InformacaoConsultaFuncionalidade;
 import br.com.projeto.util.InformacaoConsultaRegraNegocio;
 import br.com.projeto.util.TipoMensagem;
 import java.util.logging.Level;

@@ -1,8 +1,8 @@
 package br.com.projetos.android.activity.projeto;
 
+import static android.content.Context.NSD_SERVICE;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,10 +13,13 @@ import android.widget.AdapterView;
 import br.com.projetos.android.R;
 import br.com.projetos.android.ServerActivity;
 import br.com.projetos.android.lista.ModuloListFragment;
+import br.com.projetos.android.modelos.Informacao;
 import br.com.projetos.android.modelos.InformacaoConsultaModulo;
 import br.com.projetos.android.modelos.Modulo;
 import br.com.projetos.android.modelos.Projeto;
 import br.com.projetos.android.modelos.TipoMensagem;
+import br.com.projetos.android.modelos.converter.ConverterModulo;
+import br.com.projetos.android.service.ExecutaService;
 import br.com.projetos.android.service.ModuloService;
 import br.com.projetos.android.util.DialogMensagem;
 import java.util.ArrayList;
@@ -56,7 +59,7 @@ public class ModuloConsultaActivity extends ServerActivity implements AdapterVie
     }
 
     public void listar(View view) {
-        new AsyncTask<Void, Void, InformacaoConsultaModulo>() {
+        new ExecutaService<InformacaoConsultaModulo>(this) {
 
             @Override
             protected InformacaoConsultaModulo doInBackground(Void... on) {
@@ -81,23 +84,27 @@ public class ModuloConsultaActivity extends ServerActivity implements AdapterVie
 
     public void onItemClick(AdapterView<?> adapter, View arg1, int arg2, long arg3) {
         final Map<String, Object> map = (Map<String, Object>) adapter.getAdapter().getItem(arg2);
+        final Modulo modulo = new ConverterModulo().converter(map);
+        new DialogMensagem().optionDialog(this, new DialogInterface.OnClickListener() {
 
-        new DialogMensagem().mensagemDialogConfirmacao(this, "Selecionar este Módulo?", new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface arg0, int arg1) {
-                if (arg1 == DialogInterface.BUTTON_POSITIVE) {
-                    inicializaModulo(map);
+            public void onClick(DialogInterface arg0, int opcao) {
+                switch (opcao) {
+                    case 0:
+                        inicializaModulo(modulo);
+                        break;
+                    case 1:
+                        editarModulo(modulo);
+                        break;
+                    case 2:
+                        desejaRemoverModulo(modulo);
+                        break;
                 }
             }
 
-        });
+        }, getResources().getStringArray(R.array.opcoes_dialog), getResources().getString(R.string.opcoes_dialog_titulo));
     }
 
-    private void inicializaModulo(Map<String, Object> map) {
-        Modulo modulo = new Modulo();
-        modulo.setId((Long) map.get("id"));
-        modulo.setDescricao((String) map.get("descricao"));
-        modulo.setNome((String) map.get("nome"));
+    private void inicializaModulo(Modulo modulo) {
         setVariavel(AdminModuloActivity.MODULO_SELECIONADO_NOME, modulo.getNome());
         setVariavel(AdminModuloActivity.MODULO_SELECIONADO_ID, modulo.getId());
         startActivity(new Intent(this, AdminModuloActivity.class));
@@ -118,6 +125,38 @@ public class ModuloConsultaActivity extends ServerActivity implements AdapterVie
             finish();
         }
         return super.onMenuItemSelected(featureId, item);
+    }
+
+    private void editarModulo(Modulo modulo) {
+        Intent intent = new Intent(this, ModuloActivity.class);
+        intent.putExtra(ModuloActivity.MODULO_ID, modulo);
+        startActivity(intent);
+    }
+
+    private void desejaRemoverModulo(final Modulo modulo) {
+        new DialogMensagem().mensagemDialogConfirmacao(this, getResources().getString(R.string.mensagem_excluir_registro), new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface arg0, int arg1) {
+                if (arg1 == DialogInterface.BUTTON_POSITIVE) {
+                    removerModulo(modulo);
+                }
+            }
+        });
+    }
+
+    private void removerModulo(final Modulo modulo) {
+        new ExecutaService<Informacao>(this) {
+
+            @Override
+            protected Informacao doInBackground(Void... arg0) {
+                try {
+                    return service.removeModulo(modulo);
+                } catch (Exception e) {
+                    Log.e("ERROX", "Erro ao Listar", e);
+                    return new Informacao(TipoMensagem.ERRO, "ERRO", e.toString());
+                }
+            }
+        }.execute();
     }
 
 }

@@ -2,7 +2,6 @@ package br.com.projetos.android.activity.projeto;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,10 +14,13 @@ import br.com.projetos.android.MainActivity;
 import br.com.projetos.android.R;
 import br.com.projetos.android.ServerActivity;
 import br.com.projetos.android.lista.ProjetoListFragment;
+import br.com.projetos.android.modelos.Informacao;
 import br.com.projetos.android.modelos.InformacaoConsultaProjeto;
 import br.com.projetos.android.modelos.Projeto;
 import br.com.projetos.android.modelos.Responsavel;
 import br.com.projetos.android.modelos.TipoMensagem;
+import br.com.projetos.android.modelos.converter.ConverterProjeto;
+import br.com.projetos.android.service.ExecutaService;
 import br.com.projetos.android.service.ProjetoService;
 import br.com.projetos.android.util.DialogMensagem;
 import java.util.ArrayList;
@@ -65,7 +67,7 @@ public class ProjetoConsultaActivity extends ServerActivity implements AdapterVi
     }
 
     public void listar(View view) {
-        new AsyncTask<Void, Void, InformacaoConsultaProjeto>() {
+        new ExecutaService<InformacaoConsultaProjeto>(this) {
 
             @Override
             protected InformacaoConsultaProjeto doInBackground(Void... on) {
@@ -89,24 +91,27 @@ public class ProjetoConsultaActivity extends ServerActivity implements AdapterVi
     }
 
     public void onItemClick(AdapterView<?> adapter, View arg1, int arg2, long arg3) {
-        final Map<String, Object> map = (Map<String, Object>) adapter.getAdapter().getItem(arg2);
+        Map<String, Object> map = (Map<String, Object>) adapter.getAdapter().getItem(arg2);
+        final Projeto projeto = new ConverterProjeto().converterProjeto(map);
+        new DialogMensagem().optionDialog(this, new DialogInterface.OnClickListener() {
 
-        new DialogMensagem().mensagemDialogConfirmacao(this, "Selecionar esse Projeto?", new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface arg0, int arg1) {
-                if (arg1 == DialogInterface.BUTTON_POSITIVE) {
-                    inicializaModulo(map);
+            public void onClick(DialogInterface di, int opcao) {
+                switch (opcao) {
+                    case 0:
+                        inicializaModulo(projeto);
+                        break;
+                    case 1:
+                        editarProjeto(projeto);
+                        break;
+                    case 2:
+                        desejaRemoverProjeto(projeto);
+                        break;
                 }
             }
-
-        });
+        }, getResources().getStringArray(R.array.opcoes_dialog), getResources().getString(R.string.opcoes_dialog_titulo));
     }
 
-    private void inicializaModulo(Map<String, Object> map) {
-        Projeto projeto = new Projeto();
-        projeto.setId((Long) map.get("id"));
-        projeto.setDescricao((String) map.get("descricao"));
-        projeto.setNome((String) map.get("nome"));
+    private void inicializaModulo(Projeto projeto) {
         setVariavel(AdminProjetoActivity.PROJETO_SELECIONADO_NOME, projeto.getNome());
         setVariavel(AdminProjetoActivity.PROJETO_SELECIONADO_ID, projeto.getId());
         startActivity(new Intent(this, AdminProjetoActivity.class));
@@ -127,6 +132,41 @@ public class ProjetoConsultaActivity extends ServerActivity implements AdapterVi
             finish();
         }
         return super.onMenuItemSelected(featureId, item);
+    }
+
+    private void editarProjeto(Projeto projeto) {
+        Intent intent = new Intent(this, ProjetoActivity.class);
+        intent.putExtra(ProjetoActivity.PROJETO_ID, projeto);
+        startActivity(intent);
+    }
+
+    private void desejaRemoverProjeto(final Projeto projeto) {
+        new DialogMensagem().mensagemDialogConfirmacao(this, getResources().getString(R.string.mensagem_excluir_registro), new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface arg0, int arg1) {
+                if (arg1 == DialogInterface.BUTTON_POSITIVE) {
+                    removerProjeto(projeto);
+                }
+            }
+        });
+
+    }
+
+    private void removerProjeto(final Projeto projeto) {
+        new ExecutaService<Informacao>(this) {
+
+            @Override
+            protected Informacao doInBackground(Void... arg0) {
+                try {
+                    return service.removeProjeto(projeto);
+                } catch (Exception e) {
+                    Log.e("ERROX", "Erro ao Listar", e);
+                    return new Informacao(TipoMensagem.ERRO, "ERRO", e.toString());
+                }
+            }
+
+        }.execute();
+
     }
 
 }

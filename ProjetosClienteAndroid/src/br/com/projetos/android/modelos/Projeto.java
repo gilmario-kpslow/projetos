@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @author gilmario
  */
 @XmlObject(tagName = "projeto", tagTipo = XmlObject.TipoDadoXML.COMPLEXO)
-public class Projeto {
+public class Projeto implements Serializable {
 
     @XmlObject(tagName = "id", tagTipo = XmlObject.TipoDadoXML.LONG)
     private Long id;

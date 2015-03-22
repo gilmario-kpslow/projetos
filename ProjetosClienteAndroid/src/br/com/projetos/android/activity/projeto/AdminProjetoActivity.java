@@ -21,6 +21,7 @@ import br.com.projetos.android.modelos.InformacaoConsultaModulo;
 import br.com.projetos.android.modelos.Projeto;
 import br.com.projetos.android.modelos.TipoMensagem;
 import br.com.projetos.android.service.AtividadeService;
+import br.com.projetos.android.service.ExecutaService;
 import br.com.projetos.android.service.ModuloService;
 import br.com.projetos.android.util.DialogMensagem;
 
@@ -55,7 +56,7 @@ public class AdminProjetoActivity extends ServerActivity {
         try {
             ((TextView) findViewById(R.id.projeto_modulo_nome)).setText(projeto.getNome());
             ((TextView) findViewById(R.id.projeto_modulo_id)).setText(projeto.getId().toString());
-            new AsyncTask<Void, Void, InformacaoConsultaModulo>() {
+            new ExecutaService<InformacaoConsultaModulo>(this) {
 
                 protected InformacaoConsultaModulo doInBackground(Void... on) {
                     try {
@@ -80,7 +81,7 @@ public class AdminProjetoActivity extends ServerActivity {
             new DialogMensagem().mensagemSimples(this, e.getMessage());
         }
         try {
-            new AsyncTask<Void, Void, InformacaoConsultaAtividade>() {
+            new ExecutaService<InformacaoConsultaAtividade>(this) {
 
                 protected InformacaoConsultaAtividade doInBackground(Void... on) {
                     try {

@@ -5,7 +5,6 @@
  */
 package br.com.projeto.dao;
 
-import br.com.projeto.util.Pagina;
 import br.com.projetos.interfaces.dao.DAOInterface;
 import java.io.Serializable;
 import java.util.List;
