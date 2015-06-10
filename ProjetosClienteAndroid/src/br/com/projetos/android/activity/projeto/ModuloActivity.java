@@ -5,7 +5,6 @@
  */
 package br.com.projetos.android.activity.projeto;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
