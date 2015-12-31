@@ -28,7 +28,7 @@ import org.hibernate.validator.constraints.Length;
 public class Atividade implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     @Length(min = 5, max = 100)
     @Column(nullable = false, length = 100)
