@@ -4,6 +4,7 @@ import br.com.truesystem.projetosweb.dao.ResponsavelDao;
 import br.com.truesystem.projetosweb.dominio.Responsavel;
 import br.com.truesystem.projetosweb.util.CriptografiaUtil;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -24,6 +25,10 @@ public class ResponsavelServico implements ServicoInterface<Responsavel>, Serial
         dao.excluir(t);
     }
 
+    public List<Responsavel> buscar() {
+        return dao.buscar();
+    }
+
     @Override
     public void atualizar(Responsavel t) throws Exception {
         t.setSenha(CriptografiaUtil.MD5(t.getSenha()));
@@ -33,7 +38,7 @@ public class ResponsavelServico implements ServicoInterface<Responsavel>, Serial
     @Override
     public void salvar(Responsavel t) {
         t.setSenha(CriptografiaUtil.MD5(t.getSenha()));
-        dao.salvar(t);
+        dao.atualizar(t);
     }
 
     @Override

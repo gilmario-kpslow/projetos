@@ -39,15 +39,11 @@
 
                         <div class="collapse navbar-collapse" id="menu">
                             <ul class="nav navbar-nav">
-                                <li><a href="#{application.contextPath}/web/dashboard.xhtml">DashBoard</a></li>
-                                <li><a href="#{application.contextPath}/web/usuario.xhtml">Usuario</a></li>
-                                <li><a href="#{application.contextPath}/web/carteira.xhtml">Carteira</a></li>
-                                <li><a href="#{application.contextPath}/web/despesa.xhtml">Despesa</a></li>
-                                <li><a href="#{application.contextPath}/web/credito.xhtml">Crédito</a></li>
-                                <li><a href="#{application.contextPath}/web/competencias.xhtml">Competencias</a></li>
+                                <li><a href="#{application.contextPath}/web/dashboard.xhtml"><span class="fa fa-dashboard"></span> DashBoard</a></li>
+                                <li><a href="#{application.contextPath}/web/responsavel.xhtml"><span class="fa fa-user-plus"></span> Novo usuário</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">#{usuarioSession.usuario.nome}</a></li>
+                                <li><a href="#"><span class="fa fa-user"></span> #{responsavelSession.responsavel.nomeCompleto}</a></li>
                                 <li><a href="#{application.contextPath}/login">Login</a></li>
                                 <li><a href="#{application.contextPath}/logout">Logout</a></li>
                             </ul>

@@ -6,7 +6,7 @@ package br.com.truesystem.projetosweb.dominio;
  */
 public enum Papel {
 
-    ROLE_USUARIO("carteira", "credito", "dashboard", "despesa", "competencias"), ROLE_ADMIN("usuario"), ROLE_MASTER("configuracoes");
+    ROLE_USUARIO("carteira", "credito", "dashboard", "despesa", "competencias"), ROLE_ADMIN("responsavel"), ROLE_MASTER("configuracoes");
 
     private final String[] regra;
 
