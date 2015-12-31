@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <title>Projetos</title>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="#{application.contextPath}/resources/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="#{application.contextPath}/resources/bootstrap/css/bootstrap-theme.min.css"/>
+        <link rel="stylesheet" href="#{application.contextPath}/resources/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="#{application.contextPath}/resources/app/css/app.css"/>
+    </h:head>
+
+    <h:body>
+        <ui:insert name="cabecalho">
+            <div class="container-fluid">
+                <div class="row">
+
+                </div>
+            </div>
+        </ui:insert>
+
+        <div class="menu">
+            <ui:insert name="menu">
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="true">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#{application.contextPath}">Inicio</a>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="menu">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#{application.contextPath}/web/dashboard.xhtml">DashBoard</a></li>
+                                <li><a href="#{application.contextPath}/web/usuario.xhtml">Usuario</a></li>
+                                <li><a href="#{application.contextPath}/web/carteira.xhtml">Carteira</a></li>
+                                <li><a href="#{application.contextPath}/web/despesa.xhtml">Despesa</a></li>
+                                <li><a href="#{application.contextPath}/web/credito.xhtml">Crédito</a></li>
+                                <li><a href="#{application.contextPath}/web/competencias.xhtml">Competencias</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">#{usuarioSession.usuario.nome}</a></li>
+                                <li><a href="#{application.contextPath}/login">Login</a></li>
+                                <li><a href="#{application.contextPath}/logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </ui:insert>
+        </div>
+        <div class="container minimo">
+            <ui:insert name="conteudo">Conteudo</ui:insert>
+        </div>
+        <ui:insert name="rodape">
+            <footer>
+                <div class="container-fluid bg-darkness">
+                    <div class="row">
+                        <div class="col-md-12 text-center text-ligtness">
+                            <span>True System LTDA®</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </ui:insert>
+        <h:outputScript library="jquery" name="js/jquery-2.1.4.min.js"/>
+        <h:outputScript library="jquery" name="js/jquery.maskedinput.min.js"/>
+        <h:outputScript library="jquery" name="js/jquery.maskMoney.min.js"/>
+        <h:outputScript library="bootstrap" name="js/bootstrap.min.js"/>
+        <h:outputScript library="app" name="js/app.js"/>
+    </h:body>
+</ui:composition>
+

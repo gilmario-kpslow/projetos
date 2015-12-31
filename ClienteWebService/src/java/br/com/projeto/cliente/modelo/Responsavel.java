@@ -82,4 +82,9 @@ public class Responsavel implements Serializable {
     public Responsavel() {
     }
 
+    @Override
+    public String toString() {
+        return "Responsavel{" + "id=" + id + ", login=" + login + ", senha=" + senha + ", nomeCompleto=" + nomeCompleto + ", ativo=" + ativo + '}';
+    }
+
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/erro_template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="conteudo">
+        <div class="jumbotron erro-page text-center ">
+            <h1><span class="fa fa-search"> </span> Erro 404, Página não encontrada</h1>
+            <p class="text-danger"> Essa página não existe.</p>
+            <p><a class="btn btn-danger btn-lg fa-2x" href="#{application.contextPath}/index.xhtml" role="button"> <span class="fa fa-arrow-left"> </span> Voltar</a></p>
+        </div>
+    </ui:define>
+</ui:composition>
+

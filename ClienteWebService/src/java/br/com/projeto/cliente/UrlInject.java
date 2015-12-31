@@ -19,9 +19,11 @@ import javax.ejb.Stateless;
 @Stateless
 public class UrlInject implements Serializable {
 
+    private final String servidor = "http://localhost:8080/service";
+
     public URL getUrlWebServiceResponsavel() {
         try {
-            return new URL("http://webservice-gilserver.rhcloud.com/service/responsavel?wsdl");
+            return new URL(servidor + "/responsavel?wsdl");
         } catch (MalformedURLException ex) {
             Logger.getLogger(UrlInject.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -30,7 +32,7 @@ public class UrlInject implements Serializable {
 
     public URL getUrlWebServiceModulo() {
         try {
-            return new URL("http://webservice-gilserver.rhcloud.com/service/responsavel?wsdl");
+            return new URL(servidor + "/modulo?wsdl");
         } catch (MalformedURLException ex) {
             Logger.getLogger(UrlInject.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,7 +41,7 @@ public class UrlInject implements Serializable {
 
     public URL getUrlWebServiceProjeto() {
         try {
-            return new URL("http://webservice-gilserver.rhcloud.com/service/responsavel?wsdl");
+            return new URL(servidor + "/projeto?wsdl");
         } catch (MalformedURLException ex) {
             Logger.getLogger(UrlInject.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -48,7 +50,7 @@ public class UrlInject implements Serializable {
 
     public URL getUrlWebServiceAtividade() {
         try {
-            return new URL("http://webservice-gilserver.rhcloud.com/service/responsavel?wsdl");
+            return new URL(servidor + "/atividade?wsdl");
         } catch (MalformedURLException ex) {
             Logger.getLogger(UrlInject.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,7 +59,7 @@ public class UrlInject implements Serializable {
 
     public URL getUrlWebServiceFuncionalidade() {
         try {
-            return new URL("http://webservice-gilserver.rhcloud.com/service/responsavel?wsdl");
+            return new URL(servidor + "/funcionalidade?wsdl");
         } catch (MalformedURLException ex) {
             Logger.getLogger(UrlInject.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,7 +68,7 @@ public class UrlInject implements Serializable {
 
     public URL getUrlWebServiceRegraNegocio() {
         try {
-            return new URL("http://webservice-gilserver.rhcloud.com/service/responsavel?wsdl");
+            return new URL(servidor + "/regranegocio?wsdl");
         } catch (MalformedURLException ex) {
             Logger.getLogger(UrlInject.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -36,4 +36,8 @@ public class ResponsavelController {
         return responsavelService.listarResponsavel(inicio).getResponsaveis();
     }
 
+    public String salvar(Responsavel responsavel) {
+        return responsavelService.registrarResponsavel(responsavel).getConteudo();
+    }
+
 }

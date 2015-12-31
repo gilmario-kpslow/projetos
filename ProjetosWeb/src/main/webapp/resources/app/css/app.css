@@ -1,0 +1,65 @@
+/*
+    Created on : 01/12/2015, 09:36:08
+    Author     : gilmario
+*/
+.bg-darkness{
+
+    background-color:#333;
+}
+.bg-ligtness{
+    background-color:#f5f5f5;
+}
+.text-ligtness{
+    color: #f5f5f5;
+}
+
+.minimo{
+    min-height: 400px;
+}
+
+.navbar-primary{
+    background-image:-webkit-linear-gradient(top,#fff 0,#f8f8f8 100%);
+    color:#fff;
+    background-color:#337ab7;
+    border-color:#337ab7
+}
+
+.contextmenu {
+    font:normal 12pt Calibri;
+    border:1px dotted blue;
+    width:120px;
+    padding:0;
+    position:absolute;
+    background:rgba(133, 192, 242, 0.54);
+    visibility:hidden;
+}
+
+.contextmenu ul{
+    list-style-type:none;
+    margin:0;
+    line-height:50px;
+    padding:0;
+    text-align:center;
+}
+
+.contextmenu > ul > li {
+    cursor:pointer;
+}
+
+
+
+.contextmenu > ul > li:hover {
+    background-color:rgba(133, 192, 242, 0.7);
+}
+
+.Avencer{
+    background: #333;
+}
+
+.text-bold{
+    font-weight: bold;
+}
+
+.erro-page{
+    margin-top: 40px;
+}

@@ -9,7 +9,6 @@
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
             <name>WebServiceProjetos</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
-            <explicit-platform explicit-source-supported="true"/>
             <web-module-libraries>
                 <library dirs="200">
                     <file>${reference.Modelos.jar}</file>
@@ -109,10 +108,6 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.validation-api-1.1.0.Final.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
-                    <file>${libs.metro.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

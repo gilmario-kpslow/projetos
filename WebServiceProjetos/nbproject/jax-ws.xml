@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="ModuloService">
+      <implementation-class>br.com.projeto.services.wsdl.ModuloService</implementation-class>
+    </service>
+    <service name="ProjetoService">
+      <implementation-class>br.com.projeto.services.wsdl.ProjetoService</implementation-class>
+    </service>
+    <service name="FuncionalidadeService">
+      <implementation-class>br.com.projeto.services.wsdl.FuncionalidadeService</implementation-class>
+    </service>
+    <service name="TesteWebService">
+      <implementation-class>br.com.projeto.services.wsdl.TesteWebService</implementation-class>
+    </service>
+    <service name="RegraNegocioService">
+      <implementation-class>br.com.projeto.services.wsdl.RegraNegocioService</implementation-class>
+    </service>
+    <service name="AtividadeService">
+      <implementation-class>br.com.projeto.services.wsdl.AtividadeService</implementation-class>
+    </service>
+    <service name="ResponsavelService">
+      <implementation-class>br.com.projeto.services.wsdl.ResponsavelService</implementation-class>
+    </service>
+  </services>
+  <clients/>
+</jax-ws>

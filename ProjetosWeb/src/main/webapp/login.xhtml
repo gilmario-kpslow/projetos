@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="conteudo">
+        <form action="#{application.contextPath}/logar" method="POST">
+            <div class="row">
+                <div class="col-lg-offset-4 col-lg-4">
+                    <h:panelGroup rendered="#{request.getAttribute('mensagem') != null}">
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+                            <span>${request.getAttribute('mensagem')}</span>
+                        </div>
+                    </h:panelGroup>
+                    <c:panel titulo="Login" icon="fa fa-user fa-2x">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <span class="label label-primary">Nome</span>
+                                <div>
+                                    <input placeholder="Login" name="usuario_" class="form-control" required="required"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <span class="label label-primary">Nome</span>
+                                <div>
+                                    <input type="password" placeholder="Senha" class="form-control" name="senha_" required="required"/>
+                                </div>
+                            </div>
+                        </div>
+                        <f:facet name="footer">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <button type="submit" class="btn btn-primary form-control"> <i class="glyphicon glyphicon-check"></i> Entrar</button>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <button type="submit" class="btn btn-danger form-control"> <i class="fa fa-ambulance"></i> Recuperar</button>
+                                </div>
+                            </div>
+                        </f:facet>
+                    </c:panel>
+                </div>
+            </div>
+        </form>
+    </ui:define>
+</ui:composition>
+

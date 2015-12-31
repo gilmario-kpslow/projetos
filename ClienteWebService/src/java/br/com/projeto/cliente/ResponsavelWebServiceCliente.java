@@ -16,7 +16,7 @@ import javax.xml.ws.WebServiceClient;
  *
  * @author gilmario
  */
-@WebServiceClient(name = "ResponsavelCliente", targetNamespace = "projetos", wsdlLocation = "http://webservice-gilserver.rhcloud.com/service/responsavel?wsdl")
+@WebServiceClient(name = "ResponsavelCliente", targetNamespace = "projetos")
 public class ResponsavelWebServiceCliente extends Service {
 
     public ResponsavelWebServiceCliente(URL url) {
