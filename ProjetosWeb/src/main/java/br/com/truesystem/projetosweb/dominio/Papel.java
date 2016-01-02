@@ -1,21 +1,26 @@
 package br.com.truesystem.projetosweb.dominio;
 
+import br.com.truesystem.projetosweb.seguranca.RegraAdmin;
+import br.com.truesystem.projetosweb.seguranca.RegraInterface;
+import br.com.truesystem.projetosweb.seguranca.RegraMaster;
+import br.com.truesystem.projetosweb.seguranca.RegraUsuario;
+
 /**
  *
  * @author gilmario
  */
 public enum Papel {
 
-    ROLE_USUARIO("carteira", "credito", "dashboard", "despesa", "competencias"), ROLE_ADMIN("responsavel"), ROLE_MASTER("configuracoes");
+    ROLE_USUARIO(new RegraUsuario()), ROLE_ADMIN(new RegraAdmin()), ROLE_MASTER(new RegraMaster());
 
-    private final String[] regra;
+    private final RegraInterface regra;
 
-    private Papel(String... regra) {
+    private Papel(RegraInterface regra) {
         this.regra = regra;
     }
 
-    public String[] getRegra() {
-        return regra;
+    public String[] getRegras() {
+        return regra.getRegras();
     }
 
 }

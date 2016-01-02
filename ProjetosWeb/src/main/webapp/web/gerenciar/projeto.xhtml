@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="conteudo">
+        <h:form>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <c:panel titulo="Gerenciar Projeto">
+                        <c:campo titulo="Projeto" icon="">
+                            <h:outputText value="Projeto: "/>
+                            <h:outputText value="#{gerenciadorProjetoBean.projeto.nome}" styleClass="text-bold text-primary text-uppercase"/>
+                        </c:campo>
+                        <div>
+                            <c:campo titulo="Modulos" icon="fa fa-save">
+                                <a class="btn btn-primary fa fa-plus" href="#{application.contextPath}/web/gerenciar/modulo.xhtml">Adicionar Modulo</a>
+                                <div class="row">
+                                    <ui:repeat value="#{gerenciadorProjetoBean.listaDeModulos}" var="modulo">
+                                        <div class="col-lg-6">
+                                            <h:outputText value="#{modulo.codigo} - #{modulo.nome}" styleClass="text-bold text-uppercase"/>
+                                            <div>
+                                                <h:outputText value="#{modulo.descricao}"/>
+                                            </div>
+                                            <div>
+                                                <h:outputText value="Percentual concluído 18%"/>
+                                            </div>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                            </c:campo>
+                        </div>
+                    </c:panel>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

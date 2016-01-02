@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.truesystem.projetosweb.dominio.gerenciador;
 
 import java.io.Serializable;
@@ -27,10 +22,20 @@ public class Projeto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100, unique = true)
     private String nome;
     @Column(nullable = false, length = 1000)
     private String descricao;
+    @Column
+    private String link;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     public Long getId() {
         return id;

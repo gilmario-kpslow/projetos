@@ -25,6 +25,8 @@
                     <h:commandLink styleClass="btn btn-primary fa fa-save">
                         <f:ajax event="click" execute="@form" render="@form" listener="#{cc.attrs.cadastro.salvar()}"/>
                     </h:commandLink>
+                    <cc:renderFacet name="comandos"></cc:renderFacet>
+                    <cc:insertFacet name="comandos"></cc:insertFacet>
                 </div>
             </div>
             <cc:insertChildren/>

@@ -10,7 +10,24 @@
     <ui:define name="conteudo">
         <h:form id="form">
             <c:outputMensagens />
-            Haverá uma lista de projetos aqui
+            <c:panel titulo="Projetos">
+                <div class="row">
+                    <ui:repeat value="#{dashBoardBean.listaDeProjetos}" var="projeto">
+                        <div class="col-lg-6">
+                            <h:commandLink value="#{projeto.nome}" action="/web/gerenciar/projeto" styleClass="text-uppercase text-bold text-primary">
+                                <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
+                            </h:commandLink>
+                            <div>
+                                <a href="http://#{projeto.link}" target="_blank">Link</a>
+                            </div>
+
+                            <div>
+                                <h:outputText value="#{projeto.descricao}"/>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </c:panel>
         </h:form>
 
     </ui:define>

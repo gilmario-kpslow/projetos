@@ -4,6 +4,8 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>java:/jboss/projetos</jta-data-source>
         <class>br.com.truesystem.projetosweb.dominio.Responsavel</class>
+        <class>br.com.truesystem.projetosweb.dominio.gerenciador.Projeto</class>
+        <class>br.com.truesystem.projetosweb.dominio.gerenciador.Modulo</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

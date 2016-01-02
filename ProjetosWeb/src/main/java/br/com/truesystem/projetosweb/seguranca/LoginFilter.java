@@ -37,7 +37,7 @@ public class LoginFilter implements Filter {
             String path = ((HttpServletRequest) request).getRequestURI();
             boolean autorizado = false;
             for (Papel p : session.getResponsavel().getPapel()) {
-                for (String pagina : p.getRegra()) {
+                for (String pagina : p.getRegras()) {
                     if (path.contains(pagina)) {
                         autorizado = true;
                         break;
