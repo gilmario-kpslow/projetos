@@ -10,16 +10,18 @@
     <ui:define name="conteudo">
         <h:form id="form">
             <c:outputMensagens />
-            <c:panel titulo="Projetos">
+            <c:panel titulo="Projetos" icon="fa fa-folder">
                 <div class="row">
                     <ui:repeat value="#{dashBoardBean.listaDeProjetos}" var="projeto">
                         <div class="col-lg-6">
                             <h:commandLink value="#{projeto.nome}" action="/web/gerenciar/projeto" styleClass="text-uppercase text-bold text-primary">
                                 <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                             </h:commandLink>
-                            <div>
-                                <a href="http://#{projeto.link}" target="_blank">Link</a>
-                            </div>
+                            <c:outputRender rendered="#{projeto.link != '' and projeto.link != null}">
+                                <div>
+                                    <a href="http://#{projeto.link}" target="_blank">Link</a>
+                                </div>
+                            </c:outputRender>
 
                             <div>
                                 <h:outputText value="#{projeto.descricao}"/>

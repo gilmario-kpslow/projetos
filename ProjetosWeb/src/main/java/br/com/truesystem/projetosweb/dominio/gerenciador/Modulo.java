@@ -20,30 +20,30 @@ import javax.persistence.Table;
 public class Modulo implements Serializable {
 
     @Id
-    @Column(nullable = false)
-    private Integer codigo;
+    @Column(nullable = false, name = "mod_codigo")
+    private Long codigo;
+    @Id
+    @JoinColumn(nullable = false, name = "pro_id", referencedColumnName = "pro_id")
+    @ManyToOne
+    private Projeto projeto;
     @Column(nullable = false, length = 100)
     private String nome;
     @Column(nullable = false, length = 1000)
     private String descricao;
-    @JoinColumn(nullable = false)
-    @ManyToOne
-    @Id
-    private Projeto projeto;
 
     public Modulo() {
     }
 
-    public Modulo(Integer codigo, Projeto projeto) {
+    public Modulo(Long codigo, Projeto projeto) {
         this.codigo = codigo;
         this.projeto = projeto;
     }
 
-    public Integer getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 

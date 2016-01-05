@@ -4,38 +4,43 @@
                 template="/template/template.xhtml"
                 xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://java.sun.com/jsf/passthrough"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="conteudo">
         <h:form>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
-                    <c:cadastro cadastro="#{cadastraResponsavelBean}" titulo="Responsável" consulta="#{consultaResponsavelBean}">
+                    <c:cadastro cadastro="#{cadastraResponsavelBean}" titulo="Responsável" consulta="#{consultaResponsavelBean}" icon="fa fa-user-secret">
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
-                                <h:outputLabel value="Nome: " for="nome"/>
+                                <h:outputLabel value="Nome" for="nome" class="label label-primary"/>
                                 <h:message for="nome" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                 <div>
-                                    <h:inputText value="#{cadastraResponsavelBean.responsavel.nomeCompleto}" id="nome" requiredMessage="Informe um nome" required="true" styleClass="form-control"/>
+                                    <h:inputText value="#{cadastraResponsavelBean.responsavel.nomeCompleto}" id="nome" requiredMessage="Informe um nome" required="true" styleClass="form-control">
+                                        <f:passThroughAttribute name="placeholder" value="Nome do projeto"/>
+                                    </h:inputText>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12">
-                                <h:outputLabel value="Email: " for="email"/>
+                                <h:outputLabel value="Email" for="email" class="label label-primary"/>
                                 <h:message for="email" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                 <div>
-                                    <h:inputText requiredMessage="Informe um email" value="#{cadastraResponsavelBean.responsavel.email}" id="email" required="true" styleClass="form-control"/>
+                                    <h:inputText requiredMessage="Informe um email" value="#{cadastraResponsavelBean.responsavel.email}" id="email" required="true" styleClass="form-control">
+                                        <f:passThroughAttribute name="placeholder" value="ex: email@gmail.com"/>
+                                    </h:inputText>
                                 </div>
                             </div>
 
                             <div class="col-lg-12 col-md-12">
-                                <h:outputLabel value="Login: " for="login"/>
+                                <h:outputLabel value="Login" for="login" class="label label-primary"/>
                                 <h:message for="login" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                 <div>
                                     <h:inputText value="#{cadastraResponsavelBean.responsavel.login}" id="login" requiredMessage="Informe um login" required="true" styleClass="form-control"/>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12">
-                                <h:outputLabel value="Senha" for="senha"/>
+                                <h:outputLabel value="Senha" for="senha" class="label label-primary"/>
                                 <h:message for="senha" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                 <div>
                                     <h:inputSecret value="#{cadastraResponsavelBean.responsavel.senha}" id="senha" requiredMessage="Informe um senha" required="true" styleClass="form-control"/>

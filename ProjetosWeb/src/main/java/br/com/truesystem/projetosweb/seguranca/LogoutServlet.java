@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.truesystem.projetosweb.seguranca;
 
+import br.com.truesystem.projetosweb.servico.ResponsavelSession;
 import java.io.IOException;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,9 +17,13 @@ import javax.servlet.http.HttpSession;
 @WebServlet(urlPatterns = "/logout")
 public class LogoutServlet extends HttpServlet {
 
+    @Inject
+    private ResponsavelSession session;
+
     private void destruirSessao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.invalidate();
+        session.setResponsavel(null);
+        HttpSession httpSession = request.getSession();
+        httpSession.invalidate();
         request.setAttribute("mensagem", "Você foi deslogado corretamente.");
         request.getRequestDispatcher("/login.xhtml").forward(request, response);
     }

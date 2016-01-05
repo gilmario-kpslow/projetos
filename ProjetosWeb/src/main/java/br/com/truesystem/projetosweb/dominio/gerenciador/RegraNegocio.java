@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,22 +20,32 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "regra_negocio", schema = "projeto")
+@IdClass(RegraNegocioPK.class)
 public class RegraNegocio implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
-    @Column(nullable = false, length = 20)
-    private String codigo;
-
+    @Id
+    @JoinColumns({
+        @JoinColumn(nullable = false, referencedColumnName = "pro_id", name = "pro_id"),
+        @JoinColumn(nullable = false, referencedColumnName = "mod_codigo", name = "mod_codigo"),
+        @JoinColumn(nullable = false, referencedColumnName = "ati_codigo", name = "ati_codigo"),
+        @JoinColumn(nullable = false, referencedColumnName = "fun_codigo", name = "fun_codigo")
+    })
+    @ManyToOne
+    private Funcionalidade funcionalidade;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private StatusRegraNegocio status;
     @Column(nullable = false, length = 100)
     private String nome;
     @Column(nullable = false, length = 1000)
-
     private String descricao;
-    @JoinColumn(referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Funcionalidade funcionalidade;
+
+    public RegraNegocio() {
+        status = StatusRegraNegocio.Pendente;
+    }
 
     public Long getId() {
         return id;
@@ -59,12 +71,12 @@ public class RegraNegocio implements Serializable {
         this.descricao = descricao;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public StatusRegraNegocio getStatus() {
+        return status;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setStatus(StatusRegraNegocio status) {
+        this.status = status;
     }
 
     public Funcionalidade getFuncionalidade() {

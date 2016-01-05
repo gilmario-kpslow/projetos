@@ -7,24 +7,24 @@ import java.util.Objects;
  *
  * @author gilmario
  */
-public class TarefaPK implements Serializable {
+public class AtividadePK implements Serializable {
 
-    private Integer codigo;
+    private Long codigo;
     private Modulo modulo;
 
-    public TarefaPK() {
+    public AtividadePK() {
     }
 
-    public TarefaPK(Integer codigo, Modulo modulo) {
+    public AtividadePK(Long codigo, Modulo modulo) {
         this.codigo = codigo;
         this.modulo = modulo;
     }
 
-    public Integer getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
@@ -55,7 +55,7 @@ public class TarefaPK implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final TarefaPK other = (TarefaPK) obj;
+        final AtividadePK other = (AtividadePK) obj;
         if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }

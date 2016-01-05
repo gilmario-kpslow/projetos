@@ -9,38 +9,22 @@ import java.util.Objects;
  */
 public class ModuloPK implements Serializable {
 
-    private Integer codigo;
+    private Long codigo;
     private Projeto projeto;
 
     public ModuloPK() {
     }
 
-    public ModuloPK(Integer codigo, Projeto projeto) {
+    public ModuloPK(Long codigo, Projeto projeto) {
         this.codigo = codigo;
-        this.projeto = projeto;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public Projeto getProjeto() {
-        return projeto;
-    }
-
-    public void setProjeto(Projeto projeto) {
         this.projeto = projeto;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.codigo);
-        hash = 53 * hash + Objects.hashCode(this.projeto);
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.codigo);
+        hash = 47 * hash + Objects.hashCode(this.projeto);
         return hash;
     }
 
@@ -60,6 +44,22 @@ public class ModuloPK implements Serializable {
             return false;
         }
         return Objects.equals(this.projeto, other.projeto);
+    }
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public Projeto getProjeto() {
+        return projeto;
+    }
+
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
     }
 
 }

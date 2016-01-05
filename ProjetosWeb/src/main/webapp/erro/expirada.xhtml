@@ -6,9 +6,10 @@
 
     <ui:define name="conteudo">
         <div class="jumbotron erro-page text-center">
-            <h1> <span class="fa fa-ban"> </span> Acesso negado</h1>
-            <p class="text-danger">  Você não possue acesso a essa página.</p>
-            <p><a class="btn btn-danger btn-lg fa-2x" href="#{application.contextPath}/index.xhtml" role="button"> <span class="fa fa-arrow-left"> </span> Voltar</a></p>
+            <h1> <span class="fa fa-ban"> </span> Sessão Expirada</h1>
+            <p class="text-danger"> Sua sessão encerrou por falta de atividade.</p>
+            <p><a class="btn btn-danger btn-lg fa-2x" href="#{application.contextPath}/login" role="button"> <span class="fa fa-arrow-left"> </span> Fazer login</a></p>
         </div>
     </ui:define>
 </ui:composition>
+

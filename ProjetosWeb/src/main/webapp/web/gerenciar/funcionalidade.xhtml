@@ -7,40 +7,36 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="menu">
-        <c:menu_projeto/>
+        <c:menu_funcionalidade/>
     </ui:define>
-
     <ui:define name="conteudo">
         <h:form>
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <c:panel titulo="Gerenciar Projeto" icon="fa fa-gear fa-spin">
+                    <c:panel titulo="Gerenciar Funcionalidade" icon="fa fa-file-text">
                         <div>
-                            <h:outputText value="#{gerenciadorProjetoBean.projeto.nome}" styleClass="text-bold text-primary text-uppercase"/>
+                            <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.nome}" styleClass="text-bold text-primary text-uppercase"/>
                         </div>
                         <div>
-                            <h:outputText value="#{gerenciadorProjetoBean.projeto.descricao}"/>
+                            <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.descricao}"/>
                         </div>
                         <div>
-                            <c:campo titulo="Modulos">
+                            <c:campo titulo="Regras de Negócio">
                                 <f:facet name="complemento">
-                                    <h:commandLink styleClass="float-right fa fa-refresh fa-spin" value="">
-                                        <f:ajax event="click" execute="@this" listener="#{gerenciadorProjetoBean.atualizar()}" render="@form"/>
+                                    <h:commandLink styleClass="float-right fa fa-refresh fa-spin">
+                                        <f:ajax event="click" execute="@this" listener="#{gerenciadorFuncionalidadeBean.atualizar()}" render="@form"/>
                                     </h:commandLink>
-                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/modulo.xhtml"/>
-
+                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/regra_negocio.xhtml"/>
                                 </f:facet>
                                 <div class="row">
-                                    <ui:repeat value="#{gerenciadorProjetoBean.listaDeModulos}" var="modulo">
+                                    <ui:repeat value="#{gerenciadorFuncionalidadeBean.listaDeRegraNegocio}" var="regra">
                                         <div class="col-lg-6">
-                                            <h:commandLink value="#{modulo.codigo} - #{modulo.nome}" action="/web/gerenciar/modulo" styleClass="text-uppercase text-bold">
-                                                <f:setPropertyActionListener value="#{modulo}" target="#{gerenciadorModuloBean.modulo}"/>
-                                            </h:commandLink>
+                                            <h:commandLink value="#{regra.id} - #{regra.nome}" action="/web/cadastro/regra_negocio" styleClass="text-uppercase text-bold"/>
                                             <div>
-                                                <h:outputText value="#{modulo.descricao}"/>
+                                                <h:outputText value="#{regra.status}"/>
                                             </div>
                                             <div>
-                                                <h:outputText value="Percentual concluído 18%"/>
+                                                <h:outputText value="#{regra.descricao}"/>
                                             </div>
                                         </div>
                                     </ui:repeat>

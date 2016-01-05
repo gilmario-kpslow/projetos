@@ -11,10 +11,11 @@
         <cc:attribute name="cadastro" required="true" type="br.com.truesystem.projetosweb.bean.BeanCadastroImplemente"/>
         <cc:attribute name="consulta"  type="br.com.truesystem.projetosweb.bean.BeanConsultaImplemente" default="#{null}"/>
         <cc:attribute name="titulo" default="titulo"/>
+        <cc:attribute name="icon" default=""/>
     </cc:interface>
     <cc:implementation>
         <c:outputMensagens />
-        <c:panel titulo="Cadastro de #{cc.attrs.titulo}" rendered="#{cc.attrs.cadastro.ativo}">
+        <c:panel titulo="Cadastro de #{cc.attrs.titulo}" rendered="#{cc.attrs.cadastro.ativo}" icon="#{cc.attrs.icon}">
             <div class="row">
                 <div class="col-lg-12">
                     <h:commandLink styleClass="btn btn-primary fa fa-arrow-circle-left disabled" disabled="true"/>

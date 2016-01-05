@@ -50,13 +50,9 @@ public class ModuloServico implements ServicoInterface<Modulo>, Serializable {
         return dao.carregar(Modulo.class, pk);
     }
 
-    private Integer gerarCodigo() {
+    private Long gerarCodigo() {
         Long total = dao.maiorCodigo(gpb.getProjeto());
-        if (total == null) {
-            return 1;
-        } else {
-            return total.intValue();
-        }
+        return ++total;
     }
 
 }

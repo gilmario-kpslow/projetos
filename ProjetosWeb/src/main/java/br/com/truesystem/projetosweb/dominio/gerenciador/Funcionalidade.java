@@ -1,19 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.truesystem.projetosweb.dominio.gerenciador;
 
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,18 +19,39 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "funcionalidade", schema = "projeto")
+@IdClass(FuncionalidadePK.class)
 public class Funcionalidade implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, name = "fun_codigo")
     private Long id;
+    @Id
+    @JoinColumns({
+        @JoinColumn(nullable = false, referencedColumnName = "pro_id", name = "pro_id"),
+        @JoinColumn(nullable = false, referencedColumnName = "mod_codigo", name = "mod_codigo"),
+        @JoinColumn(nullable = false, referencedColumnName = "ati_codigo", name = "ati_codigo")
+    })
+    @ManyToOne
+    private Atividade atividade;
     @Column(nullable = false, length = 100)
     private String nome;
     @Column(nullable = false, length = 1000)
     private String descricao;
-    @JoinColumn(referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Atividade atividade;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private StatusFuncionalidade status;
+
+    public Funcionalidade() {
+        status = StatusFuncionalidade.Pendente;
+    }
+
+    public StatusFuncionalidade getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusFuncionalidade status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;

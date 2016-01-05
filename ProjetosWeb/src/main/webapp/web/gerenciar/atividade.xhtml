@@ -7,40 +7,38 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="menu">
-        <c:menu_projeto/>
+        <c:menu_atividade/>
     </ui:define>
-
     <ui:define name="conteudo">
         <h:form>
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <c:panel titulo="Gerenciar Projeto" icon="fa fa-gear fa-spin">
+                    <c:panel titulo="Gerenciar Atividade" icon="fa fa-sticky-note">
                         <div>
-                            <h:outputText value="#{gerenciadorProjetoBean.projeto.nome}" styleClass="text-bold text-primary text-uppercase"/>
+                            <h:outputText value="#{gerenciadorAtividadeBean.atividade.nome}" styleClass="text-bold text-primary text-uppercase"/>
                         </div>
                         <div>
-                            <h:outputText value="#{gerenciadorProjetoBean.projeto.descricao}"/>
+                            <h:outputText value="#{gerenciadorAtividadeBean.atividade.descricao}"/>
                         </div>
                         <div>
-                            <c:campo titulo="Modulos">
+                            <c:campo titulo="Funcionalidade">
                                 <f:facet name="complemento">
-                                    <h:commandLink styleClass="float-right fa fa-refresh fa-spin" value="">
-                                        <f:ajax event="click" execute="@this" listener="#{gerenciadorProjetoBean.atualizar()}" render="@form"/>
+                                    <h:commandLink styleClass="float-right fa fa-refresh fa-spin">
+                                        <f:ajax event="click" execute="@this" listener="#{gerenciadorAtividadeBean.atualizar()}" render="@form"/>
                                     </h:commandLink>
-                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/modulo.xhtml"/>
-
+                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/funcionalidade.xhtml"/>
                                 </f:facet>
                                 <div class="row">
-                                    <ui:repeat value="#{gerenciadorProjetoBean.listaDeModulos}" var="modulo">
+                                    <ui:repeat value="#{gerenciadorAtividadeBean.listaDeFuncionalidades}" var="funcionalidade">
                                         <div class="col-lg-6">
-                                            <h:commandLink value="#{modulo.codigo} - #{modulo.nome}" action="/web/gerenciar/modulo" styleClass="text-uppercase text-bold">
-                                                <f:setPropertyActionListener value="#{modulo}" target="#{gerenciadorModuloBean.modulo}"/>
+                                            <h:commandLink value="#{funcionalidade.id} - #{funcionalidade.nome}" action="/web/gerenciar/funcionalidade" styleClass="text-uppercase text-bold">
+                                                <f:setPropertyActionListener value="#{funcionalidade}" target="#{gerenciadorFuncionalidadeBean.funcionalidade}"/>
                                             </h:commandLink>
                                             <div>
-                                                <h:outputText value="#{modulo.descricao}"/>
+                                                <h:outputText value="#{funcionalidade.descricao}"/>
                                             </div>
                                             <div>
-                                                <h:outputText value="Percentual concluído 18%"/>
+                                                <h:outputText value="#{funcionalidade.status}"/>
                                             </div>
                                         </div>
                                     </ui:repeat>

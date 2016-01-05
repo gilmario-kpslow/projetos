@@ -6,37 +6,46 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
+    <ui:define name="menu">
+        <c:menu_modulo/>
+    </ui:define>
     <ui:define name="conteudo">
         <h:form>
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
-                    <c:cadastro cadastro="#{cadastraModuloBean}" titulo="Módulo">
-                        <f:facet name="comandos">
-                            <a class="btn btn-primary fa fa-arrow-circle-left" href="#{application.contextPath}/web/gerenciar/projeto.xhtml"></a>
-                        </f:facet>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12">
-                                <h:outputLabel value="Codigo" styleClass="label label-primary" for="codigo"/>
-                                <div>
-                                    <h:inputText value="#{cadastraModuloBean.modulo.codigo}" id="codigo" styleClass="form-control disabled" readonly="true"/>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <h:outputLabel value="Nome" for="nome" styleClass="label label-primary"/>
-                                <h:message for="nome" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
-                                <div>
-                                    <h:inputText value="#{cadastraModuloBean.modulo.nome}" id="nome" requiredMessage="Informe um nome" required="true" styleClass="form-control"/>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <h:outputLabel value="Descrição" styleClass="label label-primary" for="descricao"/>
-                                <h:message for="descricao" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
-                                <div>
-                                    <h:inputTextarea requiredMessage="Informe uma descrição" value="#{cadastraModuloBean.modulo.descricao}" id="descricao" required="true" styleClass="form-control"/>
-                                </div>
-                            </div>
+                <div class="col-lg-12 col-md-12">
+                    <c:panel titulo="Gerenciar Modulo" icon="fa fa-archive">
+                        <div>
+                            <h:outputText value="#{gerenciadorModuloBean.modulo.nome}" styleClass="text-bold text-primary text-uppercase"/>
                         </div>
-                    </c:cadastro>
+                        <div>
+                            <h:outputText value="#{gerenciadorModuloBean.modulo.nome}"/>
+                        </div>
+                        <div>
+                            <c:campo titulo="Atividades">
+                                <f:facet name="complemento">
+                                    <h:commandLink styleClass="float-right fa fa-refresh fa-spin">
+                                        <f:ajax event="click" execute="@this" listener="#{gerenciadorModuloBean.atualizar()}" render="@form"/>
+                                    </h:commandLink>
+                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/atividade.xhtml"/>
+                                </f:facet>
+                                <div class="row">
+                                    <ui:repeat value="#{gerenciadorModuloBean.listaDeAtividades}" var="atividade">
+                                        <div class="col-lg-6">
+                                            <h:commandLink value="#{atividade.codigo} - #{atividade.nome}" action="/web/gerenciar/atividade" styleClass="text-uppercase text-bold">
+                                                <f:setPropertyActionListener value="#{atividade}" target="#{gerenciadorAtividadeBean.atividade}"/>
+                                            </h:commandLink>
+                                            <div>
+                                                <h:outputText value="#{atividade.descricao}"/>
+                                            </div>
+                                            <div>
+                                                <h:outputText value="Percentual concluído 18%"/>
+                                            </div>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                            </c:campo>
+                        </div>
+                    </c:panel>
                 </div>
             </div>
         </h:form>

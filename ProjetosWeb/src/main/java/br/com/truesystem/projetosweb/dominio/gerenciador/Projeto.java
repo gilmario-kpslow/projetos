@@ -21,6 +21,7 @@ public class Projeto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, name = "pro_id")
     private Long id;
     @Column(nullable = false, length = 100, unique = true)
     private String nome;

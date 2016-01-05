@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -16,15 +17,18 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "atividade", schema = "projeto")
-@IdClass(TarefaPK.class)
+@IdClass(AtividadePK.class)
 public class Atividade implements Serializable {
 
     @Id
-    @Column(nullable = false)
-    private Integer codigo;
-    @JoinColumn(nullable = false)
-    @ManyToOne
+    @Column(nullable = false, name = "ati_codigo")
+    private Long codigo;
     @Id
+    @JoinColumns({
+        @JoinColumn(nullable = false, referencedColumnName = "pro_id", name = "pro_id"),
+        @JoinColumn(nullable = false, referencedColumnName = "mod_codigo", name = "mod_codigo")
+    })
+    @ManyToOne
     private Modulo modulo;
     @Column(nullable = false, length = 100)
     private String nome;
@@ -34,16 +38,16 @@ public class Atividade implements Serializable {
     public Atividade() {
     }
 
-    public Atividade(Integer codigo, Modulo modulo) {
+    public Atividade(Long codigo, Modulo modulo) {
         this.codigo = codigo;
         this.modulo = modulo;
     }
 
-    public Integer getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
