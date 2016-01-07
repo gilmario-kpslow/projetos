@@ -59,12 +59,12 @@
                                                 </c:outputRender>
                                                 <c:outputRender rendered="#{regra.status == 'Pendente'}">
                                                     <div class="col-lg-4">
-                                                        <h:commandLink value="Editar" styleClass="btn btn-primary fa fa-pencil" title="Editar" action="/web/cadastro/regra_negocio">
+                                                        <h:commandLink value="Editar" styleClass="btn btn-primary fa fa-pencil" title=" Editar" action="/web/cadastro/regra_negocio">
                                                             <f:setPropertyActionListener value="#{regra}" target="#{gerenciadorRegraNegocioBean.regraNegocio}"/>
                                                         </h:commandLink>
                                                     </div>
                                                     <div class="col-lg-4">
-                                                        <h:commandLink value="Excluir" styleClass="btn btn-danger fa fa-close" title="Excluir" action="/web/excluir/regra_negocio">
+                                                        <h:commandLink value="Excluir" styleClass="btn btn-danger fa fa-close" title=" Excluir" action="/web/excluir/regra_negocio">
                                                             <f:setPropertyActionListener value="#{regra}" target="#{gerenciadorRegraNegocioBean.regraNegocio}"/>
                                                         </h:commandLink>
                                                     </div>

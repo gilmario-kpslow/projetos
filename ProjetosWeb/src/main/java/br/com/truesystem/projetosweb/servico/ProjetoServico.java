@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
@@ -18,6 +19,8 @@ public class ProjetoServico implements ServicoInterface<Projeto>, Serializable {
 
     @EJB
     private ProjetoDao dao;
+    @Inject
+    private ResponsavelSession responsavelSession;
 
     @Override
     public void excluir(Projeto t) throws Exception {
@@ -35,6 +38,9 @@ public class ProjetoServico implements ServicoInterface<Projeto>, Serializable {
 
     @Override
     public void salvar(Projeto t) {
+        if (t.getDono() == null) {
+            t.setDono(responsavelSession.getResponsavel());
+        }
         dao.atualizar(t);
     }
 

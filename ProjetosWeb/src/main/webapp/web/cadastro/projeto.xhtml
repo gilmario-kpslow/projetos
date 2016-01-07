@@ -22,7 +22,9 @@
                             <div class="col-lg-12 col-md-12">
                                 <h:outputLabel value="Link" class="label label-primary" for="link"/>
                                 <div>
-                                    <h:inputText value="#{cadastraProjetoBean.projeto.link}" id="link" styleClass="form-control"/>
+                                    <h:inputText value="#{cadastraProjetoBean.projeto.link}" id="link" styleClass="form-control">
+                                        <f:passThroughAttribute value="EX: http://www.projeto.com.br" name="placeholder"/>
+                                    </h:inputText>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12">

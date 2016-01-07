@@ -29,6 +29,7 @@ public class Responsavel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
     @Column(nullable = false, length = 40, unique = true)
     private String login;

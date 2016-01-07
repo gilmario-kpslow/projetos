@@ -12,6 +12,11 @@
             <c:outputMensagens />
             <c:panel titulo="Projetos" icon="fa fa-folder">
                 <div class="row">
+                    <c:outputRender rendered="#{empty dashBoardBean.listaDeProjetos}">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <h:commandLink value="Adicionar" action="/web/cadastro/projeto" styleClass="fa fa-plus btn btn-primary"/>
+                        </div>
+                    </c:outputRender>
                     <ui:repeat value="#{dashBoardBean.listaDeProjetos}" var="projeto">
                         <div class="col-lg-6">
                             <h:commandLink value="#{projeto.nome}" action="/web/gerenciar/projeto" styleClass="text-uppercase text-bold text-primary">
@@ -19,10 +24,9 @@
                             </h:commandLink>
                             <c:outputRender rendered="#{projeto.link != '' and projeto.link != null}">
                                 <div>
-                                    <a href="http://#{projeto.link}" target="_blank">Link</a>
+                                    <a href="#{projeto.link}" target="_blank">Link</a>
                                 </div>
                             </c:outputRender>
-
                             <div>
                                 <h:outputText value="#{projeto.descricao}"/>
                             </div>

@@ -6,6 +6,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -19,10 +20,17 @@ public class CadastraModuloBean extends BeanCadastroImplemente<Modulo> implement
     private Modulo modulo;
     @EJB
     private ModuloServico servico;
+    @Inject
+    private GerenciadorModuloBean gmb;
 
     @PostConstruct
     protected void init() {
-        modulo = new Modulo();
+        if (gmb.getModulo() != null) {
+            modulo = gmb.getModulo();
+            gmb.setModulo(null);
+        } else {
+            modulo = new Modulo();
+        }
     }
 
     public Modulo getModulo() {
