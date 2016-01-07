@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="menu">
+        <c:menu_funcionalidade/>
+    </ui:define>
+    <ui:define name="conteudo">
+        <h:form>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <c:panel titulo="Gerenciar Funcionalidade" icon="fa fa-file-text">
+                        <div>
+                            <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.nome}" styleClass="text-bold text-primary text-uppercase"/>
+                        </div>
+                        <div>
+                            <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.descricao}"/>
+                        </div>
+                        <div>
+                            <c:campo titulo="Regras de Negócio">
+                                <f:facet name="complemento">
+                                    <h:commandLink styleClass="float-right fa fa-refresh fa-spin">
+                                        <f:ajax event="click" execute="@this" listener="#{gerenciadorFuncionalidadeBean.atualizar()}" render="@form"/>
+                                    </h:commandLink>
+                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/regra_negocio.xhtml"/>
+                                </f:facet>
+                                <div class="row">
+                                    <ui:repeat value="#{gerenciadorFuncionalidadeBean.listaDeRegraNegocio}" var="regra">
+                                        <div class="col-lg-6 #{regra.status.style}">
+                                            <h:commandLink value="#{regra.id} - #{regra.nome}" action="/web/cadastro/regra_negocio" styleClass="text-uppercase text-bold"/>
+                                            <div>
+                                                <h:outputText value="#{regra.descricao}"/>
+                                            </div>
+                                            <div>
+                                                <h:outputText value="#{regra.status}"/>
+                                            </div>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                            </c:campo>
+                        </div>
+                    </c:panel>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

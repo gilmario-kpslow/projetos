@@ -34,15 +34,19 @@ public class RegraNegocioServico implements ServicoInterface<RegraNegocio>, Seri
     }
 
     @Override
-    public void atualizar(RegraNegocio t) throws Exception {
+    public void atualizar(RegraNegocio t) {
         dao.atualizar(t);
     }
 
     @Override
     public void salvar(RegraNegocio t) {
-        t.setId(gerarCodigo());
-        t.setFuncionalidade(gfb.getFuncionalidade());
-        dao.atualizar(t);
+        if (t.getId() == null) {
+            t.setId(gerarCodigo());
+            t.setFuncionalidade(gfb.getFuncionalidade());
+            dao.atualizar(t);
+        } else {
+            atualizar(t);
+        }
     }
 
     @Override

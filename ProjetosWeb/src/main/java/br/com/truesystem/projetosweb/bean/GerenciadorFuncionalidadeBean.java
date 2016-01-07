@@ -32,6 +32,7 @@ public class GerenciadorFuncionalidadeBean implements Serializable {
 
     public void setFuncionalidade(Funcionalidade funcionalidade) {
         this.funcionalidade = funcionalidade;
+        atualizar();
     }
 
     public List<RegraNegocio> getListaDeRegraNegocio() {

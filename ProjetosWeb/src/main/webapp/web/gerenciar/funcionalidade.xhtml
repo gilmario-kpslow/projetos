@@ -21,6 +21,17 @@
                             <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.descricao}"/>
                         </div>
                         <div>
+                            <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.status}"/>
+                        </div>
+                        <div>
+                            <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.status}"/>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <h:commandLink value="Subir Status"/>
+                            </div>
+                        </div>
+                        <div>
                             <c:campo titulo="Regras de Negócio">
                                 <f:facet name="complemento">
                                     <h:commandLink styleClass="float-right fa fa-refresh fa-spin">
@@ -30,14 +41,36 @@
                                 </f:facet>
                                 <div class="row">
                                     <ui:repeat value="#{gerenciadorFuncionalidadeBean.listaDeRegraNegocio}" var="regra">
-                                        <div class="col-lg-6">
-                                            <h:commandLink value="#{regra.id} - #{regra.nome}" action="/web/cadastro/regra_negocio" styleClass="text-uppercase text-bold"/>
-                                            <div>
-                                                <h:outputText value="#{regra.status}"/>
-                                            </div>
+                                        <div class="col-lg-6 #{regra.status.style}">
+                                            <h:outputText value="#{regra.id} - #{regra.nome}" styleClass="text-uppercase text-bold"/>
                                             <div>
                                                 <h:outputText value="#{regra.descricao}"/>
                                             </div>
+                                            <div>
+                                                <h:outputText value="#{regra.status}"/>
+                                            </div>
+                                            <div class="row">
+                                                <c:outputRender rendered="#{regra.status != 'Concluida'}">
+                                                    <div class="col-lg-4">
+                                                        <h:commandLink value="#{regra.proximoStatus()}" styleClass="btn btn-info fa fa-arrow-left">
+                                                            <f:ajax event="click" render="@form" listener="#{gerenciadorRegraNegocioBean.mudaStatus(regra)}"/>
+                                                        </h:commandLink>
+                                                    </div>
+                                                </c:outputRender>
+                                                <c:outputRender rendered="#{regra.status == 'Pendente'}">
+                                                    <div class="col-lg-4">
+                                                        <h:commandLink value="Editar" styleClass="btn btn-primary fa fa-pencil" title="Editar" action="/web/cadastro/regra_negocio">
+                                                            <f:setPropertyActionListener value="#{regra}" target="#{gerenciadorRegraNegocioBean.regraNegocio}"/>
+                                                        </h:commandLink>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <h:commandLink value="Excluir" styleClass="btn btn-danger fa fa-close" title="Excluir" action="/web/excluir/regra_negocio">
+                                                            <f:setPropertyActionListener value="#{regra}" target="#{gerenciadorRegraNegocioBean.regraNegocio}"/>
+                                                        </h:commandLink>
+                                                    </div>
+                                                </c:outputRender>
+                                            </div>
+                                            <hr/>
                                         </div>
                                     </ui:repeat>
                                 </div>

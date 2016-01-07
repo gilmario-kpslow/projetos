@@ -1,12 +1,13 @@
 package br.com.truesystem.projetosweb.dominio.gerenciador;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -87,6 +88,11 @@ public class RegraNegocio implements Serializable {
         this.funcionalidade = funcionalidade;
     }
 
+    public StatusRegraNegocio proximoStatus() {
+        List<StatusRegraNegocio> lista = Arrays.asList(StatusRegraNegocio.values());
+        return lista.get(lista.indexOf(status) + 1);
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -104,6 +110,10 @@ public class RegraNegocio implements Serializable {
         }
         final RegraNegocio other = (RegraNegocio) obj;
         return Objects.equals(this.id, other.id);
+    }
+
+    public void mudaStatus() {
+        status = proximoStatus();
     }
 
 }

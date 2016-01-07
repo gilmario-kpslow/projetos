@@ -6,6 +6,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -19,10 +20,19 @@ public class CadastraRegraNegocioBean extends BeanCadastroImplemente<RegraNegoci
     private RegraNegocio regraNegocio;
     @EJB
     private RegraNegocioServico servico;
+    @Inject
+    private GerenciadorFuncionalidadeBean gfb;
+    @Inject
+    private GerenciadorRegraNegocioBean grnb;
 
     @PostConstruct
     protected void init() {
-        regraNegocio = new RegraNegocio();
+        if (grnb.getRegraNegocio() != null) {
+            regraNegocio = grnb.getRegraNegocio();
+            grnb.setRegraNegocio(null);
+        } else {
+            regraNegocio = new RegraNegocio();
+        }
     }
 
     @Override
@@ -43,6 +53,7 @@ public class CadastraRegraNegocioBean extends BeanCadastroImplemente<RegraNegoci
     @Override
     public void limpar() {
         init();
+        gfb.atualizar();
     }
 
     @Override
