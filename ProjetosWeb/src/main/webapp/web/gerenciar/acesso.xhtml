@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="menu">
+        <c:menu_projeto/>
+    </ui:define>
+
+    <ui:define name="conteudo">
+        <h:form>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <c:outputMensagens/>
+                    <c:panel titulo="Gerenciar Projeto" icon="fa fa-gear fa-spin">
+                        <div>
+                            <h:outputText value="#{gerenciadorProjetoBean.projeto.nome}" styleClass="text-bold text-primary text-uppercase"/>
+                        </div>
+                        <div>
+                            <h:outputText value="#{gerenciadorProjetoBean.projeto.descricao}"/>
+                        </div>
+                        <div>
+                            <c:campo titulo="Usuários do projeto">
+                                <div class="row">
+                                    <ui:repeat value="#{gerenciadorProjetoBean.acessoResponsavelProjetos}" var="acesso">
+                                        <div class="col-lg-6">
+                                            <h:outputText value="#{acesso.responsavel.nomeCompleto}" styleClass="text-uppercase text-bold"/>
+                                            <div>
+                                                <h:outputText value="Dono do projeto" rendered="#{acesso.dono}"/>
+                                            </div>
+                                            <c:outputRender rendered="#{not acesso.dono}">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                                        <h:commandLink value=" Remover" styleClass="fa fa-trash btn btn-danger form-control">
+                                                            <f:ajax listener="#{gerenciadorProjetoBean.removeAcesso(acesso)}" event="click" render="@form"/>
+                                                        </h:commandLink>
+                                                    </div>
+                                                </div>
+                                            </c:outputRender>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                            </c:campo>
+                            <c:campo titulo="Adicionar Acesso">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <h:outputLabel value="Usuario" styleClass="label label-primary"/>
+                                        <div>
+                                            <h:inputText value="#{consultaResponsavelBean.nomeConsulta}" styleClass="form-control">
+                                                <f:passThroughAttribute value="digite um nome para pesquisar" name="placeholder"/>
+                                                <f:ajax event="keyup" render="responsaveis" listener="#{consultaResponsavelBean.buscar()}"/>
+                                            </h:inputText>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h:dataTable styleClass="table table-hover table-responsive table-striped" value="#{consultaResponsavelBean.lista}" id="responsaveis" var="elemento">
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="Nome"/>
+                                                </f:facet>
+                                                <h:outputText value="#{elemento.nomeCompleto}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="Login"/>
+                                                </f:facet>
+                                                <h:outputText value="#{elemento.login}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="Ativo"/>
+                                                </f:facet>
+                                                <h:outputText value="#{elemento.ativo}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="Acão"/>
+                                                </f:facet>
+                                                <h:commandLink styleClass="fa fa-check btn btn-success">
+                                                    <f:ajax event="click" render="@form" listener="#{gerenciadorProjetoBean.adicionaResponsavel(elemento)}"/>
+                                                </h:commandLink>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </c:campo>
+                        </div>
+                    </c:panel>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

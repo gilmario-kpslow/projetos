@@ -17,10 +17,23 @@ public class ConsultaResponsavelBean extends BeanConsultaImplemente<Responsavel>
 
     @EJB
     private ResponsavelServico servico;
+    private String nomeConsulta;
+
+    public ConsultaResponsavelBean() {
+        nomeConsulta = "";
+    }
 
     @Override
     public void busca() {
-        setLista(servico.buscar());
+        setLista(servico.buscar(nomeConsulta));
+    }
+
+    public String getNomeConsulta() {
+        return nomeConsulta;
+    }
+
+    public void setNomeConsulta(String nomeConsulta) {
+        this.nomeConsulta = nomeConsulta;
     }
 
 }

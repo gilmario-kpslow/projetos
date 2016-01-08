@@ -18,7 +18,7 @@
                         </div>
                     </c:outputRender>
                     <ui:repeat value="#{dashBoardBean.listaDeProjetos}" var="projeto">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-md-6">
                             <h:commandLink value="#{projeto.nome}" action="/web/gerenciar/projeto" styleClass="text-uppercase text-bold text-primary">
                                 <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                             </h:commandLink>
@@ -29,6 +29,22 @@
                             </c:outputRender>
                             <div>
                                 <h:outputText value="#{projeto.descricao}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <h:commandLink action="/web/gerenciar/projeto" styleClass="fa fa-check btn btn-success">
+                                        <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
+                                    </h:commandLink>
+                                    <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-lock btn btn-primary">
+                                        <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
+                                    </h:commandLink>
+                                    <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-pencil btn btn-primary">
+                                        <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
+                                    </h:commandLink>
+                                    <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-trash btn btn-danger">
+                                        <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
+                                    </h:commandLink>
+                                </div>
                             </div>
                         </div>
                     </ui:repeat>

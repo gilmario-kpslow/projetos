@@ -1,9 +1,7 @@
 package br.com.truesystem.projetosweb.bean;
 
-import br.com.truesystem.projetosweb.dominio.Responsavel;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import br.com.truesystem.projetosweb.servico.ProjetoServico;
-import br.com.truesystem.projetosweb.servico.ResponsavelServico;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

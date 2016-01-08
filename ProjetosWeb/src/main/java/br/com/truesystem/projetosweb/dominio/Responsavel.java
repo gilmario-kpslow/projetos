@@ -1,5 +1,6 @@
 package br.com.truesystem.projetosweb.dominio;
 
+import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +30,7 @@ public class Responsavel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @Column(nullable = false, name = "res_id")
     private Long id;
     @Column(nullable = false, length = 40, unique = true)
     private String login;

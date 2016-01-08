@@ -1,6 +1,7 @@
 package br.com.truesystem.projetosweb.servico;
 
 import br.com.truesystem.projetosweb.dao.ResponsavelDao;
+import br.com.truesystem.projetosweb.dominio.Papel;
 import br.com.truesystem.projetosweb.dominio.Responsavel;
 import br.com.truesystem.projetosweb.util.CriptografiaUtil;
 import java.io.Serializable;
@@ -27,6 +28,10 @@ public class ResponsavelServico implements ServicoInterface<Responsavel>, Serial
 
     public List<Responsavel> buscar() {
         return dao.buscar();
+    }
+
+    public List<Responsavel> buscar(String nome) {
+        return dao.buscar(nome);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package br.com.truesystem.projetosweb.servico;
 
 import br.com.truesystem.projetosweb.dao.ProjetoDao;
+import br.com.truesystem.projetosweb.dominio.gerenciador.AcessoResponsavelProjeto;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import java.io.Serializable;
 import java.util.List;
@@ -21,6 +22,8 @@ public class ProjetoServico implements ServicoInterface<Projeto>, Serializable {
     private ProjetoDao dao;
     @Inject
     private ResponsavelSession responsavelSession;
+    @EJB
+    private AcessoResponsavelProjetoServico arps;
 
     @Override
     public void excluir(Projeto t) throws Exception {
@@ -32,21 +35,30 @@ public class ProjetoServico implements ServicoInterface<Projeto>, Serializable {
     }
 
     @Override
-    public void atualizar(Projeto t) throws Exception {
+    public void atualizar(Projeto t) {
         dao.atualizar(t);
     }
 
     @Override
     public void salvar(Projeto t) {
-        if (t.getDono() == null) {
-            t.setDono(responsavelSession.getResponsavel());
+        if (t.getId() == null) {
+            dao.salvar(t);
+            registrarAcesso(t);
+
+        } else {
+            atualizar(t);
         }
-        dao.atualizar(t);
     }
 
     @Override
     public Projeto carregar(Serializable pk) {
         return dao.carregar(Projeto.class, pk);
+    }
+
+    private void registrarAcesso(Projeto t) {
+        AcessoResponsavelProjeto arp = new AcessoResponsavelProjeto(responsavelSession.getResponsavel(), t);
+        arp.setDono(Boolean.TRUE);
+        arps.salvar(arp);
     }
 
 }
