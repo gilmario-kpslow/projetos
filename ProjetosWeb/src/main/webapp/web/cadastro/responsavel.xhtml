@@ -18,7 +18,7 @@
                                 <h:message for="nome" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                 <div>
                                     <h:inputText value="#{cadastraResponsavelBean.responsavel.nomeCompleto}" id="nome" requiredMessage="Informe um nome" required="true" styleClass="form-control">
-                                        <f:passThroughAttribute name="placeholder" value="Nome do projeto"/>
+                                        <f:passThroughAttribute name="placeholder" value="Nome do responsavel"/>
                                     </h:inputText>
                                 </div>
                             </div>
@@ -36,14 +36,18 @@
                                 <h:outputLabel value="Login" for="login" class="label label-primary"/>
                                 <h:message for="login" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                 <div>
-                                    <h:inputText value="#{cadastraResponsavelBean.responsavel.login}" id="login" requiredMessage="Informe um login" required="true" styleClass="form-control"/>
+                                    <h:inputText value="#{cadastraResponsavelBean.responsavel.login}" id="login" requiredMessage="Informe um login" required="true" styleClass="form-control">
+                                        <f:passThroughAttribute name="placeholder" value="nome usado para entrar no sistema"/>
+                                    </h:inputText>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12">
                                 <h:outputLabel value="Senha" for="senha" class="label label-primary"/>
                                 <h:message for="senha" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                 <div>
-                                    <h:inputSecret value="#{cadastraResponsavelBean.responsavel.senha}" id="senha" requiredMessage="Informe um senha" required="true" styleClass="form-control"/>
+                                    <h:inputSecret value="#{cadastraResponsavelBean.responsavel.senha}" id="senha" requiredMessage="Informe um senha" required="true" styleClass="form-control">
+                                        <f:passThroughAttribute name="placeholder" value="Deve conter letras, números e caracteres alpha numericos"/>
+                                    </h:inputSecret>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12">
