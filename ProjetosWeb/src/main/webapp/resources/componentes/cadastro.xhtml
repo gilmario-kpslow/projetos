@@ -23,8 +23,11 @@
                         <f:ajax event="click" execute="@this" immediate="true" listener="#{cc.attrs.cadastro.esconder()}" render="@form"/>
                         <f:ajax event="click" execute="@this" immediate="true" listener="#{cc.attrs.consulta.mostrar()}" render="@form"/>
                     </h:commandLink>
-                    <h:commandLink styleClass="btn btn-primary fa fa-save">
+                    <h:commandLink styleClass="btn btn-primary fa fa-save" rendered="#{not cc.attrs.cadastro.editando}" title="salvar">
                         <f:ajax event="click" execute="@form" render="@form" listener="#{cc.attrs.cadastro.salvar()}"/>
+                    </h:commandLink>
+                    <h:commandLink styleClass="btn btn-primary fa fa-save" rendered="#{cc.attrs.cadastro.editando}" title="atualizar">
+                        <f:ajax event="click" execute="@form" render="@form" listener="#{cc.attrs.cadastro.atualizar()}"/>
                     </h:commandLink>
                     <cc:renderFacet name="comandos"></cc:renderFacet>
                     <cc:insertFacet name="comandos"></cc:insertFacet>

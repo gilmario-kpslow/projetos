@@ -44,7 +44,6 @@ public class ProjetoServico implements ServicoInterface<Projeto>, Serializable {
         if (t.getId() == null) {
             dao.salvar(t);
             registrarAcesso(t);
-
         } else {
             atualizar(t);
         }

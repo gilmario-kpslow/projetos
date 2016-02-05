@@ -21,11 +21,17 @@
             </div>
             <cc:insertChildren/>
             <f:facet name="footer">
-                <h:commandLink styleClass="fa fa-ban btn btn-warning" action="#{cc.attrs.acao_voltar}" value="Cancelar"/>
-                <h:commandLink styleClass="btn btn-danger fa fa-close" value="Excluir">
-                    <f:ajax event="click" listener="#{cc.attrs.cadastro.excluir()}"/>
-                    <f:ajax event="click" listener="#{cc.attrs.acao_voltar}"/>
-                </h:commandLink>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h:commandLink styleClass="btn btn-success fa fa-check form-control" value=" Excluir">
+                            <f:ajax event="click" listener="#{cc.attrs.cadastro.excluir()}"/>
+                            <f:ajax event="click" listener="#{cc.attrs.acao_voltar}"/>
+                        </h:commandLink>
+                    </div>
+                    <div class="col-md-4">
+                        <h:commandLink styleClass="fa fa-ban btn btn-danger form-control" action="#{cc.attrs.acao_voltar}" value=" Cancelar"/>
+                    </div>
+                </div>
             </f:facet>
         </c:panel>
     </cc:implementation>

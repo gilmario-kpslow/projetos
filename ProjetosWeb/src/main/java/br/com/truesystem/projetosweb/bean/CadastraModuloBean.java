@@ -66,4 +66,9 @@ public class CadastraModuloBean extends BeanCadastroImplemente<Modulo> implement
         servico.atualizar(modulo);
     }
 
+    @Override
+    public boolean isEditando() {
+        return modulo.getCodigo() != null;
+    }
+
 }

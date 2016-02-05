@@ -6,6 +6,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -19,10 +20,17 @@ public class CadastraProjetoBean extends BeanCadastroImplemente<Projeto> impleme
     private Projeto projeto;
     @EJB
     private ProjetoServico servico;
+    @Inject
+    private GerenciadorProjetoBean gpb;
 
     @PostConstruct
     protected void init() {
-        projeto = new Projeto();
+        if (gpb.getProjeto() != null) {
+            projeto = gpb.getProjeto();
+            gpb.setProjeto(null);
+        } else {
+            projeto = new Projeto();
+        }
     }
 
     public Projeto getProjeto() {

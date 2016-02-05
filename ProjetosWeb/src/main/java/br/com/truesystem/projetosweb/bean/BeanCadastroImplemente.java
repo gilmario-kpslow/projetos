@@ -61,6 +61,10 @@ public abstract class BeanCadastroImplemente<T> implements BeanCadastroInterface
         }
     }
 
+    public boolean isEditando() {
+        return false;
+    }
+
     @Override
     public void excluir() {
         try {

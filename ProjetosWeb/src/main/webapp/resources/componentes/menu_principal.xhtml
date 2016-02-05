@@ -12,9 +12,11 @@
     <cc:implementation>
         <c:menu>
             <ul class="nav navbar-nav">
-                <li><a href="#{application.contextPath}/web/dashboard.xhtml"><span class="fa fa-dashboard"></span> DashBoard</a></li>
-                <li><a href="#{application.contextPath}/web/cadastro/responsavel.xhtml"><span class="fa fa-user-plus"></span> Novo usuário</a></li>
-                <li><a href="#{application.contextPath}/web/cadastro/projeto.xhtml"><span class="fa fa-folder"></span> Novo Projeto</a></li>
+                <c:outputRender rendered="#{responsavelSession.logado}">
+                    <li><a href="#{application.contextPath}/web/dashboard.xhtml"><span class="fa fa-dashboard"></span> DashBoard</a></li>
+                    <li><a href="#{application.contextPath}/web/cadastro/responsavel.xhtml"><span class="fa fa-user-plus"></span> Novo usuário</a></li>
+                    <li><a href="#{application.contextPath}/web/cadastro/projeto.xhtml"><span class="fa fa-folder"></span> Novo Projeto</a></li>
+                </c:outputRender>
             </ul>
         </c:menu>
     </cc:implementation>

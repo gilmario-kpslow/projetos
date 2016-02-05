@@ -35,13 +35,13 @@
                                     <h:commandLink action="/web/gerenciar/projeto" styleClass="fa fa-check btn btn-success">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
-                                    <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-lock btn btn-primary">
+                                    <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-lock btn btn-info">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
-                                    <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-pencil btn btn-primary">
+                                    <h:commandLink action="/web/cadastro/projeto" styleClass="fa fa-pencil btn btn-primary">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
-                                    <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-trash btn btn-danger">
+                                    <h:commandLink action="/web/excluir/projeto" styleClass="fa fa-trash btn btn-danger">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
                                 </div>
