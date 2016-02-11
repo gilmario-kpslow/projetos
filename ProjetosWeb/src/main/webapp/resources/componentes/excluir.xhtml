@@ -5,11 +5,12 @@
                 xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
 
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"                >
 
     <cc:interface>
         <cc:attribute name="cadastro" required="true" type="br.com.truesystem.projetosweb.bean.BeanCadastroImplemente"/>
-        <cc:attribute name="acao_voltar" required="true"/>
+        <cc:attribute name="acao_voltar" required="false" default="#{null}"/>
+        <cc:attribute name="pagina_voltar" required="false" default="#{null}" type="java.lang.String"/>
         <cc:attribute name="icon" default=""/>
     </cc:interface>
     <cc:implementation>
@@ -25,11 +26,13 @@
                     <div class="col-md-4">
                         <h:commandLink styleClass="btn btn-success fa fa-check form-control" value=" Excluir">
                             <f:ajax event="click" listener="#{cc.attrs.cadastro.excluir()}"/>
-                            <f:ajax event="click" listener="#{cc.attrs.acao_voltar}"/>
+                            <f:ajax event="click" listener="#{cc.attrs.acao_voltar}" rendered="#{cc.attrs.acao_voltar != null}"/>
                         </h:commandLink>
                     </div>
                     <div class="col-md-4">
-                        <h:commandLink styleClass="fa fa-ban btn btn-danger form-control" action="#{cc.attrs.acao_voltar}" value=" Cancelar"/>
+                        <h:commandLink styleClass="fa fa-ban btn btn-danger form-control" value=" Cancelar" action="#{cc.attrs.pagina_voltar}">
+                            <f:ajax event="click" listener="#{cc.attrs.acao_voltar}" rendered="#{cc.attrs.acao_voltar != null}" immediate="true"/>
+                        </h:commandLink>
                     </div>
                 </div>
             </f:facet>
