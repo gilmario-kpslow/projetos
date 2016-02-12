@@ -32,16 +32,16 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
-                                    <h:commandLink action="/web/gerenciar/projeto" styleClass="fa fa-check btn btn-success">
+                                    <h:commandLink action="/web/gerenciar/projeto" styleClass="fa fa-check btn btn-success" title="Ver projeto">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
-                                    <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-lock btn btn-info">
+                                    <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-lock btn btn-info" title="Adicionar mais usuario">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
-                                    <h:commandLink action="/web/cadastro/projeto" styleClass="fa fa-pencil btn btn-primary">
+                                    <h:commandLink action="/web/cadastro/projeto" styleClass="fa fa-pencil btn btn-primary" title="Editar projeto">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
-                                    <h:commandLink action="/web/excluir/projeto" styleClass="fa fa-trash btn btn-danger">
+                                    <h:commandLink action="/web/excluir/projeto" styleClass="fa fa-trash btn btn-danger" title="Excluir projeto">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
                                 </div>
