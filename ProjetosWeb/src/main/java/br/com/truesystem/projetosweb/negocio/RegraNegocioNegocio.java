@@ -2,10 +2,7 @@ package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.bean.GerenciadorFuncionalidadeBean;
 import br.com.truesystem.projetosweb.dao.RegraNegocioDao;
-import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Funcionalidade;
-import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
-import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import br.com.truesystem.projetosweb.dominio.gerenciador.RegraNegocio;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -90,18 +87,6 @@ public class RegraNegocioNegocio implements NegocioInterface<RegraNegocio>, Seri
             total = 0L;
         }
         return new BigDecimal(total);
-    }
-
-    public void excluir(Projeto projeto) {
-        dao.excluir(projeto);
-    }
-
-    public void excluir(Atividade atividade) {
-        dao.excluir(atividade);
-    }
-
-    public void excluir(Modulo modulo) {
-        dao.excluir(modulo);
     }
 
 }

@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -29,6 +31,7 @@ public class Atividade implements Serializable {
         @JoinColumn(nullable = false, referencedColumnName = "mod_codigo", name = "mod_codigo")
     })
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Modulo modulo;
     @Column(nullable = false, length = 100)
     private String nome;

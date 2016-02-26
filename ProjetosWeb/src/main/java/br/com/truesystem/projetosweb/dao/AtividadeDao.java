@@ -27,12 +27,4 @@ public class AtividadeDao extends DAO<Atividade, AtividadePK> implements Seriali
         return (Long) getSession().createCriteria(Atividade.class).add(Restrictions.eq(Atividade_.modulo.getName(), modulo)).setProjection(Projections.count(Atividade_.codigo.getName())).uniqueResult();
     }
 
-    public void excluir(Modulo t) {
-        getSession().createQuery("DELETE FROM Atividade a WHERE a.modulo =:modulo").setParameter("modulo", t).executeUpdate();
-    }
-
-    public void excluir(Projeto projeto) {
-        getSession().createQuery("DELETE FROM Atividade a WHERE a.modulo.projeto =:projeto").setParameter("projeto", projeto).executeUpdate();
-    }
-
 }

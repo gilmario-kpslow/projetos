@@ -23,18 +23,9 @@ public class ModuloNegocio implements NegocioInterface<Modulo>, Serializable {
     private ModuloDao dao;
     @Inject
     private GerenciadorProjetoBean gpb;
-    @EJB
-    private AtividadeNegocio atividadeNegocio;
-    @EJB
-    private FuncionalidadeNegocio funcionalidadeNegocio;
-    @EJB
-    private RegraNegocioNegocio regraNegocioNegocio;
 
     @Override
     public void excluir(Modulo modulo) throws Exception {
-        regraNegocioNegocio.excluir(modulo);
-        funcionalidadeNegocio.excluir(modulo);
-        atividadeNegocio.excluir(modulo);
         dao.excluir(modulo);
     }
 
@@ -62,10 +53,6 @@ public class ModuloNegocio implements NegocioInterface<Modulo>, Serializable {
     private Long gerarCodigo() {
         Long total = dao.maiorCodigo(gpb.getProjeto());
         return ++total;
-    }
-
-    public void excluir(Projeto t) {
-        dao.excluir(t);
     }
 
 }

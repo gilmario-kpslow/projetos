@@ -1,11 +1,9 @@
 package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.bean.GerenciadorModuloBean;
-import br.com.truesystem.projetosweb.bean.GerenciadorProjetoBean;
 import br.com.truesystem.projetosweb.dao.AtividadeDao;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
-import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,15 +23,9 @@ public class AtividadeNegocio implements NegocioInterface<Atividade>, Serializab
     private AtividadeDao dao;
     @Inject
     private GerenciadorModuloBean gmb;
-    @EJB
-    private FuncionalidadeNegocio funcionalidadeNegocio;
-    @EJB
-    private RegraNegocioNegocio regraNegocioNegocio;
 
     @Override
     public void excluir(Atividade atividade) throws Exception {
-        regraNegocioNegocio.excluir(atividade);
-        funcionalidadeNegocio.excluir(atividade);
         dao.excluir(atividade);
     }
 
@@ -61,14 +53,6 @@ public class AtividadeNegocio implements NegocioInterface<Atividade>, Serializab
     private Long gerarCodigo() {
         Long total = dao.maiorCodigo(gmb.getModulo());
         return ++total;
-    }
-
-    public void excluir(Modulo t) {
-        dao.excluir(t);
-    }
-
-    public void excluir(Projeto projeto) {
-        dao.excluir(projeto);
     }
 
 }

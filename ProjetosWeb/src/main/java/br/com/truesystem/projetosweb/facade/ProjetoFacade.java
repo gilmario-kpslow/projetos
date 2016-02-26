@@ -27,21 +27,8 @@ public class ProjetoFacade implements Serializable {
     private AcessoResponsavelProjetoNegocio arps;
     @EJB
     private ProjetoNegocio projetoNegocio;
-    @EJB
-    private ModuloNegocio moduloNegocio;
-    @EJB
-    private AtividadeNegocio atividadeNegocio;
-    @EJB
-    private FuncionalidadeNegocio funcionalidadeNegocio;
-    @EJB
-    private RegraNegocioNegocio regraNegocioNegocio;
 
     public void excluirProjeto(Projeto projeto) {
-        arps.excluir(projeto);
-        regraNegocioNegocio.excluir(projeto);
-        funcionalidadeNegocio.excluir(projeto);
-        atividadeNegocio.excluir(projeto);
-        moduloNegocio.excluir(projeto);
         projetoNegocio.excluir(projeto);
     }
 

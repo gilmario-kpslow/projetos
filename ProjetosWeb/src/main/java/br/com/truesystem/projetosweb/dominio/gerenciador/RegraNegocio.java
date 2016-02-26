@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,6 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -35,6 +39,7 @@ public class RegraNegocio implements Serializable {
         @JoinColumn(nullable = false, referencedColumnName = "fun_codigo", name = "fun_codigo")
     })
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Funcionalidade funcionalidade;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

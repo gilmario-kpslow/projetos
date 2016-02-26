@@ -61,16 +61,4 @@ public class RegraNegocioDao extends DAO<RegraNegocio, RegraNegocioPK> implement
                 .setProjection(Projections.rowCount()).uniqueResult();
     }
 
-    public void excluir(Projeto projeto) {
-        getSession().createQuery("DELETE FROM RegraNegocio r WHERE r.funcionalidade.atividade.modulo.projeto =:projeto").setParameter("projeto", projeto).executeUpdate();
-    }
-
-    public void excluir(Atividade atividade) {
-        getSession().createSQLQuery("DELETE FROM RegraNegocio r WHERE r.re_id IN  .funcionalidade.atividade =:atividade").setParameter("atividade", atividade).executeUpdate();
-    }
-
-    public void excluir(Modulo modulo) {
-        getSession().createQuery("DELETE FROM RegraNegocio r WHERE r IN(SELECT re FROM RegraNegocio re WHERE re.funcionalidade.atividade.modulo=:modulo)").setParameter("modulo", modulo).executeUpdate();
-    }
-
 }

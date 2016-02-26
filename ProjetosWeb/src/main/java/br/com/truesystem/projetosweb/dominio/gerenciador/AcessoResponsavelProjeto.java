@@ -10,6 +10,8 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -23,10 +25,12 @@ public class AcessoResponsavelProjeto implements Serializable {
     @Id
     @JoinColumn(name = "res_id", referencedColumnName = "res_id", nullable = false)
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Responsavel responsavel;
     @Id
     @JoinColumn(name = "pro_id", referencedColumnName = "pro_id", nullable = false)
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Projeto projeto;
     @Column(nullable = false)
     private Boolean dono;

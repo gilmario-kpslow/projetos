@@ -26,8 +26,4 @@ public class ModuloDao extends DAO<Modulo, ModuloPK> implements Serializable {
 
     }
 
-    public void excluir(Projeto t) {
-        getSession().createQuery("DELETE FROM Modulo m WHERE m.projeto =:projeto").setParameter("projeto", t).executeUpdate();
-    }
-
 }

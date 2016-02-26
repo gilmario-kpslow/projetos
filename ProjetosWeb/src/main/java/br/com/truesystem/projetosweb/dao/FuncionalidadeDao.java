@@ -27,16 +27,4 @@ public class FuncionalidadeDao extends DAO<Funcionalidade, FuncionalidadePK> imp
         return (Long) getSession().createCriteria(Funcionalidade.class).add(Restrictions.eq(Funcionalidade_.atividade.getName(), atividade)).setProjection(Projections.count(Funcionalidade_.id.getName())).uniqueResult();
     }
 
-    public void excluir(Atividade t) {
-        getSession().createQuery("DELETE FROM Funcionalidade f WHERE f.atividade =:atividade").executeUpdate();
-    }
-
-    public void excluir(Projeto projeto) {
-        getSession().createQuery("DELETE FROM Funcionalidade f WHERE f.atividade.modulo.projeto =:projeto").setParameter("projeto", projeto).executeUpdate();
-    }
-
-    public void excluir(Modulo modulo) {
-        getSession().createQuery("DELETE FROM Funcionalidade f WHERE f.atividade.modulo =:modulo").setParameter("modulo", modulo).executeUpdate();
-    }
-
 }

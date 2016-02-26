@@ -22,6 +22,8 @@ public class CadastraAtividadeBean extends BeanCadastroImplemente<Atividade> imp
     private AtividadeNegocio servico;
     @Inject
     private GerenciadorAtividadeBean gab;
+    @Inject
+    private GerenciadorModuloBean gmb;
 
     @PostConstruct
     protected void init() {
@@ -60,6 +62,7 @@ public class CadastraAtividadeBean extends BeanCadastroImplemente<Atividade> imp
     @Override
     public void limpar() {
         init();
+        gmb.atualizar();
     }
 
     @Override

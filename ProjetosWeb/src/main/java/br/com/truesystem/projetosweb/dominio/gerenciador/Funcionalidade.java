@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -34,6 +36,7 @@ public class Funcionalidade implements Serializable {
         @JoinColumn(nullable = false, referencedColumnName = "ati_codigo", name = "ati_codigo")
     })
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Atividade atividade;
     @Column(nullable = false, length = 100)
     private String nome;

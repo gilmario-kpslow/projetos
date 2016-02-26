@@ -41,7 +41,4 @@ public class AcessoResponsavelProjetoDao extends DAO<AcessoResponsavelProjeto, A
         return criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
     }
 
-    public void excluir(Projeto t) {
-        getSession().createQuery("DELETE FROM AcessoResponsavelProjeto a WHERE a.projeto = :projeto").setParameter("projeto", t).executeUpdate();
-    }
 }

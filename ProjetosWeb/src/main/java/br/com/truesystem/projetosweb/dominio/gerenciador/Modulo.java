@@ -9,6 +9,8 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -25,6 +27,7 @@ public class Modulo implements Serializable {
     @Id
     @JoinColumn(nullable = false, name = "pro_id", referencedColumnName = "pro_id")
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Projeto projeto;
     @Column(nullable = false, length = 100)
     private String nome;

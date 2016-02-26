@@ -53,8 +53,4 @@ public class AcessoResponsavelProjetoNegocio implements NegocioInterface<AcessoR
         return dao.buscarProjetos(responsavel);
     }
 
-    public void excluir(Projeto t) {
-        dao.excluir(t);
-    }
-
 }

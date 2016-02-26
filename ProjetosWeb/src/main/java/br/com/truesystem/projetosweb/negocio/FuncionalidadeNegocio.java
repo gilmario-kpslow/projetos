@@ -4,8 +4,6 @@ import br.com.truesystem.projetosweb.bean.GerenciadorAtividadeBean;
 import br.com.truesystem.projetosweb.dao.FuncionalidadeDao;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Funcionalidade;
-import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
-import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,12 +23,9 @@ public class FuncionalidadeNegocio implements NegocioInterface<Funcionalidade>, 
     private FuncionalidadeDao dao;
     @Inject
     private GerenciadorAtividadeBean gab;
-    @EJB
-    private RegraNegocioNegocio regraNegocioNegocio;
 
     @Override
     public void excluir(Funcionalidade funcionalidade) throws Exception {
-        regraNegocioNegocio.excluir(funcionalidade);
         dao.excluir(funcionalidade);
     }
 
@@ -58,18 +53,6 @@ public class FuncionalidadeNegocio implements NegocioInterface<Funcionalidade>, 
     private Long gerarCodigo() {
         Long total = dao.maiorCodigo(gab.getAtividade());
         return ++total;
-    }
-
-    public void excluir(Atividade t) {
-        dao.excluir(t);
-    }
-
-    public void excluir(Projeto projeto) {
-        dao.excluir(projeto);
-    }
-
-    public void excluir(Modulo modulo) {
-        dao.excluir(modulo);
     }
 
 }

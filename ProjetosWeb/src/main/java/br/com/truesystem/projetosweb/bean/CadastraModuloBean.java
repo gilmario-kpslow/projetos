@@ -22,6 +22,8 @@ public class CadastraModuloBean extends BeanCadastroImplemente<Modulo> implement
     private ModuloNegocio servico;
     @Inject
     private GerenciadorModuloBean gmb;
+    @Inject
+    private GerenciadorProjetoBean gpb;
 
     @PostConstruct
     protected void init() {
@@ -60,6 +62,7 @@ public class CadastraModuloBean extends BeanCadastroImplemente<Modulo> implement
     @Override
     public void limpar() {
         init();
+        gpb.atualizar();
     }
 
     @Override
