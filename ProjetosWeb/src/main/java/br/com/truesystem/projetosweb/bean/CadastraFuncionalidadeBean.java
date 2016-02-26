@@ -22,6 +22,8 @@ public class CadastraFuncionalidadeBean extends BeanCadastroImplemente<Funcional
     private FuncionalidadeNegocio servico;
     @Inject
     private GerenciadorFuncionalidadeBean gfb;
+    @Inject
+    private GerenciadorAtividadeBean gab;
 
     @PostConstruct
     protected void init() {
@@ -52,6 +54,7 @@ public class CadastraFuncionalidadeBean extends BeanCadastroImplemente<Funcional
     @Override
     public void limpar() {
         init();
+        gab.atualizar();
     }
 
     @Override

@@ -28,19 +28,6 @@
                         <div>
                             <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.status}"/>
                         </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h:commandLink value=" Subir Status" class="fa fa-arrow-right form-control btn btn-primary" rendered="#{gerenciadorFuncionalidadeBean.funcionalidade.status != 'Concluida'}">
-                                    <f:ajax event="click" execute="@this" listener="#{gerenciadorFuncionalidadeBean.funcionalidade.mudaStatus()}" render="@form"/>
-                                </h:commandLink>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6">
-                                <h:link value=" Editar" styleClass="fa fa-edit btn btn-primary form-control" outcome="/web/cadastro/funcionalidade"/>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6">
-                                <h:link value=" Excluir" styleClass="fa fa-trash btn btn-danger form-control" outcome="/web/excluir/funcionalidade"/>
-                            </div>
-                        </div>
                         <div>
                             <c:campo titulo="Regras de Negócio">
                                 <f:facet name="complemento">
@@ -86,6 +73,21 @@
                                 </div>
                             </c:campo>
                         </div>
+                        <f:facet name="footer">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h:commandLink value=" Subir Status" class="fa fa-arrow-right form-control btn btn-primary" rendered="#{gerenciadorFuncionalidadeBean.funcionalidade.status != 'Concluida'}">
+                                        <f:ajax event="click" execute="@this" listener="#{gerenciadorFuncionalidadeBean.funcionalidade.mudaStatus()}" render="@form"/>
+                                    </h:commandLink>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <h:link value=" Editar" styleClass="fa fa-edit btn btn-primary form-control" outcome="/web/cadastro/funcionalidade"/>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <h:link value=" Excluir" styleClass="fa fa-trash btn btn-danger form-control" outcome="/web/excluir/funcionalidade"/>
+                                </div>
+                            </div>
+                        </f:facet>
                     </c:panel>
                 </div>
             </div>
