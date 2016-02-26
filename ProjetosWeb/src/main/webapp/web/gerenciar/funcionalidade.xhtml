@@ -21,23 +21,33 @@
                             <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.descricao}"/>
                         </div>
                         <div>
-                            <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.status}"/>
+                            <h:outputText value="#{gerenciadorFuncionalidadeBean.percentual}">
+                                <f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2"/>
+                            </h:outputText>
                         </div>
                         <div>
                             <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.status}"/>
                         </div>
                         <div class="row">
-                            <div class="col-lg-2">
-                                <h:commandLink value="Subir Status"/>
+                            <div class="col-md-3">
+                                <h:commandLink value=" Subir Status" class="fa fa-arrow-right form-control btn btn-primary" rendered="#{gerenciadorFuncionalidadeBean.funcionalidade.status != 'Concluida'}">
+                                    <f:ajax event="click" execute="@this" listener="#{gerenciadorFuncionalidadeBean.funcionalidade.mudaStatus()}" render="@form"/>
+                                </h:commandLink>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <h:link value=" Editar" styleClass="fa fa-edit btn btn-primary form-control" outcome="/web/cadastro/funcionalidade"/>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <h:link value=" Excluir" styleClass="fa fa-trash btn btn-danger form-control" outcome="/web/excluir/funcionalidade"/>
                             </div>
                         </div>
                         <div>
                             <c:campo titulo="Regras de Negócio">
                                 <f:facet name="complemento">
-                                    <h:commandLink styleClass="float-right fa fa-refresh fa-spin">
+                                    <h:commandLink styleClass="float-right fa fa-refresh">
                                         <f:ajax event="click" execute="@this" listener="#{gerenciadorFuncionalidadeBean.atualizar()}" render="@form"/>
                                     </h:commandLink>
-                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/regra_negocio.xhtml"/>
+                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/regra_negocio.xhtml" rendered="#{gerenciadorFuncionalidadeBean.funcionalidade.status != 'Concluida'}"/>
                                 </f:facet>
                                 <div class="row">
                                     <ui:repeat value="#{gerenciadorFuncionalidadeBean.listaDeRegraNegocio}" var="regra">
@@ -52,19 +62,19 @@
                                             <div class="row">
                                                 <c:outputRender rendered="#{regra.status != 'Concluida'}">
                                                     <div class="col-lg-4">
-                                                        <h:commandLink value="#{regra.proximoStatus()}" styleClass="btn btn-info fa fa-arrow-left">
+                                                        <h:commandLink value=" #{regra.proximoStatus()}" styleClass="btn btn-info fa fa-arrow-right form-control">
                                                             <f:ajax event="click" render="@form" listener="#{gerenciadorRegraNegocioBean.mudaStatus(regra)}"/>
                                                         </h:commandLink>
                                                     </div>
                                                 </c:outputRender>
                                                 <c:outputRender rendered="#{regra.status == 'Pendente'}">
                                                     <div class="col-lg-4">
-                                                        <h:commandLink value="Editar" styleClass="btn btn-primary fa fa-pencil" title=" Editar" action="/web/cadastro/regra_negocio">
+                                                        <h:commandLink value=" Editar" styleClass="btn btn-primary fa fa-pencil form-control" title=" Editar" action="/web/cadastro/regra_negocio">
                                                             <f:setPropertyActionListener value="#{regra}" target="#{gerenciadorRegraNegocioBean.regraNegocio}"/>
                                                         </h:commandLink>
                                                     </div>
                                                     <div class="col-lg-4">
-                                                        <h:commandLink value="Excluir" styleClass="btn btn-danger fa fa-close" title=" Excluir" action="/web/excluir/regra_negocio">
+                                                        <h:commandLink value=" Excluir" styleClass="btn btn-danger fa fa-trash form-control" title=" Excluir" action="/web/excluir/regra_negocio">
                                                             <f:setPropertyActionListener value="#{regra}" target="#{gerenciadorRegraNegocioBean.regraNegocio}"/>
                                                         </h:commandLink>
                                                     </div>

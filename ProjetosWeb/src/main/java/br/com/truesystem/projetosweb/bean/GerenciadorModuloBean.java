@@ -2,7 +2,7 @@ package br.com.truesystem.projetosweb.bean;
 
 import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
-import br.com.truesystem.projetosweb.servico.AtividadeServico;
+import br.com.truesystem.projetosweb.negocio.AtividadeNegocio;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -20,7 +20,7 @@ public class GerenciadorModuloBean implements Serializable {
     private Modulo modulo;
     private List<Atividade> listaDeAtividades;
     @EJB
-    private AtividadeServico atividadeServico;
+    private AtividadeNegocio atividadeServico;
 
     public void atualizar() {
         listaDeAtividades = atividadeServico.buscar(modulo);

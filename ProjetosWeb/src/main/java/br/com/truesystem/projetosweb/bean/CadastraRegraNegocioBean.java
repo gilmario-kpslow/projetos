@@ -1,7 +1,7 @@
 package br.com.truesystem.projetosweb.bean;
 
 import br.com.truesystem.projetosweb.dominio.gerenciador.RegraNegocio;
-import br.com.truesystem.projetosweb.servico.RegraNegocioServico;
+import br.com.truesystem.projetosweb.negocio.RegraNegocioNegocio;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,7 +19,7 @@ public class CadastraRegraNegocioBean extends BeanCadastroImplemente<RegraNegoci
 
     private RegraNegocio regraNegocio;
     @EJB
-    private RegraNegocioServico servico;
+    private RegraNegocioNegocio servico;
     @Inject
     private GerenciadorFuncionalidadeBean gfb;
     @Inject
@@ -30,6 +30,7 @@ public class CadastraRegraNegocioBean extends BeanCadastroImplemente<RegraNegoci
         if (grnb.getRegraNegocio() != null) {
             regraNegocio = grnb.getRegraNegocio();
             grnb.setRegraNegocio(null);
+            editando = true;
         } else {
             regraNegocio = new RegraNegocio();
         }

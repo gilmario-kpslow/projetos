@@ -1,7 +1,8 @@
 package br.com.truesystem.projetosweb.bean;
 
 import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
-import br.com.truesystem.projetosweb.servico.ProjetoServico;
+import br.com.truesystem.projetosweb.facade.ProjetoFacade;
+import br.com.truesystem.projetosweb.negocio.ProjetoNegocio;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,15 +20,18 @@ public class CadastraProjetoBean extends BeanCadastroImplemente<Projeto> impleme
 
     private Projeto projeto;
     @EJB
-    private ProjetoServico servico;
+    private ProjetoNegocio servico;
     @Inject
     private GerenciadorProjetoBean gpb;
+    @EJB
+    private ProjetoFacade projetoFacade;
 
     @PostConstruct
     protected void init() {
         if (gpb.getProjeto() != null) {
             projeto = gpb.getProjeto();
             gpb.setProjeto(null);
+            editando = true;
         } else {
             projeto = new Projeto();
         }
@@ -39,6 +43,7 @@ public class CadastraProjetoBean extends BeanCadastroImplemente<Projeto> impleme
 
     public void setProjeto(Projeto projeto) {
         this.projeto = projeto;
+        this.editando = true;
     }
 
     @Override
@@ -53,7 +58,7 @@ public class CadastraProjetoBean extends BeanCadastroImplemente<Projeto> impleme
 
     @Override
     protected void exclui() throws Exception {
-        servico.excluir(projeto);
+        projetoFacade.excluirProjeto(projeto);
     }
 
     @Override

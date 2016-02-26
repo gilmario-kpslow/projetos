@@ -4,8 +4,8 @@ import br.com.truesystem.projetosweb.dominio.Responsavel;
 import br.com.truesystem.projetosweb.dominio.gerenciador.AcessoResponsavelProjeto;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
-import br.com.truesystem.projetosweb.servico.AcessoResponsavelProjetoServico;
-import br.com.truesystem.projetosweb.servico.ModuloServico;
+import br.com.truesystem.projetosweb.negocio.AcessoResponsavelProjetoNegocio;
+import br.com.truesystem.projetosweb.negocio.ModuloNegocio;
 import br.com.truesystem.projetosweb.util.GeradorMensagem;
 import java.io.Serializable;
 import java.util.List;
@@ -26,9 +26,9 @@ public class GerenciadorProjetoBean implements Serializable {
     private List<Modulo> listaDeModulos;
     private List<AcessoResponsavelProjeto> acessoResponsavelProjetos;
     @EJB
-    private ModuloServico moduloServico;
+    private ModuloNegocio moduloServico;
     @EJB
-    private AcessoResponsavelProjetoServico acessoResponsavelProjetoServico;
+    private AcessoResponsavelProjetoNegocio acessoResponsavelProjetoServico;
     @EJB
     private GeradorMensagem geradorMensagem;
 

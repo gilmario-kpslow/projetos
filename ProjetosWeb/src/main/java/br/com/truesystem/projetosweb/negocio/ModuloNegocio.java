@@ -1,4 +1,4 @@
-package br.com.truesystem.projetosweb.servico;
+package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.bean.GerenciadorProjetoBean;
 import br.com.truesystem.projetosweb.dao.ModuloDao;
@@ -17,16 +17,25 @@ import javax.inject.Inject;
  */
 @Stateless
 @LocalBean
-public class ModuloServico implements ServicoInterface<Modulo>, Serializable {
+public class ModuloNegocio implements NegocioInterface<Modulo>, Serializable {
 
     @EJB
     private ModuloDao dao;
     @Inject
     private GerenciadorProjetoBean gpb;
+    @EJB
+    private AtividadeNegocio atividadeNegocio;
+    @EJB
+    private FuncionalidadeNegocio funcionalidadeNegocio;
+    @EJB
+    private RegraNegocioNegocio regraNegocioNegocio;
 
     @Override
-    public void excluir(Modulo t) throws Exception {
-        dao.excluir(t);
+    public void excluir(Modulo modulo) throws Exception {
+        regraNegocioNegocio.excluir(modulo);
+        funcionalidadeNegocio.excluir(modulo);
+        atividadeNegocio.excluir(modulo);
+        dao.excluir(modulo);
     }
 
     public List<Modulo> buscar(Projeto projeto) {
@@ -53,6 +62,10 @@ public class ModuloServico implements ServicoInterface<Modulo>, Serializable {
     private Long gerarCodigo() {
         Long total = dao.maiorCodigo(gpb.getProjeto());
         return ++total;
+    }
+
+    public void excluir(Projeto t) {
+        dao.excluir(t);
     }
 
 }

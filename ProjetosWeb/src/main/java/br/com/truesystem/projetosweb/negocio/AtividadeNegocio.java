@@ -1,10 +1,11 @@
-package br.com.truesystem.projetosweb.servico;
+package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.bean.GerenciadorModuloBean;
 import br.com.truesystem.projetosweb.bean.GerenciadorProjetoBean;
 import br.com.truesystem.projetosweb.dao.AtividadeDao;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
+import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -18,16 +19,22 @@ import javax.inject.Inject;
  */
 @Stateless
 @LocalBean
-public class AtividadeServico implements ServicoInterface<Atividade>, Serializable {
+public class AtividadeNegocio implements NegocioInterface<Atividade>, Serializable {
 
     @EJB
     private AtividadeDao dao;
     @Inject
     private GerenciadorModuloBean gmb;
+    @EJB
+    private FuncionalidadeNegocio funcionalidadeNegocio;
+    @EJB
+    private RegraNegocioNegocio regraNegocioNegocio;
 
     @Override
-    public void excluir(Atividade t) throws Exception {
-        dao.excluir(t);
+    public void excluir(Atividade atividade) throws Exception {
+        regraNegocioNegocio.excluir(atividade);
+        funcionalidadeNegocio.excluir(atividade);
+        dao.excluir(atividade);
     }
 
     public List<Atividade> buscar(Modulo modulo) {
@@ -54,6 +61,14 @@ public class AtividadeServico implements ServicoInterface<Atividade>, Serializab
     private Long gerarCodigo() {
         Long total = dao.maiorCodigo(gmb.getModulo());
         return ++total;
+    }
+
+    public void excluir(Modulo t) {
+        dao.excluir(t);
+    }
+
+    public void excluir(Projeto projeto) {
+        dao.excluir(projeto);
     }
 
 }

@@ -1,8 +1,8 @@
 package br.com.truesystem.projetosweb.bean;
 
 import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
-import br.com.truesystem.projetosweb.servico.ProjetoServico;
-import br.com.truesystem.projetosweb.servico.ResponsavelSession;
+import br.com.truesystem.projetosweb.negocio.ProjetoNegocio;
+import br.com.truesystem.projetosweb.negocio.ResponsavelSession;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -24,7 +24,7 @@ public class DashBoardBean implements Serializable {
     @Inject
     private ResponsavelSession responsavelSession;
     @EJB
-    private ProjetoServico projetoServico;
+    private ProjetoNegocio projetoServico;
 
     @PostConstruct
     private void iniciar() {

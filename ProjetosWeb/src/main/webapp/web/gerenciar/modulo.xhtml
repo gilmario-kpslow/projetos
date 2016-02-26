@@ -23,7 +23,7 @@
                         <div>
                             <c:campo titulo="Atividades">
                                 <f:facet name="complemento">
-                                    <h:commandLink styleClass="float-right fa fa-refresh fa-spin">
+                                    <h:commandLink styleClass="float-right fa fa-refresh">
                                         <f:ajax event="click" execute="@this" listener="#{gerenciadorModuloBean.atualizar()}" render="@form"/>
                                     </h:commandLink>
                                     <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/atividade.xhtml"/>
@@ -51,9 +51,7 @@
                                     <h:commandLink value=" Editar Módulo" styleClass="fa fa-edit btn btn-primary form-control" action="/web/cadastro/modulo"/>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <h:commandLink value=" Excluir Módulo" styleClass="fa fa-trash btn btn-danger form-control" >
-
-                                    </h:commandLink>
+                                    <h:link value=" Excluir Módulo" styleClass="fa fa-trash btn btn-danger form-control" outcome="/web/excluir/modulo"/>
                                 </div>
                             </div>
                         </f:facet>

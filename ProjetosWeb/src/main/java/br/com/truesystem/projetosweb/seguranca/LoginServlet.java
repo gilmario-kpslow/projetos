@@ -6,8 +6,8 @@
 package br.com.truesystem.projetosweb.seguranca;
 
 import br.com.truesystem.projetosweb.dominio.Responsavel;
-import br.com.truesystem.projetosweb.servico.ResponsavelServico;
-import br.com.truesystem.projetosweb.servico.ResponsavelSession;
+import br.com.truesystem.projetosweb.negocio.ResponsavelNegocio;
+import br.com.truesystem.projetosweb.negocio.ResponsavelSession;
 import br.com.truesystem.projetosweb.util.CriptografiaUtil;
 import java.io.IOException;
 import javax.ejb.EJB;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 
     @EJB
-    private ResponsavelServico servico;
+    private ResponsavelNegocio servico;
     @Inject
     private ResponsavelSession sessao;
 

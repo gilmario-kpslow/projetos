@@ -1,6 +1,8 @@
 package br.com.truesystem.projetosweb.dominio.gerenciador;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -83,6 +85,15 @@ public class Funcionalidade implements Serializable {
 
     public void setAtividade(Atividade atividade) {
         this.atividade = atividade;
+    }
+
+    public void mudaStatus() {
+        status = proximoStatus();
+    }
+
+    public StatusFuncionalidade proximoStatus() {
+        List<StatusFuncionalidade> lista = Arrays.asList(StatusFuncionalidade.values());
+        return lista.get(lista.indexOf(status) + 1);
     }
 
     @Override

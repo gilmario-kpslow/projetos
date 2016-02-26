@@ -1,4 +1,4 @@
-package br.com.truesystem.projetosweb.servico;
+package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.dao.AcessoResponsavelProjetoDao;
 import br.com.truesystem.projetosweb.dominio.Responsavel;
@@ -16,7 +16,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 @LocalBean
-public class AcessoResponsavelProjetoServico implements ServicoInterface<AcessoResponsavelProjeto>, Serializable {
+public class AcessoResponsavelProjetoNegocio implements NegocioInterface<AcessoResponsavelProjeto>, Serializable {
 
     @EJB
     private AcessoResponsavelProjetoDao dao;
@@ -51,6 +51,10 @@ public class AcessoResponsavelProjetoServico implements ServicoInterface<AcessoR
 
     public List<Projeto> buscarProjetos(Responsavel responsavel) {
         return dao.buscarProjetos(responsavel);
+    }
+
+    public void excluir(Projeto t) {
+        dao.excluir(t);
     }
 
 }

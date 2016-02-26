@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.truesystem.projetosweb.dao;
 
 import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
@@ -29,6 +24,10 @@ public class ModuloDao extends DAO<Modulo, ModuloPK> implements Serializable {
     public Long maiorCodigo(Projeto projeto) {
         return (Long) getSession().createCriteria(Modulo.class).add(Restrictions.eq(Modulo_.projeto.getName(), projeto)).setProjection(Projections.count(Modulo_.codigo.getName())).uniqueResult();
 
+    }
+
+    public void excluir(Projeto t) {
+        getSession().createQuery("DELETE FROM Modulo m WHERE m.projeto =:projeto").setParameter("projeto", t).executeUpdate();
     }
 
 }

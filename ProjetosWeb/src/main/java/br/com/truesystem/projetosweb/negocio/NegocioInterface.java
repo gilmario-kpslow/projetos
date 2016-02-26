@@ -1,4 +1,4 @@
-package br.com.truesystem.projetosweb.servico;
+package br.com.truesystem.projetosweb.negocio;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author gilmario
  * @param <T>
  */
-public interface ServicoInterface<T> {
+public interface NegocioInterface<T> {
 
     public void excluir(T t) throws Exception;
 

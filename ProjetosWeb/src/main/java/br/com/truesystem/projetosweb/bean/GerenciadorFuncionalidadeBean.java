@@ -2,8 +2,10 @@ package br.com.truesystem.projetosweb.bean;
 
 import br.com.truesystem.projetosweb.dominio.gerenciador.Funcionalidade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.RegraNegocio;
-import br.com.truesystem.projetosweb.servico.RegraNegocioServico;
+import br.com.truesystem.projetosweb.negocio.RegraNegocioNegocio;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -20,7 +22,7 @@ public class GerenciadorFuncionalidadeBean implements Serializable {
     private Funcionalidade funcionalidade;
     private List<RegraNegocio> listaDeRegraNegocio;
     @EJB
-    private RegraNegocioServico regraNegocioServico;
+    private RegraNegocioNegocio regraNegocioServico;
 
     public void atualizar() {
         listaDeRegraNegocio = regraNegocioServico.buscar(funcionalidade);
@@ -41,6 +43,14 @@ public class GerenciadorFuncionalidadeBean implements Serializable {
 
     public void setListaDeRegraNegocio(List<RegraNegocio> listaDeRegraNegocio) {
         this.listaDeRegraNegocio = listaDeRegraNegocio;
+    }
+
+    public BigDecimal getPercentual() {
+        try {
+            return regraNegocioServico.regrasConcluidas(funcionalidade).divide(regraNegocioServico.regrasTotais(funcionalidade), 4, RoundingMode.CEILING);
+        } catch (ArithmeticException e) {
+            return BigDecimal.ZERO;
+        }
     }
 
 }

@@ -24,7 +24,7 @@
                         <div>
                             <c:campo titulo="Modulos">
                                 <f:facet name="complemento">
-                                    <h:commandLink styleClass="float-right fa fa-refresh fa-spin" value="">
+                                    <h:commandLink styleClass="float-right fa fa-refresh" value="">
                                         <f:ajax event="click" execute="@this" listener="#{gerenciadorProjetoBean.atualizar()}" render="@form"/>
                                     </h:commandLink>
                                     <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/modulo.xhtml"/>

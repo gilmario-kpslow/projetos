@@ -1,13 +1,12 @@
 package br.com.truesystem.projetosweb.bean;
 
-import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Funcionalidade;
-import br.com.truesystem.projetosweb.servico.AtividadeServico;
-import br.com.truesystem.projetosweb.servico.FuncionalidadeServico;
+import br.com.truesystem.projetosweb.negocio.FuncionalidadeNegocio;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -20,11 +19,19 @@ public class CadastraFuncionalidadeBean extends BeanCadastroImplemente<Funcional
 
     private Funcionalidade funcionalidade;
     @EJB
-    private FuncionalidadeServico servico;
+    private FuncionalidadeNegocio servico;
+    @Inject
+    private GerenciadorFuncionalidadeBean gfb;
 
     @PostConstruct
     protected void init() {
-        funcionalidade = new Funcionalidade();
+        if (gfb.getFuncionalidade() != null) {
+            funcionalidade = gfb.getFuncionalidade();
+            gfb.setFuncionalidade(null);
+            editando = true;
+        } else {
+            funcionalidade = new Funcionalidade();
+        }
     }
 
     @Override

@@ -14,6 +14,7 @@ public abstract class BeanCadastroImplemente<T> implements BeanCadastroInterface
     @Inject
     private GeradorMensagem gerador;
     private boolean ativo = true;
+    protected boolean editando = false;
 
     protected abstract void salva() throws Exception;
 
@@ -55,6 +56,7 @@ public abstract class BeanCadastroImplemente<T> implements BeanCadastroInterface
             valida();
             atualiza();
             limpar();
+            editando = false;
             mensagem("Sucesso", "Registro salvo com sucesso");
         } catch (Exception e) {
             mensagem("ERRO", e.getMessage(), FacesMessage.SEVERITY_ERROR);
@@ -62,7 +64,7 @@ public abstract class BeanCadastroImplemente<T> implements BeanCadastroInterface
     }
 
     public boolean isEditando() {
-        return false;
+        return editando;
     }
 
     @Override
@@ -70,6 +72,7 @@ public abstract class BeanCadastroImplemente<T> implements BeanCadastroInterface
         try {
             exclui();
             limpar();
+            editando = false;
             mensagem("Sucesso", "Registro excluido com sucesso");
         } catch (Exception e) {
             mensagem("ERRO", e.getMessage(), FacesMessage.SEVERITY_ERROR);

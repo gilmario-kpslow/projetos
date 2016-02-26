@@ -1,7 +1,7 @@
 package br.com.truesystem.projetosweb.seguranca;
 
 import br.com.truesystem.projetosweb.dominio.Papel;
-import br.com.truesystem.projetosweb.servico.ResponsavelSession;
+import br.com.truesystem.projetosweb.negocio.ResponsavelSession;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.Filter;

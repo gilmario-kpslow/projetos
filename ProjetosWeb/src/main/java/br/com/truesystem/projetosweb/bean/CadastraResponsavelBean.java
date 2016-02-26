@@ -1,7 +1,7 @@
 package br.com.truesystem.projetosweb.bean;
 
 import br.com.truesystem.projetosweb.dominio.Responsavel;
-import br.com.truesystem.projetosweb.servico.ResponsavelServico;
+import br.com.truesystem.projetosweb.negocio.ResponsavelNegocio;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -18,7 +18,7 @@ public class CadastraResponsavelBean extends BeanCadastroImplemente<Responsavel>
 
     private Responsavel responsavel;
     @EJB
-    private ResponsavelServico servico;
+    private ResponsavelNegocio servico;
 
     @PostConstruct
     protected void init() {

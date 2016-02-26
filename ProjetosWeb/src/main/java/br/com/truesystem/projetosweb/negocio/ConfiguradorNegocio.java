@@ -1,4 +1,4 @@
-package br.com.truesystem.projetosweb.servico;
+package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.dominio.Papel;
 import br.com.truesystem.projetosweb.dominio.Responsavel;
@@ -14,10 +14,10 @@ import javax.ejb.Startup;
  */
 @Singleton
 @Startup
-public class ConfiguradorServico implements Serializable {
+public class ConfiguradorNegocio implements Serializable {
 
     @EJB
-    private ResponsavelServico responsavelServico;
+    private ResponsavelNegocio responsavelServico;
     private static final String ADMIN_LOGIN = "ProjetosAdmin";
     private static final String ADMIN_SENHA = "projetos";
 

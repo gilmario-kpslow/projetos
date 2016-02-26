@@ -1,4 +1,4 @@
-package br.com.truesystem.projetosweb.servico;
+package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.dominio.Responsavel;
 import java.io.Serializable;

@@ -1,7 +1,7 @@
 package br.com.truesystem.projetosweb.bean;
 
 import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
-import br.com.truesystem.projetosweb.servico.ModuloServico;
+import br.com.truesystem.projetosweb.negocio.ModuloNegocio;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,7 +19,7 @@ public class CadastraModuloBean extends BeanCadastroImplemente<Modulo> implement
 
     private Modulo modulo;
     @EJB
-    private ModuloServico servico;
+    private ModuloNegocio servico;
     @Inject
     private GerenciadorModuloBean gmb;
 
@@ -28,6 +28,7 @@ public class CadastraModuloBean extends BeanCadastroImplemente<Modulo> implement
         if (gmb.getModulo() != null) {
             modulo = gmb.getModulo();
             gmb.setModulo(null);
+            editando = true;
         } else {
             modulo = new Modulo();
         }

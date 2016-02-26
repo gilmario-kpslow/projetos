@@ -20,13 +20,21 @@
                         <div>
                             <h:outputText value="#{gerenciadorAtividadeBean.atividade.descricao}"/>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <h:link value=" Editar" styleClass="fa fa-edit btn btn-primary form-control" outcome="/web/cadastro/atividade"/>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <h:link value=" Excluir" styleClass="fa fa-trash btn btn-danger form-control" outcome="/web/excluir/atividade"/>
+                            </div>
+                        </div>
                         <div>
                             <c:campo titulo="Funcionalidade">
                                 <f:facet name="complemento">
-                                    <h:commandLink styleClass="float-right fa fa-refresh fa-spin">
+                                    <h:commandLink styleClass="float-right fa fa-refresh">
                                         <f:ajax event="click" execute="@this" listener="#{gerenciadorAtividadeBean.atualizar()}" render="@form"/>
                                     </h:commandLink>
-                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/funcionalidade.xhtml"/>
+                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/funcionalidade"/>
                                 </f:facet>
                                 <div class="row">
                                     <ui:repeat value="#{gerenciadorAtividadeBean.listaDeFuncionalidades}" var="funcionalidade">
@@ -45,6 +53,16 @@
                                 </div>
                             </c:campo>
                         </div>
+                        <f:facet name="footer">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <h:commandLink value=" Editar Atividade" styleClass="fa fa-edit btn btn-primary form-control" action="/web/cadastro/atividade"/>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <h:link value=" Excluir Módulo" styleClass="fa fa-trash btn btn-danger form-control" outcome="/web/excluir/atividade"/>
+                                </div>
+                            </div>
+                        </f:facet>
                     </c:panel>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-package br.com.truesystem.projetosweb.servico;
+package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.dao.ResponsavelDao;
 import br.com.truesystem.projetosweb.dominio.Papel;
@@ -16,7 +16,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 @LocalBean
-public class ResponsavelServico implements ServicoInterface<Responsavel>, Serializable {
+public class ResponsavelNegocio implements NegocioInterface<Responsavel>, Serializable {
 
     @EJB
     private ResponsavelDao dao;

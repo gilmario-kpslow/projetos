@@ -1,11 +1,12 @@
 package br.com.truesystem.projetosweb.bean;
 
 import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade;
-import br.com.truesystem.projetosweb.servico.AtividadeServico;
+import br.com.truesystem.projetosweb.negocio.AtividadeNegocio;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -18,11 +19,19 @@ public class CadastraAtividadeBean extends BeanCadastroImplemente<Atividade> imp
 
     private Atividade atividade;
     @EJB
-    private AtividadeServico servico;
+    private AtividadeNegocio servico;
+    @Inject
+    private GerenciadorAtividadeBean gab;
 
     @PostConstruct
     protected void init() {
-        atividade = new Atividade();
+        if (gab.getAtividade() != null) {
+            atividade = gab.getAtividade();
+            gab.setAtividade(null);
+            editando = true;
+        } else {
+            atividade = new Atividade();
+        }
     }
 
     @Override

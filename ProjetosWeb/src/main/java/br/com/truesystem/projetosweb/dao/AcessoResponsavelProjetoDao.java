@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.truesystem.projetosweb.dao;
 
 import br.com.truesystem.projetosweb.dominio.Responsavel;
@@ -44,5 +39,9 @@ public class AcessoResponsavelProjetoDao extends DAO<AcessoResponsavelProjeto, A
             criteria.add(Restrictions.eq(AcessoResponsavelProjeto_.responsavel.getName(), responsavel));
         }
         return criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+    }
+
+    public void excluir(Projeto t) {
+        getSession().createQuery("DELETE FROM AcessoResponsavelProjeto a WHERE a.projeto = :projeto").setParameter("projeto", t).executeUpdate();
     }
 }

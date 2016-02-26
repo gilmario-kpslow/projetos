@@ -1,10 +1,14 @@
-package br.com.truesystem.projetosweb.servico;
+package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.bean.GerenciadorFuncionalidadeBean;
 import br.com.truesystem.projetosweb.dao.RegraNegocioDao;
+import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Funcionalidade;
+import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
+import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import br.com.truesystem.projetosweb.dominio.gerenciador.RegraNegocio;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -17,7 +21,7 @@ import javax.inject.Inject;
  */
 @Stateless
 @LocalBean
-public class RegraNegocioServico implements ServicoInterface<RegraNegocio>, Serializable {
+public class RegraNegocioNegocio implements NegocioInterface<RegraNegocio>, Serializable {
 
     @EJB
     private RegraNegocioDao dao;
@@ -57,6 +61,47 @@ public class RegraNegocioServico implements ServicoInterface<RegraNegocio>, Seri
     private Long gerarCodigo() {
         Long total = dao.maiorCodigo(gfb.getFuncionalidade());
         return ++total;
+    }
+
+    public void excluir(Funcionalidade t) {
+        dao.excluir(t);
+    }
+
+    public BigDecimal regrasNaoConcluidas(Funcionalidade f) {
+        BigDecimal pendentes = dao.naoConcluidas(f);
+        if (pendentes == null) {
+            return BigDecimal.ZERO;
+        }
+        return pendentes;
+
+    }
+
+    public BigDecimal regrasConcluidas(Funcionalidade f) {
+        BigDecimal concluidas = dao.concluidas(f);
+        if (concluidas == null) {
+            return BigDecimal.ZERO;
+        }
+        return concluidas;
+    }
+
+    public BigDecimal regrasTotais(Funcionalidade f) {
+        Long total = dao.contar(f);
+        if (total == null) {
+            total = 0L;
+        }
+        return new BigDecimal(total);
+    }
+
+    public void excluir(Projeto projeto) {
+        dao.excluir(projeto);
+    }
+
+    public void excluir(Atividade atividade) {
+        dao.excluir(atividade);
+    }
+
+    public void excluir(Modulo modulo) {
+        dao.excluir(modulo);
     }
 
 }
