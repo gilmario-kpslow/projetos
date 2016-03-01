@@ -20,6 +20,16 @@
                         <div>
                             <h:outputText value="#{gerenciadorAtividadeBean.atividade.descricao}"/>
                         </div>
+                        <div>
+                            <h:outputText value="#{gerenciadorAtividadeBean.percentual}">
+                                <f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2"/>
+                            </h:outputText>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: #{gerenciadorAtividadeBean.percentual * 100}%">
+                                    <span class="sr-only"></span>
+                                </div>
+                            </div>
+                        </div>
 
                         <div>
                             <c:campo titulo="Funcionalidade">
@@ -38,8 +48,10 @@
                                             <div>
                                                 <h:outputText value="#{funcionalidade.descricao}"/>
                                             </div>
-                                            <div>
-                                                <h:outputText value="#{funcionalidade.status}"/>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: #{gerenciadorAtividadeBean.percentual(funcionalidade) * 100}%">
+                                                    <span class="sr-only"></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </ui:repeat>

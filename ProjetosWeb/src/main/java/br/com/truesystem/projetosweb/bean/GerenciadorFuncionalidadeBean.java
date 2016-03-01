@@ -5,7 +5,6 @@ import br.com.truesystem.projetosweb.dominio.gerenciador.RegraNegocio;
 import br.com.truesystem.projetosweb.negocio.RegraNegocioNegocio;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -47,7 +46,7 @@ public class GerenciadorFuncionalidadeBean implements Serializable {
 
     public BigDecimal getPercentual() {
         try {
-            return regraNegocioServico.regrasConcluidas(funcionalidade).divide(regraNegocioServico.regrasTotais(funcionalidade), 4, RoundingMode.CEILING);
+            return regraNegocioServico.percentualConcluido(funcionalidade);
         } catch (ArithmeticException e) {
             return BigDecimal.ZERO;
         }

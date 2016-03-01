@@ -5,6 +5,8 @@ import br.com.truesystem.projetosweb.dao.FuncionalidadeDao;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Funcionalidade;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -53,6 +55,26 @@ public class FuncionalidadeNegocio implements NegocioInterface<Funcionalidade>, 
     private Long gerarCodigo() {
         Long total = dao.maiorCodigo(gab.getAtividade());
         return ++total;
+    }
+
+    public BigDecimal percentualConcluido(Atividade atividade) {
+        return funcionalidadesConcluidas(atividade).divide(funcionalidadesTotais(atividade), 4, RoundingMode.CEILING);
+    }
+
+    private BigDecimal funcionalidadesConcluidas(Atividade atividade) {
+        BigDecimal totais = dao.concluidas(atividade);
+        if (totais == null) {
+            return BigDecimal.ZERO;
+        }
+        return totais;
+    }
+
+    private BigDecimal funcionalidadesTotais(Atividade atividade) {
+        BigDecimal totais = dao.contar(atividade);
+        if (totais == null) {
+            return BigDecimal.ZERO;
+        }
+        return totais;
     }
 
 }

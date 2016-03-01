@@ -2,10 +2,14 @@ package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.bean.GerenciadorFuncionalidadeBean;
 import br.com.truesystem.projetosweb.dao.RegraNegocioDao;
+import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Funcionalidade;
+import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
+import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import br.com.truesystem.projetosweb.dominio.gerenciador.RegraNegocio;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -87,6 +91,38 @@ public class RegraNegocioNegocio implements NegocioInterface<RegraNegocio>, Seri
             total = 0L;
         }
         return new BigDecimal(total);
+    }
+
+    public BigDecimal percentualConcluido(Funcionalidade funcionalidade) {
+        try {
+            return regrasConcluidas(funcionalidade).divide(regrasTotais(funcionalidade), 4, RoundingMode.CEILING);
+        } catch (ArithmeticException e) {
+            return BigDecimal.ZERO;
+        }
+    }
+
+    public BigDecimal percentualConcluido(Atividade atividade) {
+        try {
+            return dao.concluidas(atividade).divide(dao.contar(atividade), 4, RoundingMode.CEILING);
+        } catch (ArithmeticException e) {
+            return BigDecimal.ZERO;
+        }
+    }
+
+    public BigDecimal percentualConcluido(Modulo modulo) {
+        try {
+            return dao.concluidas(modulo).divide(dao.contar(modulo), 4, RoundingMode.CEILING);
+        } catch (ArithmeticException e) {
+            return BigDecimal.ZERO;
+        }
+    }
+
+    public BigDecimal percentualConcluido(Projeto projeto) {
+        try {
+            return dao.concluidas(projeto).divide(dao.contar(projeto), 4, RoundingMode.CEILING);
+        } catch (ArithmeticException e) {
+            return BigDecimal.ZERO;
+        }
     }
 
 }

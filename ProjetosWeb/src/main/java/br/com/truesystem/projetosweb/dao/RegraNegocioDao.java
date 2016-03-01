@@ -55,10 +55,49 @@ public class RegraNegocioDao extends DAO<RegraNegocio, RegraNegocioPK> implement
                 .setProjection(Projections.rowCount()).uniqueResult());
     }
 
+    public BigDecimal concluidas(Atividade a) {
+        return new BigDecimal((Long) getSession().createQuery("SELECT COUNT(r) FROM RegraNegocio r WHERE r.funcionalidade.atividade =:a AND r.status =:status")
+                .setParameter("a", a)
+                .setParameter("status", StatusRegraNegocio.Concluida)
+                .uniqueResult());
+    }
+
+    public BigDecimal concluidas(Modulo m) {
+        return new BigDecimal((Long) getSession().createQuery("SELECT COUNT(r) FROM RegraNegocio r WHERE r.funcionalidade.atividade.modulo =:m AND r.status =:status")
+                .setParameter("m", m)
+                .setParameter("status", StatusRegraNegocio.Concluida)
+                .uniqueResult());
+    }
+
+    public BigDecimal concluidas(Projeto p) {
+        return new BigDecimal((Long) getSession().createQuery("SELECT COUNT(r) FROM RegraNegocio r WHERE r.funcionalidade.atividade.modulo.projeto =:p AND r.status =:status")
+                .setParameter("p", p)
+                .setParameter("status", StatusRegraNegocio.Concluida)
+                .uniqueResult());
+    }
+
     public Long contar(Funcionalidade f) {
         return (Long) getSession().createCriteria(RegraNegocio.class)
                 .add(Restrictions.eq(RegraNegocio_.funcionalidade.getName(), f))
                 .setProjection(Projections.rowCount()).uniqueResult();
+    }
+
+    public BigDecimal contar(Atividade a) {
+        return new BigDecimal((Long) getSession().createQuery("SELECT COUNT(r) FROM RegraNegocio r WHERE r.funcionalidade.atividade =:a")
+                .setParameter("a", a)
+                .uniqueResult());
+    }
+
+    public BigDecimal contar(Modulo a) {
+        return new BigDecimal((Long) getSession().createQuery("SELECT COUNT(r) FROM RegraNegocio r WHERE r.funcionalidade.atividade.modulo =:a")
+                .setParameter("a", a)
+                .uniqueResult());
+    }
+
+    public BigDecimal contar(Projeto a) {
+        return new BigDecimal((Long) getSession().createQuery("SELECT COUNT(r) FROM RegraNegocio r WHERE r.funcionalidade.atividade.modulo.projeto =:a")
+                .setParameter("a", a)
+                .uniqueResult());
     }
 
 }

@@ -71,3 +71,10 @@
 .spandir-direita{
     margin-right: 10px;
 }
+
+a{
+}
+a:hover{
+    font-weight: bold;
+    text-decoration: none;
+}
