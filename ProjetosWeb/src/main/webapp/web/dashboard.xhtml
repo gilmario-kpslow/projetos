@@ -30,10 +30,16 @@
                             <div>
                                 <h:outputText value="#{projeto.descricao}"/>
                             </div>
+                            <div>
+                                <c:progressbar percentual="#{dashBoardBean.getPercentual(projeto) * 100}" legenda="#{dashBoardBean.getPercentual(projeto) * 100}%"/>
+                            </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
                                     <h:commandLink action="/web/gerenciar/projeto" styleClass="fa fa-check btn btn-success" title="Ver projeto">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
+                                    </h:commandLink>
+                                    <h:commandLink action="/web/monitor" styleClass="fa fa-desktop btn btn-default" title="Ver atividades do projeto">
+                                        <f:setPropertyActionListener value="#{projeto}" target="#{monitorProjetoBean.projeto}"/>
                                     </h:commandLink>
                                     <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-lock btn btn-info" title="Adicionar mais usuario">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>

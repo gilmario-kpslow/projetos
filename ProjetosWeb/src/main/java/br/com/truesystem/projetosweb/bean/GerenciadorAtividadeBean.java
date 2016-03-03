@@ -48,14 +48,10 @@ public class GerenciadorAtividadeBean implements Serializable {
     }
 
     public BigDecimal getPercentual() {
-        try {
-            return regraNegocioNegocio.percentualConcluido(atividade);
-        } catch (Exception e) {
-            return BigDecimal.ZERO;
-        }
+        return regraNegocioNegocio.percentualConcluido(atividade);
     }
 
-    public BigDecimal percentual(Funcionalidade f) {
+    public BigDecimal getPercentual(Funcionalidade f) {
         return regraNegocioNegocio.percentualConcluido(f);
     }
 }

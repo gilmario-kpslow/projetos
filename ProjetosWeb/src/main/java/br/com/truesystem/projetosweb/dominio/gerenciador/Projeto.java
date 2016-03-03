@@ -30,6 +30,13 @@ public class Projeto implements Serializable {
     @Column
     private String link;
 
+    public Projeto() {
+    }
+
+    public Projeto(Long id) {
+        this.id = id;
+    }
+
     public String getLink() {
         return link;
     }

@@ -22,6 +22,9 @@
                             <h:outputText value="#{gerenciadorProjetoBean.projeto.descricao}"/>
                         </div>
                         <div>
+                            <c:progressbar percentual="#{gerenciadorProjetoBean.percentual * 100}" legenda="#{gerenciadorProjetoBean.percentual * 100}% do Projeto foi concluído"/>
+                        </div>
+                        <div>
                             <c:campo titulo="Modulos">
                                 <f:facet name="complemento">
                                     <h:commandLink styleClass="float-right fa fa-refresh" value="">
@@ -39,7 +42,7 @@
                                                 <h:outputText value="#{modulo.descricao}"/>
                                             </div>
                                             <div>
-                                                <h:outputText value="Percentual concluído 18%"/>
+                                                <c:progressbar percentual="#{gerenciadorProjetoBean.getPercentual(modulo) * 100}" legenda="#{gerenciadorProjetoBean.getPercentual(modulo) * 100}%"/>
                                             </div>
                                         </div>
                                     </ui:repeat>

@@ -8,7 +8,7 @@ public class RegraUsuario implements RegraInterface {
 
     @Override
     public String[] getRegras() {
-        return new String[]{"projeto", "gerenciar", "dashboard", "cadastro", "excluir"};
+        return new String[]{"projeto", "gerenciar", "dashboard", "cadastro", "excluir", "monitor"};
     }
 
 }

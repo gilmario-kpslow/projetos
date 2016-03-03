@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <cc:interface>
+        <cc:attribute name="percentual" default="0" type="java.lang.Integer"/>
+        <cc:attribute name="legenda" default=""/>
+    </cc:interface>
+    <cc:implementation>
+        <c:if test="#{cc.attrs.percentual lt 50}">
+            <div class="progress">
+                <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: #{cc.attrs.percentual}%">
+                    <span>#{cc.attrs.legenda}</span>
+                </div>
+            </div>
+        </c:if>
+        <c:if test="#{((cc.attrs.percentual > 50) or cc.attrs.percentual eq 50) and cc.attrs.percentual lt 100}">
+            <div class="progress">
+                <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: #{cc.attrs.percentual}%">
+                    <span>#{cc.attrs.legenda}</span>
+                </div>
+            </div>
+        </c:if>
+        <c:if test="#{cc.attrs.percentual eq 100}">
+            <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-striped" style="width: #{cc.attrs.percentual}%">
+                    <span>#{cc.attrs.legenda}</span>
+                </div>
+            </div>
+        </c:if>
+    </cc:implementation>
+
+
+</ui:composition>
+

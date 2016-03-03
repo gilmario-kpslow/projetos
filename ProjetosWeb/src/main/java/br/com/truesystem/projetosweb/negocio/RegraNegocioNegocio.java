@@ -7,6 +7,7 @@ import br.com.truesystem.projetosweb.dominio.gerenciador.Funcionalidade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import br.com.truesystem.projetosweb.dominio.gerenciador.RegraNegocio;
+import br.com.truesystem.projetosweb.dominio.gerenciador.StatusRegraNegocio;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -68,23 +69,6 @@ public class RegraNegocioNegocio implements NegocioInterface<RegraNegocio>, Seri
         dao.excluir(t);
     }
 
-    public BigDecimal regrasNaoConcluidas(Funcionalidade f) {
-        BigDecimal pendentes = dao.naoConcluidas(f);
-        if (pendentes == null) {
-            return BigDecimal.ZERO;
-        }
-        return pendentes;
-
-    }
-
-    public BigDecimal regrasConcluidas(Funcionalidade f) {
-        BigDecimal concluidas = dao.concluidas(f);
-        if (concluidas == null) {
-            return BigDecimal.ZERO;
-        }
-        return concluidas;
-    }
-
     public BigDecimal regrasTotais(Funcionalidade f) {
         Long total = dao.contar(f);
         if (total == null) {
@@ -95,7 +79,7 @@ public class RegraNegocioNegocio implements NegocioInterface<RegraNegocio>, Seri
 
     public BigDecimal percentualConcluido(Funcionalidade funcionalidade) {
         try {
-            return regrasConcluidas(funcionalidade).divide(regrasTotais(funcionalidade), 4, RoundingMode.CEILING);
+            return dao.concluidas(funcionalidade).divide(regrasTotais(funcionalidade), 2, RoundingMode.CEILING);
         } catch (ArithmeticException e) {
             return BigDecimal.ZERO;
         }
@@ -103,7 +87,7 @@ public class RegraNegocioNegocio implements NegocioInterface<RegraNegocio>, Seri
 
     public BigDecimal percentualConcluido(Atividade atividade) {
         try {
-            return dao.concluidas(atividade).divide(dao.contar(atividade), 4, RoundingMode.CEILING);
+            return dao.concluidas(atividade).divide(dao.contar(atividade), 2, RoundingMode.CEILING);
         } catch (ArithmeticException e) {
             return BigDecimal.ZERO;
         }
@@ -111,7 +95,7 @@ public class RegraNegocioNegocio implements NegocioInterface<RegraNegocio>, Seri
 
     public BigDecimal percentualConcluido(Modulo modulo) {
         try {
-            return dao.concluidas(modulo).divide(dao.contar(modulo), 4, RoundingMode.CEILING);
+            return dao.concluidas(modulo).divide(dao.contar(modulo), 2, RoundingMode.CEILING);
         } catch (ArithmeticException e) {
             return BigDecimal.ZERO;
         }
@@ -119,10 +103,22 @@ public class RegraNegocioNegocio implements NegocioInterface<RegraNegocio>, Seri
 
     public BigDecimal percentualConcluido(Projeto projeto) {
         try {
-            return dao.concluidas(projeto).divide(dao.contar(projeto), 4, RoundingMode.CEILING);
+            return dao.concluidas(projeto).divide(dao.contar(projeto), 2, RoundingMode.CEILING);
         } catch (ArithmeticException e) {
             return BigDecimal.ZERO;
         }
+    }
+
+    public List<RegraNegocio> regrasPendentes(Projeto projeto, Modulo modulo, Atividade atividade, Funcionalidade funcionalidade) {
+        return dao.buscar(projeto, modulo, atividade, funcionalidade, StatusRegraNegocio.Pendente);
+    }
+
+    public List<RegraNegocio> regrasEmAndamento(Projeto projeto, Modulo modulo, Atividade atividade, Funcionalidade funcionalidade) {
+        return dao.buscar(projeto, modulo, atividade, funcionalidade, StatusRegraNegocio.Andamento);
+    }
+
+    public List<RegraNegocio> regrasConcluidas(Projeto projeto, Modulo modulo, Atividade atividade, Funcionalidade funcionalidade) {
+        return dao.buscar(projeto, modulo, atividade, funcionalidade, StatusRegraNegocio.Concluida);
     }
 
 }

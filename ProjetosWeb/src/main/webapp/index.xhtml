@@ -2,6 +2,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template/template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="conteudo">
@@ -10,6 +11,10 @@
 
             </h:link>
         </h:form>
+        <c:progressbar percentual="25" legenda="ok"/>
+        <c:progressbar percentual="50" legenda="Teste"/>
+        <c:progressbar percentual="#{82.5}" legenda="#{85.2}%"/>
+        <c:progressbar percentual="100" legenda="100%"/>
     </ui:define>
 </ui:composition>
 

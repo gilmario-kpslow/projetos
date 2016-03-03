@@ -1,6 +1,5 @@
 package br.com.truesystem.projetosweb.bean;
 
-import br.com.truesystem.projetosweb.dominio.gerenciador.Funcionalidade;
 import br.com.truesystem.projetosweb.dominio.gerenciador.RegraNegocio;
 import br.com.truesystem.projetosweb.negocio.RegraNegocioNegocio;
 import java.io.Serializable;
@@ -31,6 +30,15 @@ public class GerenciadorRegraNegocioBean implements Serializable {
     public void mudaStatus(RegraNegocio regra) {
         try {
             regra.mudaStatus();
+            servico.atualizar(regra);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void voltaStatus(RegraNegocio regra) {
+        try {
+            regra.voltaStatus();
             servico.atualizar(regra);
         } catch (Exception e) {
             e.printStackTrace();

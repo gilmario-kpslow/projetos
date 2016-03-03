@@ -1,8 +1,11 @@
 package br.com.truesystem.projetosweb.dao;
 
 import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade;
+import br.com.truesystem.projetosweb.dominio.gerenciador.Atividade_;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Funcionalidade;
+import br.com.truesystem.projetosweb.dominio.gerenciador.Funcionalidade_;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
+import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo_;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import br.com.truesystem.projetosweb.dominio.gerenciador.RegraNegocio;
 import br.com.truesystem.projetosweb.dominio.gerenciador.RegraNegocioPK;
@@ -12,6 +15,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -98,6 +102,23 @@ public class RegraNegocioDao extends DAO<RegraNegocio, RegraNegocioPK> implement
         return new BigDecimal((Long) getSession().createQuery("SELECT COUNT(r) FROM RegraNegocio r WHERE r.funcionalidade.atividade.modulo.projeto =:a")
                 .setParameter("a", a)
                 .uniqueResult());
+    }
+
+    public List<RegraNegocio> buscar(Projeto projeto, Modulo modulo, Atividade atividade, Funcionalidade funcionalidade, StatusRegraNegocio statusRegraNegocio) {
+        Criteria criteria = getSession().createCriteria(RegraNegocio.class).add(Restrictions.eq(RegraNegocio_.status.getName(), statusRegraNegocio));
+        if (funcionalidade != null) {
+            criteria.add(Restrictions.eq(RegraNegocio_.funcionalidade.getName(), funcionalidade));
+        }
+        if (atividade != null) {
+            criteria.createCriteria(RegraNegocio_.funcionalidade.getName()).add(Restrictions.eq(Funcionalidade_.atividade.getName(), atividade));
+        }
+        if (modulo != null) {
+            criteria.createCriteria(Funcionalidade_.atividade.getName()).add(Restrictions.eq(Atividade_.modulo.getName(), modulo));
+        }
+        if (projeto != null) {
+            criteria.createCriteria(Atividade_.modulo.getName()).add(Restrictions.eq(Modulo_.projeto.getName(), projeto));
+        }
+        return criteria.list();
     }
 
 }

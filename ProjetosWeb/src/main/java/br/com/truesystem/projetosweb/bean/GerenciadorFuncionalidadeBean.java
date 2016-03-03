@@ -45,11 +45,7 @@ public class GerenciadorFuncionalidadeBean implements Serializable {
     }
 
     public BigDecimal getPercentual() {
-        try {
-            return regraNegocioServico.percentualConcluido(funcionalidade);
-        } catch (ArithmeticException e) {
-            return BigDecimal.ZERO;
-        }
+        return regraNegocioServico.percentualConcluido(funcionalidade);
     }
 
 }

@@ -21,14 +21,7 @@
                             <h:outputText value="#{gerenciadorFuncionalidadeBean.funcionalidade.descricao}"/>
                         </div>
                         <div>
-                            <h:outputText value="#{gerenciadorFuncionalidadeBean.percentual}">
-                                <f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2"/>
-                            </h:outputText>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: #{gerenciadorFuncionalidadeBean.percentual * 100}%">
-                                <span class="sr-only"></span>
-                            </div>
+                            <c:progressbar percentual="#{gerenciadorFuncionalidadeBean.percentual * 100}" legenda="#{gerenciadorFuncionalidadeBean.percentual * 100}% da Regras de negócios foram atendidas"/>
                         </div>
                         <div>
                             <c:campo titulo="Regras de Negócio">
@@ -36,7 +29,7 @@
                                     <h:commandLink styleClass="float-right fa fa-refresh">
                                         <f:ajax event="click" execute="@this" listener="#{gerenciadorFuncionalidadeBean.atualizar()}" render="@form"/>
                                     </h:commandLink>
-                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/regra_negocio.xhtml" rendered="#{gerenciadorFuncionalidadeBean.funcionalidade.status != 'Concluida'}"/>
+                                    <h:commandLink styleClass="float-right fa fa-plus spandir-direita" action="/web/cadastro/regra_negocio.xhtml"/>
                                 </f:facet>
                                 <div class="row">
                                     <ui:repeat value="#{gerenciadorFuncionalidadeBean.listaDeRegraNegocio}" var="regra">
@@ -51,21 +44,28 @@
                                             <hr/>
                                             <div class="row">
                                                 <c:outputRender rendered="#{regra.status != 'Concluida'}">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <h:commandLink value=" #{regra.proximoStatus()} " styleClass="fa fa-arrow-right">
                                                             <f:ajax event="click" render="@form" listener="#{gerenciadorRegraNegocioBean.mudaStatus(regra)}"/>
                                                         </h:commandLink>
                                                     </div>
                                                 </c:outputRender>
                                                 <c:outputRender rendered="#{regra.status == 'Pendente'}">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <h:commandLink value=" Editar " styleClass="fa fa-pencil" title=" Editar" action="/web/cadastro/regra_negocio">
                                                             <f:setPropertyActionListener value="#{regra}" target="#{gerenciadorRegraNegocioBean.regraNegocio}"/>
                                                         </h:commandLink>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <h:commandLink value=" Excluir " styleClass="fa fa-trash" title=" Excluir" action="/web/excluir/regra_negocio">
                                                             <f:setPropertyActionListener value="#{regra}" target="#{gerenciadorRegraNegocioBean.regraNegocio}"/>
+                                                        </h:commandLink>
+                                                    </div>
+                                                </c:outputRender>
+                                                <c:outputRender rendered="#{regra.status != 'Pendente'}">
+                                                    <div class="col-md-3">
+                                                        <h:commandLink value=" Voltar Status" styleClass="fa fa-arrow-left">
+                                                            <f:ajax event="click" render="@form" listener="#{gerenciadorRegraNegocioBean.voltaStatus(regra)}"/>
                                                         </h:commandLink>
                                                     </div>
                                                 </c:outputRender>

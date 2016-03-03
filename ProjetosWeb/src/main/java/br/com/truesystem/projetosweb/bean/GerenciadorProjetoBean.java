@@ -6,8 +6,10 @@ import br.com.truesystem.projetosweb.dominio.gerenciador.Modulo;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import br.com.truesystem.projetosweb.negocio.AcessoResponsavelProjetoNegocio;
 import br.com.truesystem.projetosweb.negocio.ModuloNegocio;
+import br.com.truesystem.projetosweb.negocio.RegraNegocioNegocio;
 import br.com.truesystem.projetosweb.util.GeradorMensagem;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -31,6 +33,8 @@ public class GerenciadorProjetoBean implements Serializable {
     private AcessoResponsavelProjetoNegocio acessoResponsavelProjetoServico;
     @EJB
     private GeradorMensagem geradorMensagem;
+    @EJB
+    private RegraNegocioNegocio regraNegocioNegocio;
 
     public void atualizar() {
         listaDeModulos = moduloServico.buscar(projeto);
@@ -87,6 +91,14 @@ public class GerenciadorProjetoBean implements Serializable {
             }
         }
         return true;
+    }
+
+    public BigDecimal getPercentual() {
+        return regraNegocioNegocio.percentualConcluido(projeto);
+    }
+
+    public BigDecimal getPercentual(Modulo modulo) {
+        return regraNegocioNegocio.percentualConcluido(modulo);
     }
 
 }

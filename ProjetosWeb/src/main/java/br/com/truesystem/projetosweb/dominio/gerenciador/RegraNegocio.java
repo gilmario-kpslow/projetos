@@ -1,5 +1,6 @@
 package br.com.truesystem.projetosweb.dominio.gerenciador;
 
+import br.com.truesystem.projetosweb.dominio.Responsavel;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -9,13 +10,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -48,6 +49,10 @@ public class RegraNegocio implements Serializable {
     private String nome;
     @Column(nullable = false, length = 1000)
     private String descricao;
+    @Id
+    @JoinColumn(name = "res_id", referencedColumnName = "res_id", foreignKey = @ForeignKey(name = "responsavel_fk"))
+    @ManyToOne(cascade = CascadeType.ALL, optional = true)
+    private Responsavel responsavel;
 
     public RegraNegocio() {
         status = StatusRegraNegocio.Pendente;
@@ -98,6 +103,19 @@ public class RegraNegocio implements Serializable {
         return lista.get(lista.indexOf(status) + 1);
     }
 
+    public StatusRegraNegocio previoStatus() {
+        List<StatusRegraNegocio> lista = Arrays.asList(StatusRegraNegocio.values());
+        return lista.get(lista.indexOf(status) - 1);
+    }
+
+    public Responsavel getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(Responsavel responsavel) {
+        this.responsavel = responsavel;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -119,6 +137,10 @@ public class RegraNegocio implements Serializable {
 
     public void mudaStatus() {
         status = proximoStatus();
+    }
+
+    public void voltaStatus() {
+        status = previoStatus();
     }
 
 }
