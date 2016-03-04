@@ -1,6 +1,7 @@
 package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.dao.ProjetoDao;
+import br.com.truesystem.projetosweb.dominio.Responsavel;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import java.io.Serializable;
 import java.util.List;
@@ -28,9 +29,13 @@ public class ProjetoNegocio implements NegocioInterface<Projeto>, Serializable {
         return dao.buscar();
     }
 
+    public List<Projeto> buscar(Responsavel responsavel) {
+        return dao.buscar(responsavel);
+    }
+
     @Override
-    public void atualizar(Projeto t) {
-        dao.atualizar(t);
+    public Projeto atualizar(Projeto t) {
+        return dao.atualizar(t);
     }
 
     @Override
@@ -43,4 +48,13 @@ public class ProjetoNegocio implements NegocioInterface<Projeto>, Serializable {
         return dao.carregar(Projeto.class, pk);
     }
 
+    @Override
+    public void refresh(Projeto entidade) {
+        dao.refresh(entidade);
+    }
+
+    @Override
+    public Projeto gerenciar(Serializable pk) {
+        return dao.gerenciar(Projeto.class, pk);
+    }
 }

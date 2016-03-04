@@ -1,6 +1,5 @@
 package br.com.truesystem.projetosweb.dominio;
 
-import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,6 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "responsavel", schema = "projeto")
 @XmlRootElement
 public class Responsavel implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,6 @@
 package br.com.truesystem.projetosweb.negocio;
 
 import br.com.truesystem.projetosweb.dao.ResponsavelDao;
-import br.com.truesystem.projetosweb.dominio.Papel;
 import br.com.truesystem.projetosweb.dominio.Responsavel;
 import br.com.truesystem.projetosweb.util.CriptografiaUtil;
 import java.io.Serializable;
@@ -35,9 +34,9 @@ public class ResponsavelNegocio implements NegocioInterface<Responsavel>, Serial
     }
 
     @Override
-    public void atualizar(Responsavel t) throws Exception {
+    public Responsavel atualizar(Responsavel t) throws Exception {
         t.setSenha(CriptografiaUtil.MD5(t.getSenha()));
-        dao.atualizar(t);
+        return dao.atualizar(t);
     }
 
     @Override
@@ -57,6 +56,16 @@ public class ResponsavelNegocio implements NegocioInterface<Responsavel>, Serial
 
     public Responsavel buscarPorLogin(String login) {
         return dao.buscarPor(login);
+    }
+
+    @Override
+    public void refresh(Responsavel entidade) {
+        dao.refresh(entidade);
+    }
+
+    @Override
+    public Responsavel gerenciar(Serializable pk) {
+        return dao.gerenciar(Responsavel.class, pk);
     }
 
 }

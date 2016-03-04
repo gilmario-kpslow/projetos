@@ -9,11 +9,16 @@ import br.com.truesystem.projetosweb.negocio.AtividadeNegocio;
 import br.com.truesystem.projetosweb.negocio.FuncionalidadeNegocio;
 import br.com.truesystem.projetosweb.negocio.ModuloNegocio;
 import br.com.truesystem.projetosweb.negocio.RegraNegocioNegocio;
+import br.com.truesystem.projetosweb.negocio.ResponsavelSession;
+import br.com.truesystem.projetosweb.util.GeradorMensagem;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -42,6 +47,10 @@ public class MonitorProjetoBean implements Serializable {
     private AtividadeNegocio atividadeNegocio;
     @EJB
     private FuncionalidadeNegocio funcionalidadeNegocio;
+    @Inject
+    private ResponsavelSession responsavelSession;
+    @EJB
+    private GeradorMensagem geradorMensagem;
 
     public void iniciar() {
         listaDeModulos = moduloNegocio.buscar(projeto);
@@ -147,6 +156,49 @@ public class MonitorProjetoBean implements Serializable {
 
     public void setConcluidas(List<RegraNegocio> concluidas) {
         this.concluidas = concluidas;
+    }
+
+    public void avancaParaAndamento(RegraNegocio regra) {
+        regra.mudaStatus();
+        regra.setResponsavel(responsavelSession.getResponsavel());
+        regraNegocioNegocio.atualizar(regra);
+        listar();
+    }
+
+    public void avancaParaConcluido(RegraNegocio regra) {
+        if (regra.getResponsavel().equals(responsavelSession.getResponsavel())) {
+            regra.mudaStatus();
+            regraNegocioNegocio.atualizar(regra);
+            listar();
+        } else {
+            geradorMensagem.gerar("Atenção", "Somente o usuario " + regra.getResponsavel().getNomeCompleto() + " pode concluir essa Tarefa", FacesMessage.SEVERITY_ERROR);
+        }
+    }
+
+    public void voltaParaAndamento(RegraNegocio regra) {
+        if (regra.getResponsavel().equals(responsavelSession.getResponsavel())) {
+
+            regra.voltaStatus();
+            regraNegocioNegocio.atualizar(regra);
+            listar();
+        } else {
+            geradorMensagem.gerar("Atenção", "Somente o usuario " + regra.getResponsavel().getNomeCompleto() + " pode voltar essa Tarefa", FacesMessage.SEVERITY_ERROR);
+        }
+    }
+
+    public void voltaParaPendente(RegraNegocio regra) {
+        if (regra.getResponsavel().equals(responsavelSession.getResponsavel())) {
+            regra.voltaStatus();
+            regra.setResponsavel(null);
+            regraNegocioNegocio.atualizar(regra);
+            listar();
+        } else {
+            geradorMensagem.gerar("Atenção", "Somente o usuario " + regra.getResponsavel().getNomeCompleto() + " pode voltar essa Tarefa", FacesMessage.SEVERITY_ERROR);
+        }
+    }
+
+    public BigDecimal getPercentual() {
+        return regraNegocioNegocio.percentualConcluido(projeto);
     }
 
 }

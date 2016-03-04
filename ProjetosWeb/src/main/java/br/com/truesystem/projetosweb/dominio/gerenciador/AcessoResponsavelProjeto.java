@@ -22,6 +22,8 @@ import org.hibernate.annotations.OnDeleteAction;
 @IdClass(AcessoResponsavelProjetoPK.class)
 public class AcessoResponsavelProjeto implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @JoinColumn(name = "res_id", referencedColumnName = "res_id", nullable = false)
     @ManyToOne

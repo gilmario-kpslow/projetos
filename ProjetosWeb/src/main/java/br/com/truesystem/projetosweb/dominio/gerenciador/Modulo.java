@@ -21,6 +21,8 @@ import org.hibernate.annotations.OnDeleteAction;
 @IdClass(ModuloPK.class)
 public class Modulo implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(nullable = false, name = "mod_codigo")
     private Long codigo;

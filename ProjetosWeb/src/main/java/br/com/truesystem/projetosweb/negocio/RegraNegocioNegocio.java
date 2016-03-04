@@ -11,6 +11,7 @@ import br.com.truesystem.projetosweb.dominio.gerenciador.StatusRegraNegocio;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -40,8 +41,8 @@ public class RegraNegocioNegocio implements NegocioInterface<RegraNegocio>, Seri
     }
 
     @Override
-    public void atualizar(RegraNegocio t) {
-        dao.atualizar(t);
+    public RegraNegocio atualizar(RegraNegocio t) {
+        return dao.atualizar(t);
     }
 
     @Override
@@ -110,15 +111,39 @@ public class RegraNegocioNegocio implements NegocioInterface<RegraNegocio>, Seri
     }
 
     public List<RegraNegocio> regrasPendentes(Projeto projeto, Modulo modulo, Atividade atividade, Funcionalidade funcionalidade) {
-        return dao.buscar(projeto, modulo, atividade, funcionalidade, StatusRegraNegocio.Pendente);
+        return listarPor(projeto, modulo, atividade, funcionalidade, StatusRegraNegocio.Pendente);
     }
 
     public List<RegraNegocio> regrasEmAndamento(Projeto projeto, Modulo modulo, Atividade atividade, Funcionalidade funcionalidade) {
-        return dao.buscar(projeto, modulo, atividade, funcionalidade, StatusRegraNegocio.Andamento);
+        return listarPor(projeto, modulo, atividade, funcionalidade, StatusRegraNegocio.Andamento);
     }
 
     public List<RegraNegocio> regrasConcluidas(Projeto projeto, Modulo modulo, Atividade atividade, Funcionalidade funcionalidade) {
-        return dao.buscar(projeto, modulo, atividade, funcionalidade, StatusRegraNegocio.Concluida);
+        return listarPor(projeto, modulo, atividade, funcionalidade, StatusRegraNegocio.Concluida);
+    }
+
+    private List<RegraNegocio> listarPor(Projeto projeto, Modulo modulo, Atividade atividade, Funcionalidade funcionalidade, StatusRegraNegocio statusRegraNegocio) {
+        if (funcionalidade != null) {
+            return dao.buscar(funcionalidade, statusRegraNegocio);
+        } else if (atividade != null) {
+            return dao.buscar(atividade, statusRegraNegocio);
+        } else if (modulo != null) {
+            return dao.buscar(modulo, statusRegraNegocio);
+        } else if (projeto != null) {
+            return dao.buscar(projeto, statusRegraNegocio);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public void refresh(RegraNegocio regraNegocio) {
+        dao.refresh(regraNegocio);
+    }
+
+    @Override
+    public RegraNegocio gerenciar(Serializable pk) {
+        return dao.gerenciar(RegraNegocio.class, pk);
     }
 
 }

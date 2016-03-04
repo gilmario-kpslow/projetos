@@ -34,8 +34,8 @@ public class ModuloNegocio implements NegocioInterface<Modulo>, Serializable {
     }
 
     @Override
-    public void atualizar(Modulo t) throws Exception {
-        dao.atualizar(t);
+    public Modulo atualizar(Modulo t) throws Exception {
+        return dao.atualizar(t);
     }
 
     @Override
@@ -53,6 +53,16 @@ public class ModuloNegocio implements NegocioInterface<Modulo>, Serializable {
     private Long gerarCodigo() {
         Long total = dao.maiorCodigo(gpb.getProjeto());
         return ++total;
+    }
+
+    @Override
+    public void refresh(Modulo entidade) {
+        dao.refresh(entidade);
+    }
+
+    @Override
+    public Modulo gerenciar(Serializable pk) {
+        return dao.gerenciar(Modulo.class, pk);
     }
 
 }

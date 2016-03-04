@@ -1,8 +1,11 @@
 package br.com.truesystem.projetosweb.bean;
 
+import br.com.truesystem.projetosweb.dominio.gerenciador.AcessoResponsavelProjeto;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
 import br.com.truesystem.projetosweb.facade.ProjetoFacade;
+import br.com.truesystem.projetosweb.negocio.AcessoResponsavelProjetoNegocio;
 import br.com.truesystem.projetosweb.negocio.ProjetoNegocio;
+import br.com.truesystem.projetosweb.negocio.ResponsavelSession;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -25,6 +28,10 @@ public class CadastraProjetoBean extends BeanCadastroImplemente<Projeto> impleme
     private GerenciadorProjetoBean gpb;
     @EJB
     private ProjetoFacade projetoFacade;
+    @EJB
+    private AcessoResponsavelProjetoNegocio acessoResponsavelProjetoNegocio;
+    @Inject
+    private ResponsavelSession responsavelSession;
 
     @PostConstruct
     protected void init() {
@@ -49,6 +56,10 @@ public class CadastraProjetoBean extends BeanCadastroImplemente<Projeto> impleme
     @Override
     protected void salva() throws Exception {
         servico.salvar(projeto);
+        AcessoResponsavelProjeto acesso = new AcessoResponsavelProjeto(responsavelSession.getResponsavel(), projeto);
+        acesso.setDono(true);
+        acessoResponsavelProjetoNegocio.salvar(acesso);
+
     }
 
     @Override

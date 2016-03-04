@@ -36,7 +36,7 @@ public class FuncionalidadeConverter extends DefaultConverter<Funcionalidade> im
         Funcionalidade f = (Funcionalidade) value;
         return f.getId().toString().concat("-")
                 .concat(f.getAtividade().getCodigo().toString()).concat("-")
-                .concat(f.getAtividade().getModulo().getCodigo().toString())
+                .concat(f.getAtividade().getModulo().getCodigo().toString()).concat("-")
                 .concat(f.getAtividade().getModulo().getProjeto().getId().toString());
     }
 

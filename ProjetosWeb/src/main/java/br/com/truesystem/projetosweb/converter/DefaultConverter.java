@@ -21,7 +21,8 @@ public abstract class DefaultConverter<T> implements Converter {
     @Override
     public T getAsObject(FacesContext context, UIComponent component, String value) {
         try {
-            return (T) getServico().carregar(getChave(value));
+            T t = (T) getServico().carregar(getChave(value));
+            return t;
         } catch (Exception e) {
             return null;
         }

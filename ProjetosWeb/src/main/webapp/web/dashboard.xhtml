@@ -35,19 +35,19 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
-                                    <h:commandLink action="/web/gerenciar/projeto" styleClass="fa fa-check btn btn-success" title="Ver projeto">
+                                    <h:commandLink action="/web/gerenciar/projeto" styleClass="fa fa-check btn btn-success" title="Ver projeto" rendered="#{dashBoardBean.getDono(projeto)}">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
-                                    <h:commandLink action="/web/monitor" styleClass="fa fa-desktop btn btn-default" title="Ver atividades do projeto">
+                                    <h:commandLink action="/web/monitor" styleClass="fa fa-desktop btn btn-default" title="Ver atividades do projeto" >
                                         <f:setPropertyActionListener value="#{projeto}" target="#{monitorProjetoBean.projeto}"/>
                                     </h:commandLink>
-                                    <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-lock btn btn-info" title="Adicionar mais usuario">
+                                    <h:commandLink action="/web/gerenciar/acesso" styleClass="fa fa-lock btn btn-info" title="Adicionar mais usuario" rendered="#{dashBoardBean.getDono(projeto)}">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
-                                    <h:commandLink action="/web/cadastro/projeto" styleClass="fa fa-pencil btn btn-primary" title="Editar projeto">
+                                    <h:commandLink action="/web/cadastro/projeto" styleClass="fa fa-pencil btn btn-primary" title="Editar projeto" rendered="#{dashBoardBean.getDono(projeto)}">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
-                                    <h:commandLink action="/web/excluir/projeto" styleClass="fa fa-trash btn btn-danger" title="Excluir projeto">
+                                    <h:commandLink action="/web/excluir/projeto" styleClass="fa fa-trash btn btn-danger" title="Excluir projeto" rendered="#{dashBoardBean.getDono(projeto)}">
                                         <f:setPropertyActionListener value="#{projeto}" target="#{gerenciadorProjetoBean.projeto}"/>
                                     </h:commandLink>
                                 </div>

@@ -27,8 +27,8 @@ public class AcessoResponsavelProjetoNegocio implements NegocioInterface<AcessoR
     }
 
     @Override
-    public void atualizar(AcessoResponsavelProjeto t) throws Exception {
-        dao.atualizar(t);
+    public AcessoResponsavelProjeto atualizar(AcessoResponsavelProjeto t) throws Exception {
+        return dao.atualizar(t);
     }
 
     @Override
@@ -51,6 +51,16 @@ public class AcessoResponsavelProjetoNegocio implements NegocioInterface<AcessoR
 
     public List<Projeto> buscarProjetos(Responsavel responsavel) {
         return dao.buscarProjetos(responsavel);
+    }
+
+    @Override
+    public void refresh(AcessoResponsavelProjeto entidade) {
+        dao.refresh(entidade);
+    }
+
+    @Override
+    public AcessoResponsavelProjeto gerenciar(Serializable pk) {
+        return dao.gerenciar(AcessoResponsavelProjeto.class, pk);
     }
 
 }

@@ -34,8 +34,8 @@ public class FuncionalidadeNegocio implements NegocioInterface<Funcionalidade>, 
     }
 
     @Override
-    public void atualizar(Funcionalidade t) throws Exception {
-        dao.atualizar(t);
+    public Funcionalidade atualizar(Funcionalidade t) throws Exception {
+        return dao.atualizar(t);
     }
 
     @Override
@@ -53,6 +53,16 @@ public class FuncionalidadeNegocio implements NegocioInterface<Funcionalidade>, 
     private Long gerarCodigo() {
         Long total = dao.maiorCodigo(gab.getAtividade());
         return ++total;
+    }
+
+    @Override
+    public void refresh(Funcionalidade entidade) {
+        dao.refresh(entidade);
+    }
+
+    @Override
+    public Funcionalidade gerenciar(Serializable pk) {
+        return dao.gerenciar(Funcionalidade.class, pk);
     }
 
 }

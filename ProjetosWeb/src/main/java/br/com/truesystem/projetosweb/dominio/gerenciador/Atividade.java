@@ -22,6 +22,8 @@ import org.hibernate.annotations.OnDeleteAction;
 @IdClass(AtividadePK.class)
 public class Atividade implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(nullable = false, name = "ati_codigo")
     private Long codigo;

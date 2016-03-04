@@ -24,8 +24,8 @@ public abstract class DAO<T, PK extends Serializable> implements Serializable {
         getSession().save(t);
     }
 
-    public void atualizar(T t) {
-        getSession().merge(t);
+    public T atualizar(T t) {
+        return (T) getSession().merge(t);
     }
 
     public void excluir(T t) {
@@ -35,5 +35,13 @@ public abstract class DAO<T, PK extends Serializable> implements Serializable {
 
     public T carregar(Class<T> entidade, Serializable pk) {
         return (T) getSession().get(entidade, pk);
+    }
+
+    public T gerenciar(Class<T> entidade, Serializable pk) {
+        return (T) getSession().load(entidade, pk);
+    }
+
+    public void refresh(T entidade) {
+        getSession().refresh(entidade);
     }
 }

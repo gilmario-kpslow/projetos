@@ -1,6 +1,9 @@
 package br.com.truesystem.projetosweb.bean;
 
+import br.com.truesystem.projetosweb.dominio.gerenciador.AcessoResponsavelProjeto;
+import br.com.truesystem.projetosweb.dominio.gerenciador.AcessoResponsavelProjetoPK;
 import br.com.truesystem.projetosweb.dominio.gerenciador.Projeto;
+import br.com.truesystem.projetosweb.negocio.AcessoResponsavelProjetoNegocio;
 import br.com.truesystem.projetosweb.negocio.ProjetoNegocio;
 import br.com.truesystem.projetosweb.negocio.RegraNegocioNegocio;
 import br.com.truesystem.projetosweb.negocio.ResponsavelSession;
@@ -22,16 +25,22 @@ import javax.inject.Named;
 public class DashBoardBean implements Serializable {
 
     private List<Projeto> listaDeProjetos;
-    @Inject
-    private ResponsavelSession responsavelSession;
     @EJB
     private ProjetoNegocio projetoServico;
     @EJB
     private RegraNegocioNegocio regraNegocioNegocio;
+    @EJB
+    private AcessoResponsavelProjetoNegocio acessoResponsavelProjetoNegocio;
+    @Inject
+    private ResponsavelSession responsavelSession;
 
     @PostConstruct
     private void iniciar() {
-        listaDeProjetos = projetoServico.buscar();
+        listaDeProjetos = projetoServico.buscar(responsavelSession.getResponsavel());
+    }
+
+    public Boolean getDono(Projeto p) {
+        return acessoResponsavelProjetoNegocio.carregar(new AcessoResponsavelProjetoPK(responsavelSession.getResponsavel(), p)).getDono();
     }
 
     public List<Projeto> getListaDeProjetos() {

@@ -11,13 +11,16 @@
             <c:outputMensagens />
             <c:panel titulo="Monitor de Atividades" icon="fa fa-desktop">
                 <div class="row">
+                    <div class="col-md-12">
+                        <c:progressbar percentual="#{monitorProjetoBean.percentual * 100}" legenda="#{monitorProjetoBean.percentual * 100}% do Projeto está concluído"/>
+                    </div>
                     <div class="col-md-3">
                         <h:outputLabel value="Modulo" class="label label-primary"/>
                         <div>
                             <h:selectOneMenu value="#{monitorProjetoBean.modulo}" styleClass="form-control" converter="#{moduloConverter}">
                                 <f:selectItem itemLabel=" -- Selecione -- " itemValue="#{null}"/>
                                 <f:selectItems value="#{monitorProjetoBean.listaDeModulos}" itemValue="#{modulo}" itemLabel="#{modulo.nome}" var="modulo"/>
-                                <f:ajax event="change" render="@form" listener="#{monitorProjetoBean.selecionaModulo()}"/>
+                                <f:ajax event="change" execute="@form" render="@form" listener="#{monitorProjetoBean.selecionaModulo()}"/>
                             </h:selectOneMenu>
                         </div>
                     </div>
@@ -27,55 +30,96 @@
                             <h:selectOneMenu value="#{monitorProjetoBean.atividade}" styleClass="form-control" converter="#{atividadeConverter}">
                                 <f:selectItem itemLabel=" -- Selecione -- " itemValue="#{null}"/>
                                 <f:selectItems value="#{monitorProjetoBean.listaDeAtividades}" itemValue="#{atividade}" itemLabel="#{atividade.nome}" var="atividade"/>
-                                <f:ajax event="change" execute="@this" render="@form" listener="#{monitorProjetoBean.selecionaAtividade()}"/>
+                                <f:ajax event="change" execute="@form" render="@form" listener="#{monitorProjetoBean.selecionaAtividade()}"/>
                             </h:selectOneMenu>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <h:outputLabel value="Funcionalidade" class="label label-primary"/>
                         <div>
-                            <h:selectOneMenu value="#{monitorProjetoBean.atividade}" styleClass="form-control" converter="#{funcionalidadeConverter}">
+                            <h:selectOneMenu value="#{monitorProjetoBean.funcionalidade}" styleClass="form-control" converter="#{funcionalidadeConverter}">
                                 <f:selectItem itemLabel=" -- Selecione -- " itemValue="#{null}"/>
                                 <f:selectItems value="#{monitorProjetoBean.listaDeFuncionalidades}" itemValue="#{funcionalidade}" itemLabel="#{funcionalidade.nome}" var="funcionalidade"/>
-                                <f:ajax event="change" execute="@this" render="@form" listener="#{monitorProjetoBean.selecionaFuncionalidade()}"/>
                             </h:selectOneMenu>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <h:commandLink action="#{monitorProjetoBean.listar()}" styleClass="fa fa-refresh btn btn-success form-control" value=" Buscar">
-                            <f:ajax event="click"  execute="@form"  render="@form"/>
+                        <h:commandLink styleClass="fa fa-refresh btn btn-success form-control" value=" Buscar">
+                            <f:ajax event="click"  execute="@form" listener="#{monitorProjetoBean.listar()}" render="@form"/>
                         </h:commandLink>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <c:panel titulo="Pendentes">
                             <div class="row">
                                 <ui:repeat value="#{monitorProjetoBean.pendentes}" var="pendente">
-                                    <div class="col-md-12">
-                                        <h:outputText value="#{pendente.nome}"/>
+                                    <div class="col-md-12 bg-danger well">
+                                        <span class="glyphicon glyphicon-asterisk"></span> <h:outputText value="#{pendente.nome}"/>
+                                        <div>
+                                            <h:commandLink styleClass="fa fa-arrow-right">
+                                                <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.avancaParaAndamento(pendente)}"/>
+                                            </h:commandLink>
+                                        </div>
                                     </div>
                                 </ui:repeat>
                             </div>
                         </c:panel>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <c:panel titulo="Em andamento">
                             <div class="row">
                                 <ui:repeat value="#{monitorProjetoBean.andamento}" var="andamento">
-                                    <div class="col-md-12">
-                                        <h:outputText value="#{andamento.nome}"/>
+                                    <div class="col-md-12 bg-ligtness well">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="fa fa-clock-o fa-spin text-danger fa-2x"></span>  <h:outputLabel value=" #{andamento.nome}" title="#{andamento.descricao}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <span class="fa fa-user text-danger fa-2x"></span>  <h:outputText value="#{andamento.responsavel.nomeCompleto}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Modulo: "/>
+                                                <h:outputText value="#{andamento.funcionalidade.atividade.modulo.nome}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Atividade: "/>
+                                                <h:outputText value="#{andamento.funcionalidade.atividade.nome}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Funcionalidade: "/>
+                                                <h:outputText value="#{andamento.funcionalidade.nome}"/>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h:commandLink styleClass="fa fa-arrow-left">
+                                                    <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.voltaParaPendente(andamento)}"/>
+                                                </h:commandLink>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h:commandLink styleClass="fa fa-arrow-right">
+                                                    <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.avancaParaConcluido(andamento)}"/>
+                                                </h:commandLink>
+                                            </div>
+                                        </div>
                                     </div>
                                 </ui:repeat>
                             </div>
                         </c:panel>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <c:panel titulo="Concluidas">
                             <div class="row">
-                                <ui:repeat value="#{monitorProjetoBean.concluidas}" var="concluidas">
-                                    <div class="col-md-12">
-                                        <h:outputText value="#{concluidas.nome}"/>
+                                <ui:repeat value="#{monitorProjetoBean.concluidas}" var="concluida">
+                                    <div class="col-md-12 bg-success well">
+                                        <h:outputText value="#{concluida.nome}"/>
+                                        <div>
+                                            <h:outputText value="#{concluida.responsavel.nomeCompleto}"/>
+                                        </div>
+                                        <div>
+                                            <h:commandLink styleClass="fa fa-arrow-left">
+                                                <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.voltaParaAndamento(concluida)}"/>
+                                            </h:commandLink>
+                                        </div>
                                     </div>
                                 </ui:repeat>
                             </div>

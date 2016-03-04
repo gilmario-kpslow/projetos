@@ -9,6 +9,8 @@ import java.util.Objects;
  */
 public class AtividadePK implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private Long codigo;
     private Modulo modulo;
 

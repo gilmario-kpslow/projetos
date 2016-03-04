@@ -22,6 +22,8 @@ import org.hibernate.annotations.OnDeleteAction;
 @IdClass(FuncionalidadePK.class)
 public class Funcionalidade implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(nullable = false, name = "fun_codigo")
     private Long id;
@@ -38,7 +40,6 @@ public class Funcionalidade implements Serializable {
     private String nome;
     @Column(nullable = false, length = 1000)
     private String descricao;
-
 
     public Long getId() {
         return id;

@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -28,6 +29,8 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "regra_negocio", schema = "projeto")
 @IdClass(RegraNegocioPK.class)
 public class RegraNegocio implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(nullable = false)
@@ -49,8 +52,7 @@ public class RegraNegocio implements Serializable {
     private String nome;
     @Column(nullable = false, length = 1000)
     private String descricao;
-    @Id
-    @JoinColumn(name = "res_id", referencedColumnName = "res_id", foreignKey = @ForeignKey(name = "responsavel_fk"))
+    @JoinColumn(name = "res_id", referencedColumnName = "res_id", nullable = true)
     @ManyToOne(cascade = CascadeType.ALL, optional = true)
     private Responsavel responsavel;
 
@@ -141,6 +143,10 @@ public class RegraNegocio implements Serializable {
 
     public void voltaStatus() {
         status = previoStatus();
+    }
+
+    public Serializable getPK() {
+        return new RegraNegocioPK(id, funcionalidade);
     }
 
 }
