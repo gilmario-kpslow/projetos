@@ -49,17 +49,44 @@
                         </h:commandLink>
                     </div>
                 </div>
+                <hr/>
+
                 <div class="row">
                     <div class="col-md-4">
                         <c:panel titulo="Pendentes">
                             <div class="row">
                                 <ui:repeat value="#{monitorProjetoBean.pendentes}" var="pendente">
                                     <div class="col-md-12 bg-danger well">
-                                        <span class="glyphicon glyphicon-asterisk"></span> <h:outputText value="#{pendente.nome}"/>
-                                        <div>
-                                            <h:commandLink styleClass="fa fa-arrow-right">
-                                                <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.avancaParaAndamento(pendente)}"/>
-                                            </h:commandLink>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <span class="fa fa-clock-o text-danger fa-2x"></span>
+                                                    </div>
+                                                    <div class="col-md-9 text-right">
+                                                        <h:commandLink styleClass="fa fa-arrow-right">
+                                                            <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.avancaParaAndamento(pendente)}"/>
+                                                        </h:commandLink>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Regra: "/>
+                                                <h:outputText value="#{pendente.nome}" title="#{pendente.descricao}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Modulo: "/>
+                                                <h:outputText value="#{pendente.funcionalidade.atividade.modulo.nome}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Atividade: "/>
+                                                <h:outputText value="#{pendente.funcionalidade.atividade.nome}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Funcionalidade: "/>
+                                                <h:outputText value="#{pendente.funcionalidade.nome}"/>
+                                            </div>
                                         </div>
                                     </div>
                                 </ui:repeat>
@@ -73,10 +100,29 @@
                                     <div class="col-md-12 bg-ligtness well">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <span class="fa fa-clock-o fa-spin text-danger fa-2x"></span>  <h:outputLabel value=" #{andamento.nome}" title="#{andamento.descricao}"/>
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <h:commandLink styleClass="fa fa-arrow-left">
+                                                            <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.voltaParaPendente(andamento)}"/>
+                                                        </h:commandLink>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <span class="fa fa-clock-o fa-spin text-danger fa-2x"></span>
+                                                    </div>
+                                                    <div class="col-md-5 text-right">
+                                                        <h:commandLink styleClass="fa fa-arrow-right">
+                                                            <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.avancaParaConcluido(andamento)}"/>
+                                                        </h:commandLink>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <span class="fa fa-user text-danger fa-2x"></span>  <h:outputText value="#{andamento.responsavel.nomeCompleto}"/>
+                                                <h:outputLabel value="Usuario: "/>
+                                                <h:outputText value="#{andamento.responsavel.nomeCompleto}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Regra: "/>
+                                                <h:outputText value=" #{andamento.nome}" title="#{andamento.descricao}"/>
                                             </div>
                                             <div class="col-md-12">
                                                 <h:outputLabel value="Modulo: "/>
@@ -90,16 +136,7 @@
                                                 <h:outputLabel value="Funcionalidade: "/>
                                                 <h:outputText value="#{andamento.funcionalidade.nome}"/>
                                             </div>
-                                            <div class="col-md-6">
-                                                <h:commandLink styleClass="fa fa-arrow-left">
-                                                    <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.voltaParaPendente(andamento)}"/>
-                                                </h:commandLink>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h:commandLink styleClass="fa fa-arrow-right">
-                                                    <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.avancaParaConcluido(andamento)}"/>
-                                                </h:commandLink>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </ui:repeat>
@@ -111,14 +148,33 @@
                             <div class="row">
                                 <ui:repeat value="#{monitorProjetoBean.concluidas}" var="concluida">
                                     <div class="col-md-12 bg-success well">
-                                        <h:outputText value="#{concluida.nome}"/>
-                                        <div>
-                                            <h:outputText value="#{concluida.responsavel.nomeCompleto}"/>
-                                        </div>
-                                        <div>
-                                            <h:commandLink styleClass="fa fa-arrow-left">
-                                                <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.voltaParaAndamento(concluida)}"/>
-                                            </h:commandLink>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h:commandLink styleClass="fa fa-arrow-left">
+                                                    <f:ajax event="click" render="@form" listener="#{monitorProjetoBean.voltaParaAndamento(concluida)}"/>
+                                                </h:commandLink>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Usuario: "/>
+                                                <h:outputText value="#{concluida.responsavel.nomeCompleto}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Regra: "/>
+                                                <h:outputText value=" #{concluida.nome}" title="#{concluida.descricao}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Modulo: "/>
+                                                <h:outputText value="#{concluida.funcionalidade.atividade.modulo.nome}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Atividade: "/>
+                                                <h:outputText value="#{concluida.funcionalidade.atividade.nome}"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h:outputLabel value="Funcionalidade: "/>
+                                                <h:outputText value="#{concluida.funcionalidade.nome}"/>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </ui:repeat>

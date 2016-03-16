@@ -47,7 +47,7 @@
                                             <f:facet name="header">
                                                 <h:outputText value="Ação"/>
                                             </f:facet>
-                                            <h:commandLink styleClass="fa fa-pencil btn btn-primary">
+                                            <h:commandLink styleClass="fa fa-pencil btn btn-primary" rendered="#{dashBoardBean.getDono(elemento)}">
                                                 <f:ajax event="click" execute="@form" render="@form" listener="#{cadastraProjetoBean.setProjeto(elemento)}"/>
                                                 <f:ajax event="click" execute="@form" render="@form" listener="#{consultaProjetoBean.esconder()}"/>
                                                 <f:ajax event="click" execute="@form" render="@form" listener="#{cadastraProjetoBean.mostrar()}"/>
