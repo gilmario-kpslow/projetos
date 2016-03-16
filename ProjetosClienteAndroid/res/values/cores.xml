@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="titulo">#015488</color>
-    <color name="tabela">#aaaaaa</color>
-    <color name="cabecalho_tabela">#EEEEEE</color>
-    <color name="aberto">#eeeeee</color>
-    <color name="cancelado">#991111</color>
-    <color name="concluido">#009922</color>
-</resources>
