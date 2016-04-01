@@ -1,0 +1,10 @@
+<facelet-taglib xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+    <namespace>http://truesystem.com.br</namespace>
+    <tag>
+        <tag-name>barComponente</tag-name>
+        <component>
+            <component-type>barComponente</component-type>
+            <renderer-type>BarComponente</renderer-type>
+        </component>
+    </tag>
+</facelet-taglib>

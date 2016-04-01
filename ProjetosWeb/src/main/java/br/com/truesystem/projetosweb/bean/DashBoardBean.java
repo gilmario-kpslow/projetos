@@ -51,11 +51,11 @@ public class DashBoardBean implements Serializable {
         this.listaDeProjetos = listaDeProjetos;
     }
 
-    public BigDecimal getPercentual(Projeto projeto) {
+    public Integer getPercentual(Projeto projeto) {
         try {
-            return regraNegocioNegocio.percentualConcluido(projeto);
+            return regraNegocioNegocio.percentualConcluido(projeto).intValue();
         } catch (ArithmeticException e) {
-            return BigDecimal.ZERO;
+            return 0;
         }
     }
 

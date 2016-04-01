@@ -3,6 +3,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template/template.xhtml"
                 xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
+                xmlns:t="http://truesystem.com.br"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
@@ -42,7 +43,7 @@
                                                 <h:outputText value="#{modulo.descricao}"/>
                                             </div>
                                             <div>
-                                                <c:progressbar percentual="#{gerenciadorProjetoBean.getPercentual(modulo) * 100}" legenda="#{gerenciadorProjetoBean.getPercentual(modulo) * 100}%"/>
+                                                <t:barComponente percentual="#{gerenciadorProjetoBean.getPercentual(modulo) * 100}" legenda="#{gerenciadorProjetoBean.getPercentual(modulo) * 100}%"/>
                                             </div>
                                         </div>
                                     </ui:repeat>

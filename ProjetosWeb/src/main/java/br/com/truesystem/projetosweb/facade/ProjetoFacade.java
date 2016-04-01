@@ -32,10 +32,15 @@ public class ProjetoFacade implements Serializable {
         projetoNegocio.excluir(projeto);
     }
 
-    public void registrarAcesso(Projeto t) {
+    private void registrarAcesso(Projeto t) {
         AcessoResponsavelProjeto arp = new AcessoResponsavelProjeto(responsavelSession.getResponsavel(), t);
         arp.setDono(Boolean.TRUE);
         arps.salvar(arp);
+    }
+
+    public void salvar(Projeto projeto) {
+        projetoNegocio.salvar(projeto);
+        registrarAcesso(projeto);
     }
 
 }

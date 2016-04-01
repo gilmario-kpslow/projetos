@@ -18,7 +18,7 @@
                 </div>
             </div>
         </c:if>
-        <c:if test="#{((cc.attrs.percentual > 50) or cc.attrs.percentual eq 50) and cc.attrs.percentual lt 100}">
+        <c:if test="#{((cc.attrs.percentual gt 50) or cc.attrs.percentual eq 50) and cc.attrs.percentual lt 100}">
             <div class="progress">
                 <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: #{cc.attrs.percentual}%">
                     <span>#{cc.attrs.legenda}</span>

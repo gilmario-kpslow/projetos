@@ -4,6 +4,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <!--<jta-data-source>java:/jboss/projetos</jta-data-source>-->
         <jta-data-source>java:/jboss/projetos</jta-data-source>
+        <!--<jta-data-source>java:/jboss/datasources/PostgreSQLDS</jta-data-source>-->
         <class>br.com.truesystem.projetosweb.dominio.Responsavel</class>
         <class>br.com.truesystem.projetosweb.dominio.gerenciador.Projeto</class>
         <class>br.com.truesystem.projetosweb.dominio.gerenciador.Modulo</class>

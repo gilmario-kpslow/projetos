@@ -97,8 +97,8 @@ public class GerenciadorProjetoBean implements Serializable {
         return regraNegocioNegocio.percentualConcluido(projeto);
     }
 
-    public BigDecimal getPercentual(Modulo modulo) {
-        return regraNegocioNegocio.percentualConcluido(modulo);
+    public Integer getPercentual(Modulo modulo) {
+        return regraNegocioNegocio.percentualConcluido(modulo).intValue();
     }
 
 }

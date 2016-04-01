@@ -2,19 +2,14 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template/template.xhtml"
-                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:tcb="http://truesystem.com.br">
 
     <ui:define name="conteudo">
         <h:form>
-            <h:link value="Selecione um projeto aqui para acompanhar" class="btn btn-default " outcome="web/dashboard">
-
-            </h:link>
+            <h:link value="Selecione um projeto aqui para acompanhar" class="btn btn-default " outcome="web/dashboard" target="_blank"/>
         </h:form>
-        <c:progressbar percentual="25" legenda="ok"/>
-        <c:progressbar percentual="50" legenda="Teste"/>
-        <c:progressbar percentual="#{82.5}" legenda="#{85.2}%"/>
-        <c:progressbar percentual="100" legenda="100%"/>
+        <tcb:barComponente percentual="15" legenda="Nome"  />
     </ui:define>
 </ui:composition>
 

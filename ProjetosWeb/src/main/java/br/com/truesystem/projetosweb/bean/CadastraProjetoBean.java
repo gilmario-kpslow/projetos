@@ -28,10 +28,6 @@ public class CadastraProjetoBean extends BeanCadastroImplemente<Projeto> impleme
     private GerenciadorProjetoBean gpb;
     @EJB
     private ProjetoFacade projetoFacade;
-    @EJB
-    private AcessoResponsavelProjetoNegocio acessoResponsavelProjetoNegocio;
-    @Inject
-    private ResponsavelSession responsavelSession;
 
     @PostConstruct
     protected void init() {
@@ -55,11 +51,7 @@ public class CadastraProjetoBean extends BeanCadastroImplemente<Projeto> impleme
 
     @Override
     protected void salva() throws Exception {
-        servico.salvar(projeto);
-        AcessoResponsavelProjeto acesso = new AcessoResponsavelProjeto(responsavelSession.getResponsavel(), projeto);
-        acesso.setDono(true);
-        acessoResponsavelProjetoNegocio.salvar(acesso);
-
+        projetoFacade.salvar(projeto);
     }
 
     @Override
